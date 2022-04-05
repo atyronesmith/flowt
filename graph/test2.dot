@@ -1,0 +1,142 @@
+digraph {
+concentrate=True;
+rankdir=LR;
+node [shape="none" fontsize="6"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+graph [
+    rankdir = "LR"
+];
+"table0" [
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="1">
+      <TR>
+        <TD PORT="input">Priority</TD>
+        <TD>In Port</TD>
+        <TD ALIGN="center">Action (Table 0)</TD>
+      </TR>
+      <TR>
+        <TD rowspan="4">100</TD>
+        <TD rowspan="4">1</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left" PORT="o1">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">100</TD>
+        <TD rowspan="3">1</TD>
+        <TD ALIGN="left">move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left" PORT="o2">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">100</TD>
+        <TD rowspan="3">1</TD>
+        <TD ALIGN="left">move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left" PORT="o3">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">10</TD>
+        <TD rowspan="3">1</TD>
+        <TD ALIGN="left">move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left" PORT="o4">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      </TABLE>
+      >
+    ];
+
+"table1" [
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="1">
+      <TR>
+        <TD PORT="input">Priority</TD>
+        <TD>In</TD>
+        <TD ALIGN="center">Action (Table 1)</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">100</TD>
+        <TD rowspan="3">1</TD>
+        <TD ALIGN="left">move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left" PORT="o1">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      </TABLE>
+      >
+    ];
+"table2" [
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="1">
+      <TR>
+        <TD PORT="input">Priority</TD>
+        <TD>In</TD>
+        <TD ALIGN="center">Action (Table 2)</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">100</TD>
+        <TD rowspan="3">1</TD>
+        <TD>move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD>move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD PORT="o1">move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      </TABLE>
+      >
+    ];
+"table3" [
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="1">
+      <TR>
+        <TD PORT="input">Priority</TD>
+        <TD>In</TD>
+        <TD ALIGN="center">Action (Table 2)</TD>
+      </TR>
+      <TR>
+        <TD rowspan="3">100</TD>
+        <TD rowspan="3">1</TD>
+        <TD>move:NXM_NX_TUN_ID[0..23]-&gt;OXM_OF_METADATA[0..23]</TD>
+      </TR>
+      <TR>
+        <TD>move:NXM_NX_TUN_METADATA0[16..30]-&gt;NXM_NX_REG14[0..14]</TD>
+      </TR>
+      <TR>
+        <TD>move:NXM_NX_TUN_METADATA0[0..15]-&gt;NXM_NX_REG15[0..15]</TD>
+      </TR>
+      </TABLE>
+      >
+    ];
+  "drop" [
+    shape="invtriangle"
+  ]
+  table0:o1 -> table1:input
+  table0:o2 -> table2:input
+  table0:o3 -> table3:input
+  table0:o4 -> drop
+  table1:o1 -> table3:input
+  table2:o1 -> table3:input
+}

@@ -1,0 +1,29 @@
+digraph {
+fontname="Helvetica,Arial,sans-serif"
+concentrate=True;
+rankdir=LR;
+node [shape="none"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+graph [
+    rankdir = "LR"
+];
+
+"abc" [
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10" FIZED_SIZE="false">
+      <TR>
+        <TD>n_packets</TD>
+        <TD>n_bytes</TD>
+        <TD>idle_age</TD>
+        <TD>priority</TD>
+      </TR>
+      <TR>
+        <TD>0</TD>
+        <TD>0</TD>
+        <TD>64692</TD>
+        <TD>150</TD>
+      </TR>
+      </TABLE>
+      >
+    ];
+}
