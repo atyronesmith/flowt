@@ -9,7 +9,7 @@ import (
 
 func TestAddNode(t *testing.T) {
 
-	testList := NewList[uint64,types.RuleNode]()
+	testList := NewList[types.RuleNode]("Test List")
 
 	rn := types.RuleNode{Line: 0,
 		Cookie:   10,

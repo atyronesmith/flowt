@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 SSH_USER="heat-admin"
 
 usage() {
@@ -58,7 +60,7 @@ else
 fi
 
 # shellcheck source=utils.sh
-source utils.sh
+source "$SCRIPT_DIR/utils.sh"
 
 LOGIN="$SSH_USER@$host"
 

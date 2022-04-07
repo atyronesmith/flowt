@@ -7,7 +7,11 @@ import (
 )
 
 func TestHashLink(t *testing.T) {
-	hl := NewHashList[uint64, types.RuleNode]()
+	hf := func(rn *types.RuleNode) uint64 {
+		return rn.Cookie
+	}
+
+	hl := NewHashList("Test HashList", hf)
 
 	rn := types.RuleNode{Line: 0,
 		Cookie:   10,

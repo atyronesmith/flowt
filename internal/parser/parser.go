@@ -6,9 +6,12 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 
+	"github.com/atyronesmith/flowt/pkg/analysis"
+	dstructs "github.com/atyronesmith/flowt/pkg/dstructs"
 	types "github.com/atyronesmith/flowt/pkg/types"
 )
 
@@ -20,8 +23,14 @@ func Parse(in io.Reader) {
 	lineSplitRE := regexp.MustCompile(`\b,*\s+`)
 	fieldSplitRE := regexp.MustCompile(`([^=]+)=(.*)`)
 	actionSplitRE := regexp.MustCompile(`([^,\(\)\n]+\(.*?\))|([^,\n]+)`)
+	registerRE := regexp.MustCompile(`load:0x([[:xdigit:]])\-\>NXM_NX_REG(\d+)`)
+	matchMetadataLoadRE := regexp.MustCompile(`load:0x([[:xdigit:]])\-\>OXM_OF_METADATA`)
 
-	nodes := make([]types.RuleNode, 0, 100)
+	hf := func(rn *types.RuleNode) uint64 {
+		return rn.Cookie
+	}
+
+	hl := dstructs.NewHashList("Parser", hf)
 
 	lineNo := 1
 
@@ -32,12 +41,14 @@ func Parse(in io.Reader) {
 
 		if fields[0] == "NXST_FLOW" {
 			lineNo++
-			continue;
+			continue
 		}
 
-		n := types.RuleNode{}
+		n := types.NewRuleNode()
 
 		for _, v := range fields {
+			v = strings.TrimLeft(v, " ")
+
 			fieldSlice := fieldSplitRE.FindStringSubmatch(v)
 			if fieldSlice == nil {
 				fmt.Printf("(%d) Unable to split field: <%s> in fields: %s\n\t\n", lineNo, v, fields[3])
@@ -62,6 +73,12 @@ func Parse(in io.Reader) {
 				}
 				n.Duration = duration
 			} else if key == "table" {
+				// OpenFlow  table  0 performs physical-to-logical translation.
+				// OpenFlow  tables  8  through  31 execute the logical ingress
+				//  pipeline from the Logical_Flow table in the  OVN  Southbound
+				//  database.
+				// OpenFlow tables 37 through 39 implement the output action in
+				//  the logical ingress pipeline.
 				table, err := strconv.ParseInt(value, 10, 32)
 				if err != nil {
 					fmt.Printf("Invalid table: %s, %s\n", value, err)
@@ -83,7 +100,7 @@ func Parse(in io.Reader) {
 				}
 				n.NBytes = uint64(nBytes)
 			} else if key == "priority" {
-				matches := strings.Split(value,",")
+				matches := strings.Split(value, ",")
 				priority, err := strconv.ParseInt(matches[0], 10, 32)
 				if err != nil {
 					fmt.Printf("(%d) Invalid priority: %s, %s\n", lineNo, value, err)
@@ -92,19 +109,64 @@ func Parse(in io.Reader) {
 				n.Priority = uint(priority)
 				n.Match = append(n.Match, matches[1:]...)
 			} else if key == "actions" {
-				actions := actionSplitRE.FindAllString(value,-1)
+				actions := actionSplitRE.FindAllString(value, -1)
 				n.Actions = append(n.Actions, actions...)
+
+				for _, v := range actions[1:] {
+					
+					if regMatch := registerRE.FindStringSubmatch(v); len(regMatch) > 0 {
+						regVal, err := strconv.ParseInt(regMatch[1], 16, 0)
+						if err != nil {
+							fmt.Printf("(%d) Unable to parse Reg: %s, %s\n", lineNo, regMatch[1], err)
+							os.Exit(1)
+						}
+						regNum, err := strconv.ParseInt(regMatch[2], 10, 0)
+						if err != nil {
+							fmt.Printf("(%d) Unable to parse Reg: %s, %s\n", lineNo, regMatch[1], err)
+							os.Exit(1)
+						}
+						switch regNum {
+						case 15:
+							n.Registers[types.R15] = int(regVal)
+						case 14:
+							n.Registers[types.R14] = int(regVal)
+						case 13:
+							n.Registers[types.R13] = int(regVal)
+						case 12:
+							n.Registers[types.R12] = int(regVal)
+						case 11:
+							n.Registers[types.R11] = int(regVal)
+						case 10:
+							n.Registers[types.R10] = int(regVal)
+						default:
+							fmt.Printf("(%d) Unknown Reg: %d\n", lineNo, regNum)
+							os.Exit(1)
+						}
+					} else if regMatch := matchMetadataLoadRE.FindStringSubmatch(v); len(regMatch) > 0 {
+						regVal, err := strconv.ParseInt(regMatch[1], 16, 0)
+						if err != nil {
+							fmt.Printf("(%d) Unable to parse Reg: %s, %s\n", lineNo, regMatch[1], err)
+							os.Exit(1)
+						}
+						fmt.Printf("metadata %d\n", regVal)
+						n.OFMetadata = int(regVal)
+					}
+				}
 			}
 		}
 		n.Line = uint(lineNo)
 
-		nodes = append(nodes, n)
+		hl.Add(n)
 
 		lineNo++
 	}
 
-	for _, n := range nodes {
-		fmt.Printf("%+v\n",n)
-	}
+	//	fmt.Printf("%#v\n", hl)
 
+	fmt.Printf("Lines: %d\n", lineNo)
+	tables := analysis.GetTables(hl)
+	sort.Slice(tables, func(i, j int) bool {
+		return tables[i] < tables[j]
+	})
+	fmt.Printf("Tables: %v\n", tables)
 }

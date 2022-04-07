@@ -2,45 +2,49 @@ package dstructs
 
 import (
 	"fmt"
+	"strings"
 )
 
-type linkNode[V comparable, T Node[V,T]] struct {
+type linkNode[T Node[T]] struct {
 	Data *T
-	Next *linkNode[V,T]
+	Next *linkNode[T]
 }
 
-func (ln *linkNode[V,T]) next() *linkNode[V,T] {
+func (ln *linkNode[T]) next() *linkNode[T] {
 	return ln.Next
 }
 
-func (ln *linkNode[V,T]) setNext(next *linkNode[V,T]) {
+func (ln *linkNode[T]) setNext(next *linkNode[T]) {
 	ln.Next = next
 }
 
-func (ln *linkNode[V,T]) getData() *T {
+func (ln *linkNode[T]) getData() *T {
 	return ln.Data
 }
 
-func newLinkNode[V comparable, T Node[V,T]](data *T) *linkNode[V,T] {
-	return &linkNode[V,T]{
+func newLinkNode[T Node[T]](data *T) *linkNode[T] {
+	return &linkNode[T]{
 		Data: data,
 		Next: nil,
 	}
 }
 
-type List[V comparable, T Node[V,T]] struct {
-	Head *linkNode[V,T]
-	Tail *linkNode[V,T]
+type List[T Node[T]] struct {
+	Head *linkNode[T]
+	Tail *linkNode[T]
+
+	Description string
 }
 
-func NewList[V comparable, T Node[V,T]]() *List[V,T] {
-	return &List[V,T]{
-		Head: nil,
-		Tail: nil,
+func NewList[T Node[T]](description string) *List[T] {
+	return &List[T]{
+		Head:        nil,
+		Tail:        nil,
+		Description: description,
 	}
 }
 
-func (l *List[V,T]) Len() int {
+func (l *List[T]) Len() int {
 	length := 0
 	for e := l.Head; e != nil; e = e.next() {
 		length++
@@ -49,9 +53,9 @@ func (l *List[V,T]) Len() int {
 	return length
 }
 
-func (l *List[V,T]) InsertHead(data *T) {
-	nn := newLinkNode[V](data)
-	
+func (l *List[T]) InsertHead(data *T) {
+	nn := newLinkNode(data)
+
 	nn.setNext(l.Head)
 	if l.Head == nil {
 		l.Tail = nn
@@ -59,8 +63,8 @@ func (l *List[V,T]) InsertHead(data *T) {
 	l.Head = nn
 }
 
-func (l *List[V,T]) InsertTail(data *T) {
-	nn := newLinkNode[V](data)
+func (l *List[T]) InsertTail(data *T) {
+	nn := newLinkNode(data)
 
 	nn.setNext(l.Tail)
 	if l.Tail == nil {
@@ -69,7 +73,7 @@ func (l *List[V,T]) InsertTail(data *T) {
 	l.Tail = nn
 }
 
-func (l *List[V,T]) Filter(fn func(*T) int) []*T {
+func (l *List[T]) Filter(fn func(*T) int) []*T {
 	r := make([]*T, 0)
 
 	for e := l.Head; e != nil; e = e.next() {
@@ -82,9 +86,9 @@ func (l *List[V,T]) Filter(fn func(*T) int) []*T {
 	return r
 }
 
-func (l *List[V,T]) Get(n *T) *T {
+func (l *List[T]) Get(n *T) *T {
 	for e := l.Head; e != nil; e = e.next() {
-		data := e.getData()			
+		data := e.getData()
 		if (*data).Compare(n) == 0 {
 			return data
 		}
@@ -92,11 +96,40 @@ func (l *List[V,T]) Get(n *T) *T {
 	return nil
 }
 
-func (l *List[V,T]) String() string {
-	r := ""
+func (l *List[T]) GoString() string {
+	var sb strings.Builder
+
+	if len(l.Description) > 0 {
+		sb.WriteString(fmt.Sprintf("[ %s ]\n", l.Description))
+	}
+	for e := l.Head; e != nil; e = e.next() {
+		sb.WriteString(fmt.Sprintf("%#v", e.getData()))
+		sb.WriteString("\n")
+	}
+
+	return sb.String()
+}
+
+func (l *List[T]) String() string {
+	var sb strings.Builder
+
+	if len(l.Description) > 0 {
+		sb.WriteString(fmt.Sprintf("[ %s, ", l.Description))
+	}
+	for e := l.Head; e != nil; e = e.next() {
+		sb.WriteString(fmt.Sprintf("%v ", e.getData()))
+	}
+	sb.WriteString("]")
+
+	return sb.String()
+}
+
+func (l *List[T]) GetNodes() []*T {
+	r := make([]*T, 0)
 
 	for e := l.Head; e != nil; e = e.next() {
-		r += fmt.Sprintf("%v", e.getData())
+		data := e.getData()
+		r = append(r, data)
 	}
 
 	return r
