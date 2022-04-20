@@ -50,5 +50,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	parser.Parse(in)
+	if _, err := parser.Parse(in); err != nil {
+		fmt.Printf("Error while parsing: %v\n", err)
+		os.Exit(1)
+	}
 }

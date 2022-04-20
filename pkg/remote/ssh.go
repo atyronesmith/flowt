@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"time"
 
@@ -15,11 +14,11 @@ type Ssh struct {
 	config *ssh.ClientConfig
 }
 
-func NewSsh() *Ssh {
+func NewSsh() (*Ssh, error) {
 
 	dirname, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("userHomeDirError: %v", err)
 	}
 	// A public key may be used to authenticate against the remote
 	// server by using an unencrypted PEM-encoded private key file.
@@ -27,15 +26,14 @@ func NewSsh() *Ssh {
 	// If you have an encrypted private key, the crypto/x509 package
 	// can be used to decrypt it.
 	keyFile := dirname + "/.ssh/undercloud.pkey"
-	fmt.Printf("private key: %s\n", keyFile)
 	key, err := ioutil.ReadFile(keyFile)
 	if err != nil {
-		log.Fatalf("unable to read private key: %v", err)
+		return nil, fmt.Errorf("readFileError: private key %v", err)
 	}
 	// Create the Signer for this private key.
 	signer, err := ssh.ParsePrivateKey(key)
 	if err != nil {
-		log.Fatalf("unable to parse private key: %v", err)
+		return nil, fmt.Errorf("parsePrivateKeyError: %v", err)
 	}
 
 	sshConfig := &ssh.ClientConfig{
@@ -53,27 +51,23 @@ func NewSsh() *Ssh {
 		config: sshConfig,
 	}
 
-	return ssh
+	return ssh, nil
 }
 
 func (s *Ssh) ConnectSSH(host string) (*ssh.Client, error) {
-	fmt.Printf("Connecting to: %s\n", host)
 	client, err := ssh.Dial("tcp", host, s.config)
 	if err != nil {
-		fmt.Printf("Unable to connect to %s, %v\n", host, err)
-		return nil, err
+		return nil, fmt.Errorf("sshDialError: unable to connect to %s, %v",host,err)
 	}
-
-	fmt.Printf("Connected to: %s\n", host)
 
 	return client, nil
 }
 
-func SshCommand(client *ssh.Client, commands []string) (*bytes.Buffer, error) {
+func SshCommand(client *ssh.Client, command string) (*bytes.Buffer, *bytes.Buffer, error) {
 
 	session, err := client.NewSession()
 	if err != nil {
-		return nil, err
+		return nil, nil, fmt.Errorf("clientNewSessionError %v", session)
 	}
 	defer session.Close()
 
@@ -84,10 +78,10 @@ func SshCommand(client *ssh.Client, commands []string) (*bytes.Buffer, error) {
 	// }
 
 	// Uncomment to store output in variable
-	var b bytes.Buffer
+	var b, c bytes.Buffer
 
 	session.Stdout = &b
-	session.Stderr = &b
+	session.Stderr = &c
 
 	// Enable system stdout
 	// Comment these if you uncomment to store in variable
@@ -100,27 +94,14 @@ func SshCommand(client *ssh.Client, commands []string) (*bytes.Buffer, error) {
 	// 	log.Fatal(err)
 	// }
 
-	for _, cmd := range commands {
-		err := session.Start(cmd)
-		if err != nil {
-			fmt.Printf("error %v\n", err)
-			log.Fatal(err)
-		}
-		fmt.Printf("cmd: %s\n", cmd)
-		err = session.Wait()
-		if err != nil {
-			log.Fatal(err)
-			fmt.Printf("error %v\n", err)
-		}
+	err = session.Start(command)
+	if err != nil {
+		return nil, nil, fmt.Errorf("sessionStartError %v", err)
 	}
-	fmt.Printf("done len %d\n", len(b.Bytes()))
+	err = session.Wait()
+	if err != nil {
+		return nil, nil, fmt.Errorf("sessionWaitError %v, %s", err, c.String())
+	}
 
-	//	time.Sleep(5 * time.Second)
-	//Wait for sess to finish
-	// err := s.session.Wait()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	return &b, nil
+	return &b, &c, nil
 }

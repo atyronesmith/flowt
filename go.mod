@@ -5,6 +5,8 @@ go 1.18
 require github.com/go-echarts/go-echarts/v2 v2.2.5-0.20211021024243-33ae1aa415d6
 
 require (
+	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e // indirect
+	github.com/golang/glog v1.0.0 // indirect
 	github.com/lpabon/godbc v0.1.1 // indirect
 	github.com/ovn-org/libovsdb v0.6.1-0.20220328142833-2cbe2d093e12 // indirect
 	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
@@ -19,6 +21,7 @@ require (
 require (
 	github.com/go-echarts/examples v0.0.0-20211021070855-c1dea2301ce9 // indirect
 	github.com/heketi/heketi v10.3.0+incompatible
+	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e
 )
 
 // require (

@@ -11,7 +11,7 @@ func TestHashLink(t *testing.T) {
 		return rn.Cookie
 	}
 
-	hl := NewHashList("Test HashList", hf)
+	hl := NewHashList("Test HashList", hf, nil)
 
 	rn := types.RuleNode{Line: 0,
 		Cookie:   10,

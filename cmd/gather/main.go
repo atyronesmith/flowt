@@ -1,29 +1,27 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/atyronesmith/flowt/pkg/remote"
 )
 
-// TODO
-// export SB=$(sudo ovs-vsctl get open . external_ids:ovn-remote | sed -e 's/\"//g')
-// export NB=$(sudo ovs-vsctl get open . external_ids:ovn-remote | sed -e 's/\"//g' | sed -e 's/6642/6641/g')
-// alias ovn-sbctl='sudo docker exec ovn_controller ovn-sbctl --db=$SB'
-// alias ovn-nbctl='sudo docker exec ovn_controller ovn-nbctl --db=$NB'
-// alias ovn-trace='sudo docker exec ovn_controller ovn-trace --db=$SB'
-
 func main() {
+	var dbase string
+
 	isVerbose := flag.Bool("verbose", false, "Print extra runtime information.")
 	isHelp := flag.Bool("help", false, "Print usage information.")
+	flag.StringVar(&dbase,"db","NB", "Use NB (northbound) | SB (southbound) | L_OF (local ofctl) | L_VS (local vsctl).")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	flag.Usage = func() {
-		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] host\n", filepath.Base(os.Args[0]))
+		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] host [cmd ..]\n", filepath.Base(os.Args[0]))
 		fmt.Fprintf(CommandLine.Output(), "       host  -- Host to gather flow rules.\n")
 		flag.PrintDefaults()
 	}
@@ -34,7 +32,7 @@ func main() {
 		fmt.Println("Verbose...")
 	}
 
-	if *isHelp {
+	if *isHelp || flag.NArg() < 1 {
 		flag.Usage()
 
 		os.Exit(0)
@@ -47,23 +45,51 @@ func main() {
 		os.Exit(1)
 	}
 
-	ssh := remote.NewSsh()
+	ssh, err := remote.NewSsh()
+	if err != nil {
+		fmt.Printf("Error creating ssh config, %v", err)
+		os.Exit(1)
+	}
 
 	client, err := ssh.ConnectSSH(host)
 	if err != nil {
-		fmt.Printf("Error connectiong to host: %s, %s\n",host,err)
+		fmt.Printf("Error connectiong to host: %s, %s\n", host, err)
 
 		os.Exit(1)
 	}
 	defer client.Close()
 
-	
-
-	ret, err := remote.GetExternalIds(client)
+	externalIds, err := remote.GetExternalIds(client)
 	if err != nil {
 		fmt.Printf("%v", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("Results: %#v\n", ret)
+	var buf *bytes.Buffer
+
+	if flag.NArg() > 1 {
+		db, ok := remote.DBTypeMap[dbase]
+		if !ok {
+			flag.Usage()
+			os.Exit(1)
+		}
+		cmdStrings := flag.Args()
+		cmd := strings.Join(cmdStrings[1:], " ")
+		buf, err = remote.RunCmd(client, externalIds, cmd, db)
+		if err != nil {
+			fmt.Printf("%v", err)
+			os.Exit(1)
+		}
+	} else {
+		buf, _ = remote.GetHelp(client, externalIds, remote.NB)
+
+		fmt.Printf("%s\n", buf)
+
+		buf, err = remote.DumpFlowsNB(client, externalIds)
+		if err != nil {
+			fmt.Printf("%v", err)
+			os.Exit(1)
+		}
+	}
+	fmt.Printf("%s\n", buf)
 }

@@ -9,32 +9,43 @@ type HashList[V comparable, K Node[K]] struct {
 	mapList map[V]*List[K]
 
 	Description string
+
+	// Function to produce hash value for keys
 	hashFunction func (*K) V
+	// Function to order items in List[K]
+	orderFunction func (*K,*K) int
 }
 
-func NewHashList[V comparable, K Node[K]](description string, hf func (*K) V) *HashList[V,K] {
+func NewHashList[V comparable, K Node[K]](description string, hf func (*K) V, of func (*K,*K) int) *HashList[V,K] {
 
 	hl := HashList[V,K]{}
 
 	hl.mapList = make(map[V]*List[K])
 
 	hl.hashFunction = hf
+	hl.orderFunction = of
 
 	return &hl
 }
 
-func (hl *HashList[V,K]) Add(n *K) {
+func (hl *HashList[V,K]) Add(n *K) error {
 
 	key := hl.hashFunction(n)
 
 	list, ok := hl.mapList[key]
 	if !ok {
-		list = NewList[K](fmt.Sprintf("Key: %v", key))
+		list = NewList(fmt.Sprintf("Key: %v", key), hl.orderFunction)
 
 		hl.mapList[key] = list
 	}
-	list.InsertHead(n)
+
+	if hl.orderFunction == nil {
+		return list.InsertHead(n)
+	} else {
+		return list.InsertOrdered(n)
+	}
 }
+
 
 func (hl *HashList[V,K]) Count() int {
 
