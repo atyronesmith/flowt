@@ -9,9 +9,10 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"strings"
 
-	"github.com/atyronesmith/flowt/pkg/types"
+	types "github.com/atyronesmith/flowt/pkg/ovsdbflow"
+	"github.com/atyronesmith/flowt/pkg/ovsdbflow/nb"
+	utils "github.com/atyronesmith/flowt/pkg/utils"
 )
 
 func main() {
@@ -41,21 +42,31 @@ func main() {
 	var in io.Reader
 
 	var filename string
-
-	if filename = flag.Arg(0); filename != "" {
-		f, err := os.Open(filename)
-		if err != nil {
-			fmt.Println("error opening file: err:", err)
-			os.Exit(1)
-		}
-		defer f.Close()
-
-		in = f
-	} else {
+	if filename = flag.Arg(0); filename == "" {
 		flag.Usage()
 		os.Exit(1)
+
 	}
-	stats, _ := os.Stat(filename)
+	ovsSchema := types.OVSdbSchema{}
+
+	if err := ovsSchema.OvsHeader(filename); err != nil {
+		fmt.Printf("%v\n", err)
+		os.Exit(1)
+	}
+
+	f, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("error opening file: err:", err)
+		os.Exit(1)
+	}
+	defer f.Close()
+
+	in = f
+	stats, err := os.Stat(filename)
+	if err != nil {
+		fmt.Printf("error occured on file: %s, %v", filename, err)
+		os.Exit(1)
+	}
 
 	scanner := bufio.NewScanner(in)
 
@@ -67,46 +78,29 @@ func main() {
 	// ...
 	// }
 
-	jsonStart := regexp.MustCompile(`OVSDB\s+JSON\s+\d+\s+[0-9a-f]+`)
+	// db file must be unformatted
+	jsonObj := regexp.MustCompile(`^{(.*)}\s*$`)
 
 	lineNo := 1
-
-	inJson := false
-
-	var jsonObject strings.Builder
-
-	data := types.LogicalSwitchPortTable{}
+	//	data := types.OVSdb{}
+	data := nb.OVNNorthbound{}
 
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if jsonStart.MatchString(line) {
-			if inJson {
-				if err := json.Unmarshal([]byte(jsonObject.String()), &data); err != nil {
-					fmt.Printf("Error while unmarshalling: %v", err)
-				}
-
-				if len(data.LogicalSwitchPort) > 0 {
-					break
-				}
-				//process
-				// break if true
+		if m := jsonObj.FindString(line); len(m) > 0 {
+			fmt.Printf("Unmarshal line %d\n", lineNo)
+			if err := json.Unmarshal([]byte(m), &data); err != nil {
+				fmt.Printf("Error while Unmarshalling: %v", err)
+				break
 			}
-			inJson = true
-			jsonObject.Reset()
-		} else {
-			jsonObject.WriteString(line)
+			if len(data.LogicalSwitchPort) > 0 {
+				fmt.Println(utils.PrettyStruct(data))
+
+				break
+			}
 		}
 		lineNo += 1
 	}
-
-	fmt.Printf("%+v\n",data)
-	// for _, lsp := range data.LogicalSwitchPort {
-	// 	//		for _, ex := range lsp.ExternalIds {
-	// 	fmt.Printf("%+v\n", lsp)
-	// 	//		}
-	// }
-
-	//	file, _ := ioutil.ReadAll(in)
 
 }

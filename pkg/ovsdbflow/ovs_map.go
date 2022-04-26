@@ -1,11 +1,11 @@
-package types
+package ovsdbflow
 
 import (
 	"encoding/json"
 	"fmt"
 )
 
-type OVSMap map[string]string
+type OVSMap[T string|int] map[string]T
 
 //    "options": [
 //        "map",
@@ -21,14 +21,12 @@ type OVSMap map[string]string
 //        ]
 //    ],
 
-func (b *OVSMap) UnmarshalJSON(data []byte) error {
-	//	type Alias OVSMap
-
-	//	fmt.Printf("Unmarshal: %s\n", data)
-
+func (b *OVSMap[T]) UnmarshalJSON(data []byte) error {
 	var ovsMap []interface{}
 
 	if err := json.Unmarshal(data, &ovsMap); err != nil {
+					fmt.Printf("%s\n",string(data))
+
 		return err
 	}
 
@@ -36,10 +34,10 @@ func (b *OVSMap) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("invalid map array: %s", data)
 	}
 	
-	*b = make(map[string]string)
+	*b = make(map[string]T)
 
 	for _, v := range ovsMap[1].([]interface{}) {
-		(*b)[v.([]interface{})[0].(string)] = v.([]interface{})[1].(string)
+		(*b)[v.([]interface{})[0].(string)] = v.([]interface{})[1].(T)
 	}
 
 	return nil

@@ -1,9 +1,9 @@
-package types
+package ovsdbflow
 
 type LogicalSwitchPort struct {
 	Up          bool   `json:"up"`
 	Name        string `json:"name"`
-	ExternalIds OVSMap `json:"external_ids"`
+	ExternalIds OVSMap[string] `json:"external_ids"`
 	// HaChassisGroup struct {
 	// 	Type struct {
 	// 		Min int `json:"min"`
@@ -13,7 +13,7 @@ type LogicalSwitchPort struct {
 	// 		} `json:"key"`
 	// 	} `json:"type"`
 	// } `json:"ha_chassis_group"`
-	Options OVSMap `json:"options"`
+	Options OVSMap[string] `json:"options"`
 	// ParentName struct {
 	// 	Type struct {
 	// 		Min int    `json:"min"`
@@ -74,8 +74,4 @@ type LogicalSwitchPort struct {
 	// 		} `json:"key"`
 	// 	} `json:"type"`
 	// } `json:"columns"`
-}
-
-type LogicalSwitchPortTable struct {
-	LogicalSwitchPort map[string]LogicalSwitchPort `json:"Logical_Switch_Port"`
 }

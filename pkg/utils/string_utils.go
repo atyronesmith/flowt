@@ -35,3 +35,34 @@ func PrettyJSONString(str string) (string, error) {
     }
     return prettyJSON.String(), nil
 }
+
+func PrettyStruct(data interface{}) (string, error) {
+    val, err := json.MarshalIndent(data, "", "    ")
+    if err != nil {
+        return "", err
+    }
+    return string(val), nil
+}
+
+func SnakeToCamel(snakeStr string) (camelCase string) {
+         isToUpper := false
+
+         for k, v := range snakeStr {
+                 if k == 0 {
+                         camelCase = strings.ToUpper(string(snakeStr[0]))
+                 } else {
+                         if isToUpper {
+                                 camelCase += strings.ToUpper(string(v))
+                                 isToUpper = false
+                         } else {
+                                 if v == '_' {
+                                         isToUpper = true
+                                 } else {
+                                         camelCase += string(v)
+                                 }
+                         }
+                 }
+         }
+         return
+
+ }
