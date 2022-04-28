@@ -12,6 +12,7 @@ import (
 
 	types "github.com/atyronesmith/flowt/pkg/ovsdbflow"
 	"github.com/atyronesmith/flowt/pkg/ovsdbflow/nb"
+	"github.com/atyronesmith/flowt/pkg/ovsdbflow/sb"
 	utils "github.com/atyronesmith/flowt/pkg/utils"
 )
 
@@ -83,21 +84,37 @@ func main() {
 
 	lineNo := 1
 	//	data := types.OVSdb{}
-	data := nb.OVNNorthbound{}
 
 	for scanner.Scan() {
 		line := scanner.Text()
 
 		if m := jsonObj.FindString(line); len(m) > 0 {
 			fmt.Printf("Unmarshal line %d\n", lineNo)
-			if err := json.Unmarshal([]byte(m), &data); err != nil {
-				fmt.Printf("Error while Unmarshalling: %v", err)
-				break
-			}
-			if len(data.LogicalSwitchPort) > 0 {
-				fmt.Println(utils.PrettyStruct(data))
+			if ovsSchema.Type == types.NB {
+				nb := nb.OVNNorthbound{}
+				if err := json.Unmarshal([]byte(m), &nb); err != nil {
+					fmt.Printf("Error while Unmarshalling: %v", err)
+					break
+				}
+				if len(nb.LogicalSwitchPort) > 0 {
+					nbPretty, _ := utils.PrettyStruct(nb)
+					fmt.Println(nbPretty)
 
-				break
+					break
+				}
+			} else if ovsSchema.Type == types.SB {
+				sb := sb.OVNSouthbound{}
+				if err := json.Unmarshal([]byte(m), &sb); err != nil {
+					fmt.Printf("Error while Unmarshalling: %v", err)
+					break
+				}
+
+				if len(sb.LogicalFlow) > 0 {
+					sbPretty, _ := utils.PrettyStruct(sb)
+					fmt.Println(sbPretty)
+
+					break
+				}
 			}
 		}
 		lineNo += 1

@@ -8,7 +8,6 @@ import (
 	"runtime"
 	"sort"
 	"strings"
-	"time"
 
 	types "github.com/atyronesmith/flowt/pkg/ovsdbflow"
 	"github.com/atyronesmith/flowt/pkg/utils"
@@ -36,7 +35,9 @@ func mapAtomic(aType string, cType CType) (string, error) {
 		rType = "bool"
 	case "uuid":
 		rType = "types.UUID"
-		cType = Set
+		if cType == Atomic {
+			cType = Set
+		}
 	default:
 		return "", fmt.Errorf("unknown type: %s", aType)
 	}
@@ -150,13 +151,11 @@ func ParseSchema(tbl types.OVSdbSchema) error {
 		return fmt.Errorf("unknown database type: %s", tbl.Type)
 	}
 
-	tblStructStr.WriteString("import (\n\ttypes \"github.com/atyronesmith/flowt/pkg/ovsdb\"\n")
-	tblStructStr.WriteString("\t\"time\"\n)\n\n")
+	tblStructStr.WriteString("import (\n\ttypes \"github.com/atyronesmith/flowt/pkg/ovsdbflow\")\n")
 
 	dbStructStr.WriteString(fmt.Sprintf("type %s struct {\n", utils.SnakeToCamel( tbl.Type.String() )))
-	dbStructStr.WriteString(fmt.Sprintf("Date %s struct {\n", utils.SnakeToCamel( tbl.Type.String() )))
+	dbStructStr.WriteString("Date types.Time `json:\"_date\"`\n")
 
-	time.Unix()
 	tblMap := tbl.Tables
 
 	tableKeys := make([]string, 0, len(tblMap))
@@ -191,9 +190,9 @@ func ParseSchema(tbl types.OVSdbSchema) error {
 				}
 			}
 		}
-		tblStructStr.WriteString("}\n")
+		tblStructStr.WriteString("}")
 	}
-	dbStructStr.WriteString("}\n")
+	dbStructStr.WriteString("}")
 
 	formatted, err := format.Source([]byte(tblStructStr.String()))
 	if err != nil {

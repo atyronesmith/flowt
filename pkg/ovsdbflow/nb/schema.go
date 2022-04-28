@@ -1,33 +1,33 @@
 // Type: OVN_Northbound
 // Version: 5.34.1
 // Table Definitions: 27
-//	DHCP_Options
-//	Logical_Switch_Port
-//	HA_Chassis_Group
-//	Address_Set
+//	DNS
 //	Forwarding_Group
+//	Copp
+//	Meter
+//	BFD
+//	Connection
+//	Logical_Router_Static_Route
+//	Load_Balancer_Group
+//	Logical_Router_Policy
+//	HA_Chassis_Group
+//	NAT
+//	SSL
+//	Meter_Band
+//	Logical_Switch
 //	QoS
 //	Port_Group
-//	Meter_Band
-//	NB_Global
-//	Meter
-//	Load_Balancer_Group
+//	Logical_Switch_Port
+//	Address_Set
 //	Load_Balancer_Health_Check
-//	Gateway_Chassis
-//	Logical_Router_Static_Route
-//	Load_Balancer
-//	DNS
-//	Logical_Router
-//	ACL
-//	Connection
-//	SSL
-//	HA_Chassis
-//	Copp
-//	NAT
 //	Logical_Router_Port
-//	BFD
-//	Logical_Router_Policy
-//	Logical_Switch
+//	Logical_Router
+//	NB_Global
+//	ACL
+//	DHCP_Options
+//	Load_Balancer
+//	Gateway_Chassis
+//	HA_Chassis
 
 package nb
 
@@ -266,6 +266,7 @@ type SSL struct {
 }
 
 type OVNNorthbound struct {
+	Date                     types.Time                          `json:"_date"`
 	ACL                      map[string]ACL                      `json:"ACL"`
 	AddressSet               map[string]AddressSet               `json:"Address_Set"`
 	BFD                      map[string]BFD                      `json:"BFD"`

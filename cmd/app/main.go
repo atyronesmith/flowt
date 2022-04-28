@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/atyronesmith/flowt/internal/graph"
+	graph "github.com/atyronesmith/flowt/internal/graph"
 	"github.com/go-echarts/examples/examples"
 )
 
@@ -18,6 +18,7 @@ func logRequest(handler http.Handler) http.Handler {
 func main() {
 	examplers := []examples.Exampler{
 		graph.TreeExamples{},
+		graph.GraphExamples{},
 	}
 
 	for _, e := range examplers {

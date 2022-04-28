@@ -3,9 +3,10 @@ package ovsdbflow
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 )
 
-type OVSMap[T string|int] map[string]T
+type OVSMap[T string | int | UUID] map[string]T
 
 //    "options": [
 //        "map",
@@ -25,7 +26,7 @@ func (b *OVSMap[T]) UnmarshalJSON(data []byte) error {
 	var ovsMap []interface{}
 
 	if err := json.Unmarshal(data, &ovsMap); err != nil {
-					fmt.Printf("%s\n",string(data))
+		fmt.Printf("%s\n", string(data))
 
 		return err
 	}
@@ -33,13 +34,32 @@ func (b *OVSMap[T]) UnmarshalJSON(data []byte) error {
 	if len(ovsMap) != 2 {
 		return fmt.Errorf("invalid map array: %s", data)
 	}
-	
+
 	*b = make(map[string]T)
 
 	for _, v := range ovsMap[1].([]interface{}) {
-		(*b)[v.([]interface{})[0].(string)] = v.([]interface{})[1].(T)
+		b.append(v.([]interface{}))
 	}
 
 	return nil
 }
 
+func (b *OVSMap[T]) append(t []interface{}) error {
+	var ret T
+	switch p := any(&ret).(type) {
+	case *UUID:
+		if reflect.ValueOf(t[1]).Kind() == reflect.Slice {
+			s := t[1].([]interface{})
+			*p = UUID(s[1].(string))
+		} else {
+			*p = UUID(t[1].(string))
+		}
+	case *string:
+		*p = t[1].(string)
+	default:
+		return fmt.Errorf("unknown type")
+	}
+	(*b)[t[0].(string)] = ret
+
+	return nil
+}

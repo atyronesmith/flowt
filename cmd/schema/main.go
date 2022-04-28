@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	ovsdb "github.com/atyronesmith/flowt/pkg/ovsdbflow"
+	"github.com/atyronesmith/flowt/pkg/ovsdbflow"
 	"github.com/atyronesmith/flowt/pkg/schema"
 )
 
@@ -34,7 +34,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	ovsSchema := ovsdb.OVSdbSchema{}
+	ovsSchema := ovsdbflow.OVSdbSchema{}
 
 	if err := ovsSchema.OvsHeader(flag.Arg(0)); err != nil {
 		fmt.Printf("%v\n", err)
@@ -50,5 +50,4 @@ func main() {
 	if err := schema.ParseSchema(ovsSchema); err != nil {
 		fmt.Printf("Error:")
 	}
-
 }

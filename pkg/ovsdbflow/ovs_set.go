@@ -9,9 +9,10 @@ import (
 )
 
 var strRegex = regexp.MustCompile(`^\".*\"$`)
+
 //var arrRegex = regexp.MustCompile(`^\[.*\]$`)
 
-type OVSSet[T ~string | int] []T
+type OVSSet[T string | int | UUID] []T
 
 // "nat": {
 //     "type": {
@@ -45,30 +46,45 @@ func (b *OVSSet[T]) UnmarshalJSON(data []byte) error {
 	var ovsMap []interface{}
 
 	if strRegex.Match(data) {
-		var o interface{} = strings.ReplaceAll(string(data),"\"","")
+		var o interface{} = strings.ReplaceAll(string(data), "\"", "")
 
 		(*b) = append((*b), o.(T))
 	} else {
 		if err := json.Unmarshal(data, &ovsMap); err != nil {
-			fmt.Printf("%s\n",string(data))
 			return err
 		}
 		if reflect.ValueOf(ovsMap[1]).Kind() == reflect.String {
 			if len(ovsMap) != 2 {
 				return fmt.Errorf("cannot unmarshal %s into OVSSet", string(data))
 			}
-			(*b) = append((*b), ovsMap[1].(T))
+			b.append(ovsMap[1])
 		} else {
 			var setSlice []interface{} = ovsMap[1].([]interface{})
-
 			for _, v := range setSlice {
-				if reflect.ValueOf(v).Kind() != reflect.Slice {
-					return fmt.Errorf("cannot unmarshal OVSSet: %v ", v)
+				if reflect.ValueOf(v).Kind() == reflect.Slice {
+					var set []interface{} = v.([]interface{})
+
+					b.append(set[1])
+				} else if reflect.ValueOf(v).Kind() != reflect.Slice {
+					b.append(v)
 				}
-				var set []interface{} = v.([]interface{})
-				(*b) = append((*b), set[1].(T))
 			}
 		}
 	}
+	return nil
+}
+
+func (b *OVSSet[T]) append(t interface{}) error {
+	var ret T
+	switch p := any(&ret).(type) {
+	case *UUID:
+		*p = UUID(t.(string))
+	case *string:
+		*p = t.(string)
+	default:
+		return fmt.Errorf("unknown type")
+	}
+	(*b) = append((*b), ret)
+
 	return nil
 }

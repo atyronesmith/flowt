@@ -11,6 +11,15 @@ import (
 
 type UUID string
 
+func (b *UUID) UnmarshalJSON(data []byte) error {
+
+	fmt.Printf("sfjdladkfjsdfl\n")
+
+	(*b) = UUID(string(data))
+
+	return nil
+}
+
 type OVSdbSchema struct {
 	ChkSum  string                 `json:"chksum"`
 	Type    OVSDBType              `json:"name"`

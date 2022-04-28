@@ -1,7 +1,42 @@
+// Type: OVN_Southbound
+// Version: 20.21.0
+// Table Definitions: 31
+//	RBAC_Permission
+//	IP_Multicast
+//	Chassis
+//	Logical_Flow
+//	Gateway_Chassis
+//	IGMP_Group
+//	Port_Group
+//	RBAC_Role
+//	Port_Binding
+//	Connection
+//	Logical_DP_Group
+//	HA_Chassis
+//	Service_Monitor
+//	HA_Chassis_Group
+//	MAC_Binding
+//	DHCP_Options
+//	Meter
+//	DNS
+//	Multicast_Group
+//	SB_Global
+//	Encap
+//	DHCPv6_Options
+//	Controller_Event
+//	BFD
+//	Datapath_Binding
+//	FDB
+//	Meter_Band
+//	Address_Set
+//	Load_Balancer
+//	SSL
+//	Chassis_Private
+
 package sb
 
 import (
-	types "github.com/atyronesmith/flowt/pkg/ovsdb"
+	types "github.com/atyronesmith/flowt/pkg/ovsdbflow"
 )
 
 type AddressSet struct {
@@ -21,21 +56,21 @@ type BFD struct {
 	Status      string               `json:"status"`
 }
 type Chassis struct {
-	Encaps              types.OVSSet[string] `json:"encaps"`
-	ExternalIds         types.OVSMap[string] `json:"external_ids"`
-	Hostname            string               `json:"hostname"`
-	Name                string               `json:"name"`
-	NbCfg               int                  `json:"nb_cfg"`
-	OtherConfig         types.OVSMap[string] `json:"other_config"`
-	TransportZones      types.OVSSet[string] `json:"transport_zones"`
-	VtepLogicalSwitches types.OVSSet[string] `json:"vtep_logical_switches"`
+	Encaps              types.OVSSet[types.UUID] `json:"encaps"`
+	ExternalIds         types.OVSMap[string]     `json:"external_ids"`
+	Hostname            string                   `json:"hostname"`
+	Name                string                   `json:"name"`
+	NbCfg               int                      `json:"nb_cfg"`
+	OtherConfig         types.OVSMap[string]     `json:"other_config"`
+	TransportZones      types.OVSSet[string]     `json:"transport_zones"`
+	VtepLogicalSwitches types.OVSSet[string]     `json:"vtep_logical_switches"`
 }
 type ChassisPrivate struct {
-	Chassis        types.OVSSet[string] `json:"chassis"`
-	ExternalIds    types.OVSMap[string] `json:"external_ids"`
-	Name           string               `json:"name"`
-	NbCfg          int                  `json:"nb_cfg"`
-	NbCfgTimestamp int                  `json:"nb_cfg_timestamp"`
+	Chassis        types.OVSSet[types.UUID] `json:"chassis"`
+	ExternalIds    types.OVSMap[string]     `json:"external_ids"`
+	Name           string                   `json:"name"`
+	NbCfg          int                      `json:"nb_cfg"`
+	NbCfgTimestamp int                      `json:"nb_cfg_timestamp"`
 }
 type Connection struct {
 	ExternalIds     types.OVSMap[string] `json:"external_ids"`
@@ -49,10 +84,10 @@ type Connection struct {
 	Target          string               `json:"target"`
 }
 type ControllerEvent struct {
-	Chassis   types.OVSSet[string] `json:"chassis"`
-	EventInfo types.OVSMap[string] `json:"event_info"`
-	EventType string               `json:"event_type"`
-	SeqNum    int                  `json:"seq_num"`
+	Chassis   types.OVSSet[types.UUID] `json:"chassis"`
+	EventInfo types.OVSMap[string]     `json:"event_info"`
+	EventType string                   `json:"event_type"`
+	SeqNum    int                      `json:"seq_num"`
 }
 type DHCPOptions struct {
 	Code int    `json:"code"`
@@ -65,14 +100,14 @@ type DHCPv6Options struct {
 	Type string `json:"type"`
 }
 type DNS struct {
-	Datapaths   types.OVSSet[string] `json:"datapaths"`
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	Records     types.OVSMap[string] `json:"records"`
+	Datapaths   types.OVSSet[types.UUID] `json:"datapaths"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	Records     types.OVSMap[string]     `json:"records"`
 }
 type DatapathBinding struct {
-	ExternalIds   types.OVSMap[string] `json:"external_ids"`
-	LoadBalancers types.OVSSet[string] `json:"load_balancers"`
-	TunnelKey     int                  `json:"tunnel_key"`
+	ExternalIds   types.OVSMap[string]     `json:"external_ids"`
+	LoadBalancers types.OVSSet[types.UUID] `json:"load_balancers"`
+	TunnelKey     int                      `json:"tunnel_key"`
 }
 type Encap struct {
 	ChassisName string               `json:"chassis_name"`
@@ -86,75 +121,75 @@ type FDB struct {
 	PortKey int    `json:"port_key"`
 }
 type GatewayChassis struct {
-	Chassis     types.OVSSet[string] `json:"chassis"`
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	Name        string               `json:"name"`
-	Options     types.OVSMap[string] `json:"options"`
-	Priority    int                  `json:"priority"`
+	Chassis     types.OVSSet[types.UUID] `json:"chassis"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	Name        string                   `json:"name"`
+	Options     types.OVSMap[string]     `json:"options"`
+	Priority    int                      `json:"priority"`
 }
 type HAChassis struct {
-	Chassis     types.OVSSet[string] `json:"chassis"`
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	Priority    int                  `json:"priority"`
+	Chassis     types.OVSSet[types.UUID] `json:"chassis"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	Priority    int                      `json:"priority"`
 }
 type HAChassisGroup struct {
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	HaChassis   types.OVSSet[string] `json:"ha_chassis"`
-	Name        string               `json:"name"`
-	RefChassis  types.OVSSet[string] `json:"ref_chassis"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	HaChassis   types.OVSSet[types.UUID] `json:"ha_chassis"`
+	Name        string                   `json:"name"`
+	RefChassis  types.OVSSet[types.UUID] `json:"ref_chassis"`
 }
 type IGMPGroup struct {
-	Address  string               `json:"address"`
-	Chassis  types.OVSSet[string] `json:"chassis"`
-	Datapath types.OVSSet[string] `json:"datapath"`
-	Ports    types.OVSSet[string] `json:"ports"`
+	Address  string                   `json:"address"`
+	Chassis  types.OVSSet[types.UUID] `json:"chassis"`
+	Datapath types.OVSSet[types.UUID] `json:"datapath"`
+	Ports    types.OVSSet[types.UUID] `json:"ports"`
 }
 type IPMulticast struct {
-	Datapath      types.OVSSet[string] `json:"datapath"`
-	Enabled       bool                 `json:"enabled"`
-	EthSrc        string               `json:"eth_src"`
-	IdleTimeout   int                  `json:"idle_timeout"`
-	Ip4Src        string               `json:"ip4_src"`
-	Ip6Src        string               `json:"ip6_src"`
-	Querier       bool                 `json:"querier"`
-	QueryInterval int                  `json:"query_interval"`
-	QueryMaxResp  int                  `json:"query_max_resp"`
-	SeqNo         int                  `json:"seq_no"`
-	TableSize     int                  `json:"table_size"`
+	Datapath      types.OVSSet[types.UUID] `json:"datapath"`
+	Enabled       bool                     `json:"enabled"`
+	EthSrc        string                   `json:"eth_src"`
+	IdleTimeout   int                      `json:"idle_timeout"`
+	Ip4Src        string                   `json:"ip4_src"`
+	Ip6Src        string                   `json:"ip6_src"`
+	Querier       bool                     `json:"querier"`
+	QueryInterval int                      `json:"query_interval"`
+	QueryMaxResp  int                      `json:"query_max_resp"`
+	SeqNo         int                      `json:"seq_no"`
+	TableSize     int                      `json:"table_size"`
 }
 type LoadBalancer struct {
-	Datapaths   types.OVSSet[string] `json:"datapaths"`
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	Name        string               `json:"name"`
-	Options     types.OVSMap[string] `json:"options"`
-	Protocol    string               `json:"protocol"`
-	Vips        types.OVSMap[string] `json:"vips"`
+	Datapaths   types.OVSSet[types.UUID] `json:"datapaths"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	Name        string                   `json:"name"`
+	Options     types.OVSMap[string]     `json:"options"`
+	Protocol    string                   `json:"protocol"`
+	Vips        types.OVSMap[string]     `json:"vips"`
 }
 type LogicalDPGroup struct {
-	Datapaths types.OVSSet[string] `json:"datapaths"`
+	Datapaths types.OVSSet[types.UUID] `json:"datapaths"`
 }
 type LogicalFlow struct {
-	Actions         string               `json:"actions"`
-	ControllerMeter string               `json:"controller_meter"`
-	ExternalIds     types.OVSMap[string] `json:"external_ids"`
-	LogicalDatapath types.OVSSet[string] `json:"logical_datapath"`
-	LogicalDpGroup  types.OVSSet[string] `json:"logical_dp_group"`
-	Match           string               `json:"match"`
-	Pipeline        string               `json:"pipeline"`
-	Priority        int                  `json:"priority"`
-	TableId         int                  `json:"table_id"`
-	Tags            types.OVSMap[string] `json:"tags"`
+	Actions         string                   `json:"actions"`
+	ControllerMeter string                   `json:"controller_meter"`
+	ExternalIds     types.OVSMap[string]     `json:"external_ids"`
+	LogicalDatapath types.OVSSet[types.UUID] `json:"logical_datapath"`
+	LogicalDpGroup  types.OVSSet[types.UUID] `json:"logical_dp_group"`
+	Match           string                   `json:"match"`
+	Pipeline        string                   `json:"pipeline"`
+	Priority        int                      `json:"priority"`
+	TableId         int                      `json:"table_id"`
+	Tags            types.OVSMap[string]     `json:"tags"`
 }
 type MACBinding struct {
-	Datapath    types.OVSSet[string] `json:"datapath"`
-	Ip          string               `json:"ip"`
-	LogicalPort string               `json:"logical_port"`
-	Mac         string               `json:"mac"`
+	Datapath    types.OVSSet[types.UUID] `json:"datapath"`
+	Ip          string                   `json:"ip"`
+	LogicalPort string                   `json:"logical_port"`
+	Mac         string                   `json:"mac"`
 }
 type Meter struct {
-	Bands types.OVSSet[string] `json:"bands"`
-	Name  string               `json:"name"`
-	Unit  string               `json:"unit"`
+	Bands types.OVSSet[types.UUID] `json:"bands"`
+	Name  string                   `json:"name"`
+	Unit  string                   `json:"unit"`
 }
 type MeterBand struct {
 	Action    string `json:"action"`
@@ -162,29 +197,29 @@ type MeterBand struct {
 	Rate      int    `json:"rate"`
 }
 type MulticastGroup struct {
-	Datapath  types.OVSSet[string] `json:"datapath"`
-	Name      string               `json:"name"`
-	Ports     types.OVSSet[string] `json:"ports"`
-	TunnelKey int                  `json:"tunnel_key"`
+	Datapath  types.OVSSet[types.UUID] `json:"datapath"`
+	Name      string                   `json:"name"`
+	Ports     types.OVSSet[types.UUID] `json:"ports"`
+	TunnelKey int                      `json:"tunnel_key"`
 }
 type PortBinding struct {
-	Chassis          types.OVSSet[string] `json:"chassis"`
-	Datapath         types.OVSSet[string] `json:"datapath"`
-	Encap            types.OVSSet[string] `json:"encap"`
-	ExternalIds      types.OVSMap[string] `json:"external_ids"`
-	GatewayChassis   types.OVSSet[string] `json:"gateway_chassis"`
-	HaChassisGroup   types.OVSSet[string] `json:"ha_chassis_group"`
-	LogicalPort      string               `json:"logical_port"`
-	Mac              types.OVSSet[string] `json:"mac"`
-	NatAddresses     types.OVSSet[string] `json:"nat_addresses"`
-	Options          types.OVSMap[string] `json:"options"`
-	ParentPort       string               `json:"parent_port"`
-	RequestedChassis types.OVSSet[string] `json:"requested_chassis"`
-	Tag              int                  `json:"tag"`
-	TunnelKey        int                  `json:"tunnel_key"`
-	Type             string               `json:"type"`
-	Up               bool                 `json:"up"`
-	VirtualParent    string               `json:"virtual_parent"`
+	Chassis          types.OVSSet[types.UUID] `json:"chassis"`
+	Datapath         types.OVSSet[types.UUID] `json:"datapath"`
+	Encap            types.OVSSet[types.UUID] `json:"encap"`
+	ExternalIds      types.OVSMap[string]     `json:"external_ids"`
+	GatewayChassis   types.OVSSet[types.UUID] `json:"gateway_chassis"`
+	HaChassisGroup   types.OVSSet[types.UUID] `json:"ha_chassis_group"`
+	LogicalPort      string                   `json:"logical_port"`
+	Mac              types.OVSSet[string]     `json:"mac"`
+	NatAddresses     types.OVSSet[string]     `json:"nat_addresses"`
+	Options          types.OVSMap[string]     `json:"options"`
+	ParentPort       string                   `json:"parent_port"`
+	RequestedChassis types.OVSSet[types.UUID] `json:"requested_chassis"`
+	Tag              int                      `json:"tag"`
+	TunnelKey        int                      `json:"tunnel_key"`
+	Type             string                   `json:"type"`
+	Up               bool                     `json:"up"`
+	VirtualParent    string                   `json:"virtual_parent"`
 }
 type PortGroup struct {
 	Name  string               `json:"name"`
@@ -197,16 +232,16 @@ type RBACPermission struct {
 	Update        types.OVSSet[string] `json:"update"`
 }
 type RBACRole struct {
-	Name        string               `json:"name"`
-	Permissions types.OVSSet[string] `json:"permissions"`
+	Name        string                   `json:"name"`
+	Permissions types.OVSMap[types.UUID] `json:"permissions"`
 }
 type SBGlobal struct {
-	Connections types.OVSSet[string] `json:"connections"`
-	ExternalIds types.OVSMap[string] `json:"external_ids"`
-	Ipsec       bool                 `json:"ipsec"`
-	NbCfg       int                  `json:"nb_cfg"`
-	Options     types.OVSMap[string] `json:"options"`
-	Ssl         types.OVSSet[string] `json:"ssl"`
+	Connections types.OVSSet[types.UUID] `json:"connections"`
+	ExternalIds types.OVSMap[string]     `json:"external_ids"`
+	Ipsec       bool                     `json:"ipsec"`
+	NbCfg       int                      `json:"nb_cfg"`
+	Options     types.OVSMap[string]     `json:"options"`
+	Ssl         types.OVSSet[types.UUID] `json:"ssl"`
 }
 type SSL struct {
 	BootstrapCaCert bool                 `json:"bootstrap_ca_cert"`
@@ -229,7 +264,8 @@ type ServiceMonitor struct {
 	Status      string               `json:"status"`
 }
 
-type OVSdb struct {
+type OVNSouthbound struct {
+	Date            types.Time                 `json:"_date"`
 	AddressSet      map[string]AddressSet      `json:"Address_Set"`
 	BFD             map[string]BFD             `json:"BFD"`
 	Chassis         map[string]Chassis         `json:"Chassis"`
