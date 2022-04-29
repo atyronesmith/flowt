@@ -1,4 +1,4 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"strconv"

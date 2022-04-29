@@ -1,11 +1,10 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"bytes"
 	"encoding/json"
 )
 
-// TaskState represents the state of task, moving through Created, Running then Finished or Errorred
 type AclAction int
 
 const (

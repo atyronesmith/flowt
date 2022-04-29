@@ -1,4 +1,4 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"bytes"
@@ -18,6 +18,17 @@ const (
 
 func (s OVSDBType) String() string {
 	return toStringOVSDBType[s]
+}
+
+func (s OVSDBType) Prefix() string {
+	switch s {
+		case NB:
+			return "NB"
+		case SB:
+			return "SB"
+		default:
+			return "Unknown"
+	}
 }
 
 var toStringOVSDBType = map[OVSDBType]string{

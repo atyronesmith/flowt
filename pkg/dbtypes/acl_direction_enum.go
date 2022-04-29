@@ -1,17 +1,14 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"bytes"
 	"encoding/json"
 )
 
-// TaskState represents the state of task, moving through Created, Running then Finished or Errorred
 type AclDirection int
 
 const (
-	// Created represents the task has been created but not started yet
 	FromLPort AclDirection = iota
-	//Running represents the task has started
 	ToLPort
 )
 

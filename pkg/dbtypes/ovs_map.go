@@ -1,4 +1,4 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"encoding/json"
@@ -8,31 +8,15 @@ import (
 
 type OVSMap[T string | int | UUID] map[string]T
 
-//    "options": [
-//        "map",
-//        [
-//            [
-//                "mcast_flood_reports",
-//                "true"
-//            ],
-//            [
-//                "requested-chassis",
-//                "compute1029utn10rt-0.redhat.local"
-//            ]
-//        ]
-//    ],
-
 func (b *OVSMap[T]) UnmarshalJSON(data []byte) error {
 	var ovsMap []interface{}
 
 	if err := json.Unmarshal(data, &ovsMap); err != nil {
-		fmt.Printf("%s\n", string(data))
-
-		return err
+		return fmt.Errorf("error unmarshaling OVSMap: %v",err)
 	}
 
 	if len(ovsMap) != 2 {
-		return fmt.Errorf("invalid map array: %s", data)
+		return fmt.Errorf("invalid map array for OVSMap: %s", data)
 	}
 
 	*b = make(map[string]T)

@@ -1,4 +1,4 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"bufio"
@@ -8,17 +8,6 @@ import (
 	"os"
 	"regexp"
 )
-
-type UUID string
-
-func (b *UUID) UnmarshalJSON(data []byte) error {
-
-	fmt.Printf("sfjdladkfjsdfl\n")
-
-	(*b) = UUID(string(data))
-
-	return nil
-}
 
 type OVSdbSchema struct {
 	ChkSum  string                 `json:"chksum"`
@@ -66,4 +55,15 @@ func (schema *OVSdbSchema) OvsHeader(filename string) error {
 	}
 
 	return fmt.Errorf("error, could not find ovsdb header: %s", filename)
+}
+
+func (schema *OVSdbSchema) NewDb() (OVNDbType, error) {
+	switch schema.Type {
+	case NB:
+		return &OVNNorthbound{}, nil
+	case SB:
+		return &OVNSouthbound{}, nil
+	default:
+		return nil, fmt.Errorf("unknown db type: %v", schema.Type)
+	}
 }

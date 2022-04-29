@@ -1,15 +1,13 @@
-package schema
+package dbparse
 
 import (
 	"fmt"
-	"go/format"
 	"math"
 	"reflect"
 	"runtime"
 	"sort"
-	"strings"
 
-	types "github.com/atyronesmith/flowt/pkg/ovsdbflow"
+	types "github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
@@ -34,7 +32,7 @@ func mapAtomic(aType string, cType CType) (string, error) {
 	case "boolean":
 		rType = "bool"
 	case "uuid":
-		rType = "types.UUID"
+		rType = "UUID"
 		if cType == Atomic {
 			cType = Set
 		}
@@ -46,9 +44,9 @@ func mapAtomic(aType string, cType CType) (string, error) {
 	case Atomic:
 		return rType, nil
 	case Map:
-		return fmt.Sprintf("types.OVSMap[%s]", rType), nil
+		return fmt.Sprintf("OVSMap[%s]", rType), nil
 	case Set:
-		return fmt.Sprintf("types.OVSSet[%s]", rType), nil
+		return fmt.Sprintf("OVSSet[%s]", rType), nil
 	}
 	return "", fmt.Errorf("unknown type: %s", aType)
 }
@@ -137,25 +135,7 @@ func parseType(t interface{}) (string, error) {
 	return "", fmt.Errorf("unable to parse type: %v", t)
 }
 
-func ParseSchema(tbl types.OVSdbSchema) error {
-
-	var tblStructStr strings.Builder
-	var dbStructStr strings.Builder
-
-	switch tbl.Type {
-	case types.NB:
-		tblStructStr.WriteString("package nb\n\n")
-	case types.SB:
-		tblStructStr.WriteString("package sb\n\n")
-	default:
-		return fmt.Errorf("unknown database type: %s", tbl.Type)
-	}
-
-	tblStructStr.WriteString("import (\n\ttypes \"github.com/atyronesmith/flowt/pkg/ovsdbflow\")\n")
-
-	dbStructStr.WriteString(fmt.Sprintf("type %s struct {\n", utils.SnakeToCamel( tbl.Type.String() )))
-	dbStructStr.WriteString("Date types.Time `json:\"_date\"`\n")
-
+func ParseSchema(tbl types.OVSdbSchema,pkg string) (*types.DbDef,error) {
 	tblMap := tbl.Tables
 
 	tableKeys := make([]string, 0, len(tblMap))
@@ -165,12 +145,19 @@ func ParseSchema(tbl types.OVSdbSchema) error {
 
 	sort.Strings(tableKeys)
 
+	var db types.DbDef
+
+	db.Name = utils.SnakeToCamel( tbl.Type.String() )
+
 	for _, tblName := range tableKeys {
+		var tblDef types.TableDef
+
 		tblDefIntrf := tblMap[tblName]
+		
+		structName := tbl.Type.Prefix() + utils.SnakeToCamel(tblName)
 
-		tblStructStr.WriteString(fmt.Sprintf("type %s struct {\n", utils.SnakeToCamel(tblName)))
-
-		dbStructStr.WriteString(fmt.Sprintf("%s map[string]%s `json:\"%s\"`\n", utils.SnakeToCamel(tblName), utils.SnakeToCamel(tblName), tblName))
+		tblDef.Name = structName
+		tblDef.JsonName = tblName
 
 		tableDef := tblDefIntrf.(map[string]interface{})
 		if colIntrf, ok := tableDef["columns"]; ok {
@@ -185,26 +172,13 @@ func ParseSchema(tbl types.OVSdbSchema) error {
 				colDef := colDefIntrf.(map[string]interface{})
 				if typeIntrf := colDef["type"]; ok {
 					if pt, err := parseType(typeIntrf); err == nil {
-						tblStructStr.WriteString(fmt.Sprintf("%s %s `json:\"%s\"`\n", utils.SnakeToCamel(colName), pt, colName))
+						tblDef.Columns = append(tblDef.Columns, types.TableCol{ Name: utils.SnakeToCamel(colName), Type: pt, JsonName: colName})
 					}
 				}
 			}
 		}
-		tblStructStr.WriteString("}")
+		db.Tables = append(db.Tables, tblDef)
 	}
-	dbStructStr.WriteString("}")
 
-	formatted, err := format.Source([]byte(tblStructStr.String()))
-	if err != nil {
-		return fmt.Errorf("unable to gofmt")
-	}
-	fmt.Printf("%s", string(formatted))
-
-	formatted, err = format.Source([]byte(dbStructStr.String()))
-	if err != nil {
-		return fmt.Errorf("unable to gofmt")
-	}
-	fmt.Printf("\n%s", string(formatted))
-
-	return nil
+	return &db, nil
 }

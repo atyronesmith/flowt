@@ -1,17 +1,14 @@
-package ovsdbflow
+package dbtypes
 
 import (
 	"bytes"
 	"encoding/json"
 )
 
-// TaskState represents the state of task, moving through Created, Running then Finished or Errorred
 type NatType int
 
 const (
-	// Created represents the task has been created but not started yet
 	Dnat NatType = iota
-	//Running represents the task has started
 	DnatAndSnat
 	Snat
 )
@@ -21,15 +18,15 @@ func (s NatType) String() string {
 }
 
 var toStringNatType = map[NatType]string{
-	Dnat: "dnat",
-	DnatAndSnat:   "dnat_and_snat",
-	Snat:   "dnat_snat",
+	Dnat:        "dnat",
+	DnatAndSnat: "dnat_and_snat",
+	Snat:        "dnat_snat",
 }
 
 var toIDNatType = map[string]NatType{
-	"dnat": Dnat,
-	"dnat_and_snat":   DnatAndSnat,
-	"snat": Snat,
+	"dnat":          Dnat,
+	"dnat_and_snat": DnatAndSnat,
+	"snat":          Snat,
 }
 
 // MarshalJSON marshals the enum as a quoted json string
