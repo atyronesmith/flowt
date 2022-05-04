@@ -53,17 +53,28 @@ func main() {
 
 	type tStruct struct {
 		PkgName string
-		Schema dbtypes.OVSdbSchema
+		Schema  dbtypes.OVSdbSchema
 		DBDef   dbtypes.DbDef
-	} 
-
-	tPlate := tStruct {
-		PkgName: *hasPackage,
-		Schema: ovsSchema,
-		DBDef: *dbDef,
 	}
 
-	tpl, err := template.ParseFiles("templates/dbschema.tpl")
+	tPlate := tStruct{
+		PkgName: *hasPackage,
+		Schema:  ovsSchema,
+		DBDef:   *dbDef,
+	}
+
+	funcMap := template.FuncMap{
+		"postfix": func(name string, t string) string {
+			return fmt.Sprintf("%s%s", name, t)
+		},
+	}
+
+	fBuf, err := os.ReadFile("templates/dbschema.tpl")
+	if err != nil {
+		fmt.Printf("Unable to read template file: %s", "templates/dbschema.tpl")
+		os.Exit(1)
+	}
+	tpl, err := template.New("dbschema").Funcs(funcMap).Parse(string(fBuf))
 	if err != nil {
 		fmt.Printf("%v\n", err)
 	}
@@ -73,6 +84,7 @@ func main() {
 		fmt.Printf("Error processing template: %s", err)
 		os.Exit(1)
 	}
+//	os.Stdout.Write(buf.Bytes())
 	p, err := format.Source(buf.Bytes())
 	if err != nil {
 		fmt.Printf("Error in gofmt: %s", err)

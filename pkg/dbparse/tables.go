@@ -154,7 +154,7 @@ func ParseSchema(tbl types.OVSdbSchema,pkg string) (*types.DbDef,error) {
 
 		tblDefIntrf := tblMap[tblName]
 		
-		structName := tbl.Type.Prefix() + utils.SnakeToCamel(tblName)
+		structName := utils.SnakeToCamel(tblName)
 
 		tblDef.Name = structName
 		tblDef.JsonName = tblName

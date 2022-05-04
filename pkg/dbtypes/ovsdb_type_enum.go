@@ -20,7 +20,7 @@ func (s OVSDBType) String() string {
 	return toStringOVSDBType[s]
 }
 
-func (s OVSDBType) Prefix() string {
+func (s OVSDBType) Postfix() string {
 	switch s {
 		case NB:
 			return "NB"

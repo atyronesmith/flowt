@@ -5,13 +5,13 @@ package dbtypes
 // Tables: 31
 
 // Address_Set
-type SBAddressSet struct {
+type AddressSetSB struct {
 	Addresses OVSSet[string] `json:"addresses"`
 	Name      string         `json:"name"`
 }
 
 // BFD
-type SBBFD struct {
+type BFDSB struct {
 	DetectMult  int            `json:"detect_mult"`
 	Disc        int            `json:"disc"`
 	DstIp       string         `json:"dst_ip"`
@@ -25,7 +25,7 @@ type SBBFD struct {
 }
 
 // Chassis
-type SBChassis struct {
+type ChassisSB struct {
 	Encaps              OVSSet[UUID]   `json:"encaps"`
 	ExternalIds         OVSMap[string] `json:"external_ids"`
 	Hostname            string         `json:"hostname"`
@@ -37,7 +37,7 @@ type SBChassis struct {
 }
 
 // Chassis_Private
-type SBChassisPrivate struct {
+type ChassisPrivateSB struct {
 	Chassis        OVSSet[UUID]   `json:"chassis"`
 	ExternalIds    OVSMap[string] `json:"external_ids"`
 	Name           string         `json:"name"`
@@ -46,7 +46,7 @@ type SBChassisPrivate struct {
 }
 
 // Connection
-type SBConnection struct {
+type ConnectionSB struct {
 	ExternalIds     OVSMap[string] `json:"external_ids"`
 	InactivityProbe int            `json:"inactivity_probe"`
 	IsConnected     bool           `json:"is_connected"`
@@ -59,7 +59,7 @@ type SBConnection struct {
 }
 
 // Controller_Event
-type SBControllerEvent struct {
+type ControllerEventSB struct {
 	Chassis   OVSSet[UUID]   `json:"chassis"`
 	EventInfo OVSMap[string] `json:"event_info"`
 	EventType string         `json:"event_type"`
@@ -67,35 +67,35 @@ type SBControllerEvent struct {
 }
 
 // DHCP_Options
-type SBDHCPOptions struct {
+type DHCPOptionsSB struct {
 	Code int    `json:"code"`
 	Name string `json:"name"`
 	Type string `json:"type"`
 }
 
 // DHCPv6_Options
-type SBDHCPv6Options struct {
+type DHCPv6OptionsSB struct {
 	Code int    `json:"code"`
 	Name string `json:"name"`
 	Type string `json:"type"`
 }
 
 // DNS
-type SBDNS struct {
+type DNSSB struct {
 	Datapaths   OVSSet[UUID]   `json:"datapaths"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Records     OVSMap[string] `json:"records"`
 }
 
 // Datapath_Binding
-type SBDatapathBinding struct {
+type DatapathBindingSB struct {
 	ExternalIds   OVSMap[string] `json:"external_ids"`
 	LoadBalancers OVSSet[UUID]   `json:"load_balancers"`
 	TunnelKey     int            `json:"tunnel_key"`
 }
 
 // Encap
-type SBEncap struct {
+type EncapSB struct {
 	ChassisName string         `json:"chassis_name"`
 	Ip          string         `json:"ip"`
 	Options     OVSMap[string] `json:"options"`
@@ -103,14 +103,14 @@ type SBEncap struct {
 }
 
 // FDB
-type SBFDB struct {
+type FDBSB struct {
 	DpKey   int    `json:"dp_key"`
 	Mac     string `json:"mac"`
 	PortKey int    `json:"port_key"`
 }
 
 // Gateway_Chassis
-type SBGatewayChassis struct {
+type GatewayChassisSB struct {
 	Chassis     OVSSet[UUID]   `json:"chassis"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Name        string         `json:"name"`
@@ -119,14 +119,14 @@ type SBGatewayChassis struct {
 }
 
 // HA_Chassis
-type SBHAChassis struct {
+type HAChassisSB struct {
 	Chassis     OVSSet[UUID]   `json:"chassis"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Priority    int            `json:"priority"`
 }
 
 // HA_Chassis_Group
-type SBHAChassisGroup struct {
+type HAChassisGroupSB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	HaChassis   OVSSet[UUID]   `json:"ha_chassis"`
 	Name        string         `json:"name"`
@@ -134,7 +134,7 @@ type SBHAChassisGroup struct {
 }
 
 // IGMP_Group
-type SBIGMPGroup struct {
+type IGMPGroupSB struct {
 	Address  string       `json:"address"`
 	Chassis  OVSSet[UUID] `json:"chassis"`
 	Datapath OVSSet[UUID] `json:"datapath"`
@@ -142,7 +142,7 @@ type SBIGMPGroup struct {
 }
 
 // IP_Multicast
-type SBIPMulticast struct {
+type IPMulticastSB struct {
 	Datapath      OVSSet[UUID] `json:"datapath"`
 	Enabled       bool         `json:"enabled"`
 	EthSrc        string       `json:"eth_src"`
@@ -157,7 +157,7 @@ type SBIPMulticast struct {
 }
 
 // Load_Balancer
-type SBLoadBalancer struct {
+type LoadBalancerSB struct {
 	Datapaths   OVSSet[UUID]   `json:"datapaths"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Name        string         `json:"name"`
@@ -167,12 +167,12 @@ type SBLoadBalancer struct {
 }
 
 // Logical_DP_Group
-type SBLogicalDPGroup struct {
+type LogicalDPGroupSB struct {
 	Datapaths OVSSet[UUID] `json:"datapaths"`
 }
 
 // Logical_Flow
-type SBLogicalFlow struct {
+type LogicalFlowSB struct {
 	Actions         string         `json:"actions"`
 	ControllerMeter string         `json:"controller_meter"`
 	ExternalIds     OVSMap[string] `json:"external_ids"`
@@ -186,7 +186,7 @@ type SBLogicalFlow struct {
 }
 
 // MAC_Binding
-type SBMACBinding struct {
+type MACBindingSB struct {
 	Datapath    OVSSet[UUID] `json:"datapath"`
 	Ip          string       `json:"ip"`
 	LogicalPort string       `json:"logical_port"`
@@ -194,21 +194,21 @@ type SBMACBinding struct {
 }
 
 // Meter
-type SBMeter struct {
+type MeterSB struct {
 	Bands OVSSet[UUID] `json:"bands"`
 	Name  string       `json:"name"`
 	Unit  string       `json:"unit"`
 }
 
 // Meter_Band
-type SBMeterBand struct {
+type MeterBandSB struct {
 	Action    string `json:"action"`
 	BurstSize int    `json:"burst_size"`
 	Rate      int    `json:"rate"`
 }
 
 // Multicast_Group
-type SBMulticastGroup struct {
+type MulticastGroupSB struct {
 	Datapath  OVSSet[UUID] `json:"datapath"`
 	Name      string       `json:"name"`
 	Ports     OVSSet[UUID] `json:"ports"`
@@ -216,7 +216,7 @@ type SBMulticastGroup struct {
 }
 
 // Port_Binding
-type SBPortBinding struct {
+type PortBindingSB struct {
 	Chassis          OVSSet[UUID]   `json:"chassis"`
 	Datapath         OVSSet[UUID]   `json:"datapath"`
 	Encap            OVSSet[UUID]   `json:"encap"`
@@ -237,13 +237,13 @@ type SBPortBinding struct {
 }
 
 // Port_Group
-type SBPortGroup struct {
+type PortGroupSB struct {
 	Name  string         `json:"name"`
 	Ports OVSSet[string] `json:"ports"`
 }
 
 // RBAC_Permission
-type SBRBACPermission struct {
+type RBACPermissionSB struct {
 	Authorization OVSSet[string] `json:"authorization"`
 	InsertDelete  bool           `json:"insert_delete"`
 	Table         string         `json:"table"`
@@ -251,13 +251,13 @@ type SBRBACPermission struct {
 }
 
 // RBAC_Role
-type SBRBACRole struct {
+type RBACRoleSB struct {
 	Name        string       `json:"name"`
 	Permissions OVSMap[UUID] `json:"permissions"`
 }
 
 // SB_Global
-type SBSBGlobal struct {
+type SBGlobalSB struct {
 	Connections OVSSet[UUID]   `json:"connections"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Ipsec       bool           `json:"ipsec"`
@@ -267,7 +267,7 @@ type SBSBGlobal struct {
 }
 
 // SSL
-type SBSSL struct {
+type SSLSB struct {
 	BootstrapCaCert bool           `json:"bootstrap_ca_cert"`
 	CaCert          string         `json:"ca_cert"`
 	Certificate     string         `json:"certificate"`
@@ -278,7 +278,7 @@ type SBSSL struct {
 }
 
 // Service_Monitor
-type SBServiceMonitor struct {
+type ServiceMonitorSB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Ip          string         `json:"ip"`
 	LogicalPort string         `json:"logical_port"`
@@ -291,42 +291,42 @@ type SBServiceMonitor struct {
 }
 
 type OVNSouthbound struct {
-	Date              Time                         `json:"_date"`
-	Comment           string                       `json:"_comment"`
-	IsDiff            bool                         `json:"_is_diff"`
-	SBAddressSet      map[string]SBAddressSet      `json:"Address_Set"`
-	SBBFD             map[string]SBBFD             `json:"BFD"`
-	SBChassis         map[string]SBChassis         `json:"Chassis"`
-	SBChassisPrivate  map[string]SBChassisPrivate  `json:"Chassis_Private"`
-	SBConnection      map[string]SBConnection      `json:"Connection"`
-	SBControllerEvent map[string]SBControllerEvent `json:"Controller_Event"`
-	SBDHCPOptions     map[string]SBDHCPOptions     `json:"DHCP_Options"`
-	SBDHCPv6Options   map[string]SBDHCPv6Options   `json:"DHCPv6_Options"`
-	SBDNS             map[string]SBDNS             `json:"DNS"`
-	SBDatapathBinding map[string]SBDatapathBinding `json:"Datapath_Binding"`
-	SBEncap           map[string]SBEncap           `json:"Encap"`
-	SBFDB             map[string]SBFDB             `json:"FDB"`
-	SBGatewayChassis  map[string]SBGatewayChassis  `json:"Gateway_Chassis"`
-	SBHAChassis       map[string]SBHAChassis       `json:"HA_Chassis"`
-	SBHAChassisGroup  map[string]SBHAChassisGroup  `json:"HA_Chassis_Group"`
-	SBIGMPGroup       map[string]SBIGMPGroup       `json:"IGMP_Group"`
-	SBIPMulticast     map[string]SBIPMulticast     `json:"IP_Multicast"`
-	SBLoadBalancer    map[string]SBLoadBalancer    `json:"Load_Balancer"`
-	SBLogicalDPGroup  map[string]SBLogicalDPGroup  `json:"Logical_DP_Group"`
-	SBLogicalFlow     map[string]SBLogicalFlow     `json:"Logical_Flow"`
-	SBMACBinding      map[string]SBMACBinding      `json:"MAC_Binding"`
-	SBMeter           map[string]SBMeter           `json:"Meter"`
-	SBMeterBand       map[string]SBMeterBand       `json:"Meter_Band"`
-	SBMulticastGroup  map[string]SBMulticastGroup  `json:"Multicast_Group"`
-	SBPortBinding     map[string]SBPortBinding     `json:"Port_Binding"`
-	SBPortGroup       map[string]SBPortGroup       `json:"Port_Group"`
-	SBRBACPermission  map[string]SBRBACPermission  `json:"RBAC_Permission"`
-	SBRBACRole        map[string]SBRBACRole        `json:"RBAC_Role"`
-	SBSBGlobal        map[string]SBSBGlobal        `json:"SB_Global"`
-	SBSSL             map[string]SBSSL             `json:"SSL"`
-	SBServiceMonitor  map[string]SBServiceMonitor  `json:"Service_Monitor"`
+	Date            Time                         `json:"_date"`
+	Comment         string                       `json:"_comment"`
+	IsDiff          bool                         `json:"_is_diff"`
+	AddressSet      map[string]AddressSetSB      `json:"Address_Set"`
+	BFD             map[string]BFDSB             `json:"BFD"`
+	Chassis         map[string]ChassisSB         `json:"Chassis"`
+	ChassisPrivate  map[string]ChassisPrivateSB  `json:"Chassis_Private"`
+	Connection      map[string]ConnectionSB      `json:"Connection"`
+	ControllerEvent map[string]ControllerEventSB `json:"Controller_Event"`
+	DHCPOptions     map[string]DHCPOptionsSB     `json:"DHCP_Options"`
+	DHCPv6Options   map[string]DHCPv6OptionsSB   `json:"DHCPv6_Options"`
+	DNS             map[string]DNSSB             `json:"DNS"`
+	DatapathBinding map[string]DatapathBindingSB `json:"Datapath_Binding"`
+	Encap           map[string]EncapSB           `json:"Encap"`
+	FDB             map[string]FDBSB             `json:"FDB"`
+	GatewayChassis  map[string]GatewayChassisSB  `json:"Gateway_Chassis"`
+	HAChassis       map[string]HAChassisSB       `json:"HA_Chassis"`
+	HAChassisGroup  map[string]HAChassisGroupSB  `json:"HA_Chassis_Group"`
+	IGMPGroup       map[string]IGMPGroupSB       `json:"IGMP_Group"`
+	IPMulticast     map[string]IPMulticastSB     `json:"IP_Multicast"`
+	LoadBalancer    map[string]LoadBalancerSB    `json:"Load_Balancer"`
+	LogicalDPGroup  map[string]LogicalDPGroupSB  `json:"Logical_DP_Group"`
+	LogicalFlow     map[string]LogicalFlowSB     `json:"Logical_Flow"`
+	MACBinding      map[string]MACBindingSB      `json:"MAC_Binding"`
+	Meter           map[string]MeterSB           `json:"Meter"`
+	MeterBand       map[string]MeterBandSB       `json:"Meter_Band"`
+	MulticastGroup  map[string]MulticastGroupSB  `json:"Multicast_Group"`
+	PortBinding     map[string]PortBindingSB     `json:"Port_Binding"`
+	PortGroup       map[string]PortGroupSB       `json:"Port_Group"`
+	RBACPermission  map[string]RBACPermissionSB  `json:"RBAC_Permission"`
+	RBACRole        map[string]RBACRoleSB        `json:"RBAC_Role"`
+	SBGlobal        map[string]SBGlobalSB        `json:"SB_Global"`
+	SSL             map[string]SSLSB             `json:"SSL"`
+	ServiceMonitor  map[string]ServiceMonitorSB  `json:"Service_Monitor"`
 }
 
 func (nb *OVNSouthbound) IsValid() bool {
-	return len(nb.SBLogicalFlow) > 0
+	return len(nb.LogicalFlow) > 0
 }

@@ -5,7 +5,7 @@ package dbtypes
 // Tables: 27
 
 // ACL
-type NBACL struct {
+type ACLNB struct {
 	Action      string         `json:"action"`
 	Direction   string         `json:"direction"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
@@ -19,14 +19,14 @@ type NBACL struct {
 }
 
 // Address_Set
-type NBAddressSet struct {
+type AddressSetNB struct {
 	Addresses   OVSSet[string] `json:"addresses"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Name        string         `json:"name"`
 }
 
 // BFD
-type NBBFD struct {
+type BFDNB struct {
 	DetectMult  int            `json:"detect_mult"`
 	DstIp       string         `json:"dst_ip"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
@@ -38,7 +38,7 @@ type NBBFD struct {
 }
 
 // Connection
-type NBConnection struct {
+type ConnectionNB struct {
 	ExternalIds     OVSMap[string] `json:"external_ids"`
 	InactivityProbe int            `json:"inactivity_probe"`
 	IsConnected     bool           `json:"is_connected"`
@@ -49,25 +49,25 @@ type NBConnection struct {
 }
 
 // Copp
-type NBCopp struct {
+type CoppNB struct {
 	Meters OVSMap[string] `json:"meters"`
 }
 
 // DHCP_Options
-type NBDHCPOptions struct {
+type DHCPOptionsNB struct {
 	Cidr        string         `json:"cidr"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Options     OVSMap[string] `json:"options"`
 }
 
 // DNS
-type NBDNS struct {
+type DNSNB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Records     OVSMap[string] `json:"records"`
 }
 
 // Forwarding_Group
-type NBForwardingGroup struct {
+type ForwardingGroupNB struct {
 	ChildPort   OVSSet[string] `json:"child_port"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Liveness    bool           `json:"liveness"`
@@ -77,7 +77,7 @@ type NBForwardingGroup struct {
 }
 
 // Gateway_Chassis
-type NBGatewayChassis struct {
+type GatewayChassisNB struct {
 	ChassisName string         `json:"chassis_name"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Name        string         `json:"name"`
@@ -86,21 +86,21 @@ type NBGatewayChassis struct {
 }
 
 // HA_Chassis
-type NBHAChassis struct {
+type HAChassisNB struct {
 	ChassisName string         `json:"chassis_name"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Priority    int            `json:"priority"`
 }
 
 // HA_Chassis_Group
-type NBHAChassisGroup struct {
+type HAChassisGroupNB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	HaChassis   OVSSet[UUID]   `json:"ha_chassis"`
 	Name        string         `json:"name"`
 }
 
 // Load_Balancer
-type NBLoadBalancer struct {
+type LoadBalancerNB struct {
 	ExternalIds     OVSMap[string] `json:"external_ids"`
 	HealthCheck     OVSSet[UUID]   `json:"health_check"`
 	IpPortMappings  OVSMap[string] `json:"ip_port_mappings"`
@@ -112,20 +112,20 @@ type NBLoadBalancer struct {
 }
 
 // Load_Balancer_Group
-type NBLoadBalancerGroup struct {
+type LoadBalancerGroupNB struct {
 	LoadBalancer OVSSet[UUID] `json:"load_balancer"`
 	Name         string       `json:"name"`
 }
 
 // Load_Balancer_Health_Check
-type NBLoadBalancerHealthCheck struct {
+type LoadBalancerHealthCheckNB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Options     OVSMap[string] `json:"options"`
 	Vip         string         `json:"vip"`
 }
 
 // Logical_Router
-type NBLogicalRouter struct {
+type LogicalRouterNB struct {
 	Copp              OVSSet[UUID]   `json:"copp"`
 	Enabled           bool           `json:"enabled"`
 	ExternalIds       OVSMap[string] `json:"external_ids"`
@@ -140,7 +140,7 @@ type NBLogicalRouter struct {
 }
 
 // Logical_Router_Policy
-type NBLogicalRouterPolicy struct {
+type LogicalRouterPolicyNB struct {
 	Action      string         `json:"action"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Match       string         `json:"match"`
@@ -151,7 +151,7 @@ type NBLogicalRouterPolicy struct {
 }
 
 // Logical_Router_Port
-type NBLogicalRouterPort struct {
+type LogicalRouterPortNB struct {
 	Enabled        bool           `json:"enabled"`
 	ExternalIds    OVSMap[string] `json:"external_ids"`
 	GatewayChassis OVSSet[UUID]   `json:"gateway_chassis"`
@@ -166,7 +166,7 @@ type NBLogicalRouterPort struct {
 }
 
 // Logical_Router_Static_Route
-type NBLogicalRouterStaticRoute struct {
+type LogicalRouterStaticRouteNB struct {
 	Bfd         OVSSet[UUID]   `json:"bfd"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	IpPrefix    string         `json:"ip_prefix"`
@@ -178,7 +178,7 @@ type NBLogicalRouterStaticRoute struct {
 }
 
 // Logical_Switch
-type NBLogicalSwitch struct {
+type LogicalSwitchNB struct {
 	Acls              OVSSet[UUID]   `json:"acls"`
 	Copp              OVSSet[UUID]   `json:"copp"`
 	DnsRecords        OVSSet[UUID]   `json:"dns_records"`
@@ -193,7 +193,7 @@ type NBLogicalSwitch struct {
 }
 
 // Logical_Switch_Port
-type NBLogicalSwitchPort struct {
+type LogicalSwitchPortNB struct {
 	Addresses        OVSSet[string] `json:"addresses"`
 	Dhcpv4Options    OVSSet[UUID]   `json:"dhcpv4_options"`
 	Dhcpv6Options    OVSSet[UUID]   `json:"dhcpv6_options"`
@@ -212,7 +212,7 @@ type NBLogicalSwitchPort struct {
 }
 
 // Meter
-type NBMeter struct {
+type MeterNB struct {
 	Bands       OVSSet[UUID]   `json:"bands"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Fair        bool           `json:"fair"`
@@ -221,7 +221,7 @@ type NBMeter struct {
 }
 
 // Meter_Band
-type NBMeterBand struct {
+type MeterBandNB struct {
 	Action      string         `json:"action"`
 	BurstSize   int            `json:"burst_size"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
@@ -229,7 +229,7 @@ type NBMeterBand struct {
 }
 
 // NAT
-type NBNAT struct {
+type NATNB struct {
 	AllowedExtIps     OVSSet[UUID]   `json:"allowed_ext_ips"`
 	ExemptedExtIps    OVSSet[UUID]   `json:"exempted_ext_ips"`
 	ExternalIds       OVSMap[string] `json:"external_ids"`
@@ -243,7 +243,7 @@ type NBNAT struct {
 }
 
 // NB_Global
-type NBNBGlobal struct {
+type NBGlobalNB struct {
 	Connections    OVSSet[UUID]   `json:"connections"`
 	ExternalIds    OVSMap[string] `json:"external_ids"`
 	HvCfg          int            `json:"hv_cfg"`
@@ -259,7 +259,7 @@ type NBNBGlobal struct {
 }
 
 // Port_Group
-type NBPortGroup struct {
+type PortGroupNB struct {
 	Acls        OVSSet[UUID]   `json:"acls"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Name        string         `json:"name"`
@@ -267,7 +267,7 @@ type NBPortGroup struct {
 }
 
 // QoS
-type NBQoS struct {
+type QoSNB struct {
 	Action      OVSMap[int]    `json:"action"`
 	Bandwidth   OVSMap[int]    `json:"bandwidth"`
 	Direction   string         `json:"direction"`
@@ -277,7 +277,7 @@ type NBQoS struct {
 }
 
 // SSL
-type NBSSL struct {
+type SSLNB struct {
 	BootstrapCaCert bool           `json:"bootstrap_ca_cert"`
 	CaCert          string         `json:"ca_cert"`
 	Certificate     string         `json:"certificate"`
@@ -288,38 +288,38 @@ type NBSSL struct {
 }
 
 type OVNNorthbound struct {
-	Date                       Time                                  `json:"_date"`
-	Comment                    string                                `json:"_comment"`
-	IsDiff                     bool                                  `json:"_is_diff"`
-	NBACL                      map[string]NBACL                      `json:"ACL"`
-	NBAddressSet               map[string]NBAddressSet               `json:"Address_Set"`
-	NBBFD                      map[string]NBBFD                      `json:"BFD"`
-	NBConnection               map[string]NBConnection               `json:"Connection"`
-	NBCopp                     map[string]NBCopp                     `json:"Copp"`
-	NBDHCPOptions              map[string]NBDHCPOptions              `json:"DHCP_Options"`
-	NBDNS                      map[string]NBDNS                      `json:"DNS"`
-	NBForwardingGroup          map[string]NBForwardingGroup          `json:"Forwarding_Group"`
-	NBGatewayChassis           map[string]NBGatewayChassis           `json:"Gateway_Chassis"`
-	NBHAChassis                map[string]NBHAChassis                `json:"HA_Chassis"`
-	NBHAChassisGroup           map[string]NBHAChassisGroup           `json:"HA_Chassis_Group"`
-	NBLoadBalancer             map[string]NBLoadBalancer             `json:"Load_Balancer"`
-	NBLoadBalancerGroup        map[string]NBLoadBalancerGroup        `json:"Load_Balancer_Group"`
-	NBLoadBalancerHealthCheck  map[string]NBLoadBalancerHealthCheck  `json:"Load_Balancer_Health_Check"`
-	NBLogicalRouter            map[string]NBLogicalRouter            `json:"Logical_Router"`
-	NBLogicalRouterPolicy      map[string]NBLogicalRouterPolicy      `json:"Logical_Router_Policy"`
-	NBLogicalRouterPort        map[string]NBLogicalRouterPort        `json:"Logical_Router_Port"`
-	NBLogicalRouterStaticRoute map[string]NBLogicalRouterStaticRoute `json:"Logical_Router_Static_Route"`
-	NBLogicalSwitch            map[string]NBLogicalSwitch            `json:"Logical_Switch"`
-	NBLogicalSwitchPort        map[string]NBLogicalSwitchPort        `json:"Logical_Switch_Port"`
-	NBMeter                    map[string]NBMeter                    `json:"Meter"`
-	NBMeterBand                map[string]NBMeterBand                `json:"Meter_Band"`
-	NBNAT                      map[string]NBNAT                      `json:"NAT"`
-	NBNBGlobal                 map[string]NBNBGlobal                 `json:"NB_Global"`
-	NBPortGroup                map[string]NBPortGroup                `json:"Port_Group"`
-	NBQoS                      map[string]NBQoS                      `json:"QoS"`
-	NBSSL                      map[string]NBSSL                      `json:"SSL"`
+	Date                     Time                                  `json:"_date"`
+	Comment                  string                                `json:"_comment"`
+	IsDiff                   bool                                  `json:"_is_diff"`
+	ACL                      map[string]ACLNB                      `json:"ACL"`
+	AddressSet               map[string]AddressSetNB               `json:"Address_Set"`
+	BFD                      map[string]BFDNB                      `json:"BFD"`
+	Connection               map[string]ConnectionNB               `json:"Connection"`
+	Copp                     map[string]CoppNB                     `json:"Copp"`
+	DHCPOptions              map[string]DHCPOptionsNB              `json:"DHCP_Options"`
+	DNS                      map[string]DNSNB                      `json:"DNS"`
+	ForwardingGroup          map[string]ForwardingGroupNB          `json:"Forwarding_Group"`
+	GatewayChassis           map[string]GatewayChassisNB           `json:"Gateway_Chassis"`
+	HAChassis                map[string]HAChassisNB                `json:"HA_Chassis"`
+	HAChassisGroup           map[string]HAChassisGroupNB           `json:"HA_Chassis_Group"`
+	LoadBalancer             map[string]LoadBalancerNB             `json:"Load_Balancer"`
+	LoadBalancerGroup        map[string]LoadBalancerGroupNB        `json:"Load_Balancer_Group"`
+	LoadBalancerHealthCheck  map[string]LoadBalancerHealthCheckNB  `json:"Load_Balancer_Health_Check"`
+	LogicalRouter            map[string]LogicalRouterNB            `json:"Logical_Router"`
+	LogicalRouterPolicy      map[string]LogicalRouterPolicyNB      `json:"Logical_Router_Policy"`
+	LogicalRouterPort        map[string]LogicalRouterPortNB        `json:"Logical_Router_Port"`
+	LogicalRouterStaticRoute map[string]LogicalRouterStaticRouteNB `json:"Logical_Router_Static_Route"`
+	LogicalSwitch            map[string]LogicalSwitchNB            `json:"Logical_Switch"`
+	LogicalSwitchPort        map[string]LogicalSwitchPortNB        `json:"Logical_Switch_Port"`
+	Meter                    map[string]MeterNB                    `json:"Meter"`
+	MeterBand                map[string]MeterBandNB                `json:"Meter_Band"`
+	NAT                      map[string]NATNB                      `json:"NAT"`
+	NBGlobal                 map[string]NBGlobalNB                 `json:"NB_Global"`
+	PortGroup                map[string]PortGroupNB                `json:"Port_Group"`
+	QoS                      map[string]QoSNB                      `json:"QoS"`
+	SSL                      map[string]SSLNB                      `json:"SSL"`
 }
 
-func (nb *OVNNorthbound) IsValid() bool {
-	return len(nb.NBLogicalSwitchPort) > 0
+func (nb OVNNorthbound) IsValid() bool {
+	return len(nb.LogicalSwitchPort) > 0
 }
