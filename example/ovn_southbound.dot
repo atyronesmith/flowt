@@ -1,0 +1,738 @@
+digraph {
+    concentrate=True;
+    node [shape="none" fontsize="14"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+    Address_Set [tooltip="This  table  contains address sets synced from the Address_Set table in the  OVN_Northbound database and address sets generated from the Port_Group table in the OVN_Northbound database.  See the documentation for the Address_Set table and Port_Group table in the OVN_Northbound database for details." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Address_Set</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Addresses</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    BFD [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>BFD</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DetectMult</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Disc</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DstIp</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MinRx</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MinTx</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SrcPort</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Status</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Chassis [tooltip="Each row in this table represents a hypervisor or gateway (a  chassis) in the physical network.  Each chassis, via ovn-controller/ovn-controller-vtep, adds and updates its own row, and keeps a copy of  the remaining rows to determine how to reach other hypervisors." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Chassis</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Encaps</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Hostname</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TransportZones</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">VtepLogicalSwitches</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Chassis_Private [tooltip="Each row in this table maintains per chassis private data that are accessed only by the owning chassis (write only) and ovn-northd, not by any other chassis. These data are stored in this separate table instead of the Chassis table for performance considerations: the rows in this table can be conditionally monitored by chassises so that each chassis only get update notifications for its own row, to avoid unnecessary chassis private data update flooding in a large scale deployment." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Chassis_Private</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfgTimestamp</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Connection [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Connection</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">InactivityProbe</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">IsConnected</TD><TD >E</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MaxBackoff</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ReadOnly</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Role</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Status</TD><TD >E</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Target</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Controller_Event [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Controller_Event</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">EventInfo</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">EventType</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SeqNum</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    DHCP_Options [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DHCP_Options</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Code</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    DHCPv6_Options [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DHCPv6_Options</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Code</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    DNS [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DNS</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Records</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Datapath_Binding [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Datapath_Binding</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancers</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Encap [tooltip="The encaps column in the Chassis table refers to rows in this table to identify how OVN may transmit logical dataplane packets to this chassis. Each chassis,  via  ovn-controller(8)  or  ovn-controller-vtep(8), adds and updates its own rows and keeps a copy of the remaining rows to determine how to reach other chassis." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Encap</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ChassisName</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ip</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    FDB [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>FDB</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DpKey</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Mac</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">PortKey</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Gateway_Chassis [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Gateway_Chassis</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    HA_Chassis [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    HA_Chassis_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HaChassis</TD><TD  PORT="O1"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">RefChassis</TD><TD  PORT="O3"></TD>
+      </TR>
+    </TABLE>
+    >];
+    IGMP_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>IGMP_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Address</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O1">IO</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapath</TD><TD  PORT="O2">IO</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD  PORT="O3"></TD>
+      </TR>
+    </TABLE>
+    >];
+    IP_Multicast [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>IP_Multicast</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapath</TD><TD  PORT="O0">I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Enabled</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">EthSrc</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">IdleTimeout</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ip4Src</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ip6Src</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Querier</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">QueryInterval</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">QueryMaxResp</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SeqNo</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TableSize</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Load_Balancer [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Load_Balancer</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Protocol</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Vips</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_DP_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_DP_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Flow [tooltip="Each row in this table represents one logical flow.  ovn-northd populates this table with logical flows that implement the L2 and L3 topologies specified in the OVN_Northbound database.  Each  hypervisor, via  ovn-controller,  translates  the logical flows into OpenFlow flows specific to its hypervisor and installs them into Open vSwitch.  Logical flows are expressed in an OVN-specific format, described  here.  A  logical datapath flow is much like an OpenFlow flow, except that the flows are written in terms  of  logical  ports  and  logical  datapaths instead  of  physical ports and physical datapaths. Translation between logical and physical flows helps to ensure  isolation  between  logical datapaths.  (The  logical flow abstraction also allows the OVN centralized components to do less work, since they do not have to separately compute and push out physical flows to each chassis.)  The default action when no flow matches is to drop packets." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Flow</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Actions</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ControllerMeter</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalDatapath</TD><TD  PORT="O3">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalDpGroup</TD><TD  PORT="O4">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Match</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Pipeline</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TableId</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Tags</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    MAC_Binding [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>MAC_Binding</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapath</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ip</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Mac</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Meter [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Bands</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Unit</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Meter_Band [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter_Band</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Action</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">BurstSize</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Rate</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Multicast_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Multicast_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapath</TD><TD  PORT="O0">I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD  PORT="O2"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Port_Binding [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Port_Binding</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Datapath</TD><TD  PORT="O1">I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Encap</TD><TD  PORT="O2">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">GatewayChassis</TD><TD  PORT="O4"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HaChassisGroup</TD><TD  PORT="O5">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Mac</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NatAddresses</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ParentPort</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">RequestedChassis</TD><TD  PORT="O11">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Tag</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Up</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">VirtualParent</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Port_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Port_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    RBAC_Permission [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>RBAC_Permission</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Authorization</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">InsertDelete</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Table</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Update</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    RBAC_Role [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>RBAC_Role</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Permissions</TD><TD  PORT="O1"></TD>
+      </TR>
+    </TABLE>
+    >];
+    SB_Global [tooltip="Southbound  configuration  for  an  OVN  system.  This  table must have exactly one row." label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>SB_Global</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Connections</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ipsec</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ssl</TD><TD  PORT="O5">O</TD>
+      </TR>
+    </TABLE>
+    >];
+    SSL [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>SSL</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">BootstrapCaCert</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">CaCert</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Certificate</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">PrivateKey</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SslCiphers</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SslProtocols</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Service_Monitor [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Service_Monitor</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ip</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Port</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Protocol</TD><TD >IO</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SrcIp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SrcMac</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Status</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+
+    Chassis:O0:e -> Encap:input:c 
+    Chassis_Private:O0:e -> Chassis:input:c 
+    Controller_Event:O0:e -> Chassis:input:c 
+    DNS:O0:e -> Datapath_Binding:input:c 
+    Gateway_Chassis:O0:e -> Chassis:input:c 
+    HA_Chassis:O0:e -> Chassis:input:c 
+    HA_Chassis_Group:O1:e -> HA_Chassis:input:c 
+    HA_Chassis_Group:O3:e -> Chassis:input:c 
+    IGMP_Group:O1:e -> Chassis:input:c 
+    IGMP_Group:O2:e -> Datapath_Binding:input:c 
+    IGMP_Group:O3:e -> Port_Binding:input:c 
+    IP_Multicast:O0:e -> Datapath_Binding:input:c 
+    Load_Balancer:O0:e -> Datapath_Binding:input:c 
+    Logical_DP_Group:O0:e -> Datapath_Binding:input:c 
+    Logical_Flow:O3:e -> Datapath_Binding:input:c 
+    Logical_Flow:O4:e -> Logical_DP_Group:input:c 
+    MAC_Binding:O0:e -> Datapath_Binding:input:c 
+    Meter:O0:e -> Meter_Band:input:c 
+    Multicast_Group:O0:e -> Datapath_Binding:input:c 
+    Multicast_Group:O2:e -> Port_Binding:input:c 
+    Port_Binding:O0:e -> Chassis:input:c 
+    Port_Binding:O1:e -> Datapath_Binding:input:c 
+    Port_Binding:O2:e -> Encap:input:c 
+    Port_Binding:O4:e -> Gateway_Chassis:input:c 
+    Port_Binding:O5:e -> HA_Chassis_Group:input:c 
+    Port_Binding:O11:e -> Chassis:input:c 
+    RBAC_Role:O1:e -> RBAC_Permission:input:c 
+    SB_Global:O0:e -> Connection:input:c 
+    SB_Global:O5:e -> SSL:input:c 
+}

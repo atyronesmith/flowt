@@ -80,16 +80,18 @@ func main() {
 			fmt.Printf("%v", err)
 			os.Exit(1)
 		}
-	} else {
-		buf, _ = remote.GetHelp(client, externalIds, remote.NB)
-
 		fmt.Printf("%s\n", buf)
-
-		buf, err = remote.DumpFlowsNB(client, externalIds)
+	} else {
+		db, ok := remote.DBTypeMap[dbase]
+		if !ok {
+			flag.Usage()
+			os.Exit(1)
+		}
+		buf, dbFile, err := remote.GetDBFile(client,externalIds,db)
 		if err != nil {
 			fmt.Printf("%v", err)
 			os.Exit(1)
 		}
+		os.WriteFile(dbFile, buf.Bytes(), 0644)
 	}
-	fmt.Printf("%s\n", buf)
 }

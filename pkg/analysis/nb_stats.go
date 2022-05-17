@@ -1,12 +1,12 @@
 package analysis
 
 import (
-	"bytes"
 	"fmt"
-	"html/template"
 	"os"
 
+	"github.com/atyronesmith/flowt/pkg/dbparse"
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
+	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
 type NBStats struct {
@@ -27,58 +27,43 @@ func nbStats(nb *dbtypes.OVNNorthbound) NBStats {
 	stats.NAT = make(map[string]int)
 
 	for _, v := range nb.LogicalSwitchPort {
-		switch v.Type {
-		case "":
-			stats.NumVMPorts++
-		case "router":
-			stats.NumRouterPorts++
-		case "localport":
-			stats.NumLocalPorts++
-		case "localnet":
-			stats.NumLocalNetPorts++
-		case "l2gateway":
-			stats.NumL2GatewayPorts++
-		case "vtep":
-			stats.NumVTEPPorts++
-		case "external":
-			stats.NumExternalPorts++
-		case "virtual":
-			stats.NumVirtualPorts++
-		case "remote":
-			stats.NumRemotePorts++
+		if v.Type != nil {
+			switch *v.Type {
+			case "":
+				stats.NumVMPorts++
+			case "router":
+				stats.NumRouterPorts++
+			case "localport":
+				stats.NumLocalPorts++
+			case "localnet":
+				stats.NumLocalNetPorts++
+			case "l2gateway":
+				stats.NumL2GatewayPorts++
+			case "vtep":
+				stats.NumVTEPPorts++
+			case "external":
+				stats.NumExternalPorts++
+			case "virtual":
+				stats.NumVirtualPorts++
+			case "remote":
+				stats.NumRemotePorts++
+			}
 		}
 	}
 
 	for _, v := range nb.NAT {
-		stats.NAT[v.Type]++
+		stats.NAT[*v.Type]++
 	}
 
 	return stats
 }
 
-func GenNBStats(db *dbtypes.OVNNorthbound) {
+func GenNBStats(db *dbtypes.OVNNorthbound) error {
 	fName := "templates/ovnnbstats.tpl"
-
-	fBuf, err := os.ReadFile(fName)
-	if err != nil {
-		fmt.Printf("Unable to read template file: %s", fName)
-		os.Exit(1)
-	}
-	funcMap := template.FuncMap{
-		"add": func(a int, b int) int {
-			fmt.Printf("%d %d\n", a, b)
-			return a + b
-		},
-	}
-
-	tpl, err := template.New("dbschema").Funcs(funcMap).Parse(string(fBuf))
-	if err != nil {
-		fmt.Printf("%v\n", err)
-	}
 
 	type tStruct struct {
 		Stats NBStats
-		Db    dbtypes.OVNDbType
+		Db    dbparse.OVNDbType
 	}
 
 	nbs := nbStats(db)
@@ -86,12 +71,13 @@ func GenNBStats(db *dbtypes.OVNNorthbound) {
 		Stats: nbs,
 		Db:    db,
 	}
-	var buf bytes.Buffer
 
-	if err := tpl.Execute(&buf, tPlate); err != nil {
-		fmt.Printf("Error processing template: %s", err)
-		os.Exit(1)
+	buf, err := utils.ProcessTemplate(fName, "chart", utils.GetFuncMap(), tPlate)
+	if err != nil {
+		return fmt.Errorf("error processing template: %s, %v", fName, err)
 	}
+
 	os.Stdout.Write(buf.Bytes())
 
+	return nil
 }

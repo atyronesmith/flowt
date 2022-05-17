@@ -64,7 +64,7 @@ func graphCircle() *charts.Graph {
 	return graph
 }
 
-func graphNpmDep() *charts.Graph {
+func graphNpmDep(graphJson string) *charts.Graph {
 	graph := charts.NewGraph()
 	graph.SetGlobalOptions(
 		charts.WithTitleOpts(opts.Title{
@@ -76,11 +76,11 @@ func graphNpmDep() *charts.Graph {
 		panic(err)
 	}
 	fmt.Println(path)
-	f, err := ioutil.ReadFile("cmd/app/fixtures/npmdepgraph.json")
+	f, err := ioutil.ReadFile(graphJson)
 	if err != nil {
 		panic(err)
 	}
-
+	
 	type Data struct {
 		Nodes []opts.GraphNode
 		Links []opts.GraphLink
@@ -94,7 +94,9 @@ func graphNpmDep() *charts.Graph {
 	graph.AddSeries("graph", data.Nodes, data.Links).
 		SetSeriesOptions(
 			charts.WithGraphChartOpts(opts.GraphChart{
-				Layout:             "none",
+				Layout:             "force",
+					Force:  &opts.GraphForce{Repulsion: 8000},
+
 				Roam:               true,
 				FocusNodeAdjacency: true,
 			}),
@@ -112,14 +114,17 @@ func graphNpmDep() *charts.Graph {
 	return graph
 }
 
-type GraphExamples struct{}
+type GraphExamples struct{
+	NpmFile string
+}
 
-func (GraphExamples) Examples() {
+func (ge GraphExamples) Examples() {
+	fmt.Printf("Using chart file: %s\n",ge.NpmFile)
 	page := components.NewPage()
 	page.AddCharts(
-		graphBase(),
-		graphCircle(),
-		graphNpmDep(),
+		// graphBase(),
+		// graphCircle(),
+		graphNpmDep(ge.NpmFile),
 	)
 
 	f, err := os.Create("web/html/graph.html")

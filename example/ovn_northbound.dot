@@ -1,0 +1,754 @@
+digraph {
+    concentrate=True;
+    node [shape="none" fontsize="14"]
+    edge [fontname="Helvetica,Arial,sans-serif"]
+    ACL [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>ACL</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Action</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Direction</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Label</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Log</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Match</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Meter</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Severity</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Address_Set [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Address_Set</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Addresses</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    BFD [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>BFD</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DetectMult</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DstIp</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MinRx</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MinTx</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Status</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Connection [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Connection</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">InactivityProbe</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">IsConnected</TD><TD >E</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">MaxBackoff</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Status</TD><TD >E</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Target</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Copp [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Copp</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Meters</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    DHCP_Options [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DHCP_Options</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Cidr</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    DNS [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DNS</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Records</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Forwarding_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Forwarding_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ChildPort</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Liveness</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Vip</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Vmac</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Gateway_Chassis [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Gateway_Chassis</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ChassisName</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    HA_Chassis [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ChassisName</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    HA_Chassis_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HaChassis</TD><TD  PORT="O1"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Load_Balancer [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Load_Balancer</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HealthCheck</TD><TD  PORT="O1"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">IpPortMappings</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Protocol</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SelectionFields</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Vips</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Load_Balancer_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Load_Balancer_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancer</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+    </TABLE>
+    >];
+    Load_Balancer_Health_Check [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Load_Balancer_Health_Check</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Vip</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Router [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Router</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Copp</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Enabled</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancer</TD><TD  PORT="O3"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancerGroup</TD><TD  PORT="O4"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Nat</TD><TD  PORT="O6"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Policies</TD><TD  PORT="O8"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD  PORT="O9"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">StaticRoutes</TD><TD  PORT="O10"></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Router_Policy [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Router_Policy</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Action</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Match</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Nexthop</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Nexthops</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Router_Port [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Router_Port</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Enabled</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">GatewayChassis</TD><TD  PORT="O2"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HaChassisGroup</TD><TD  PORT="O3">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ipv6Prefix</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ipv6RaConfigs</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Mac</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Networks</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Peer</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Router_Static_Route [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Router_Static_Route</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Bfd</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">IpPrefix</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Nexthop</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">OutputPort</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Policy</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">RouteTable</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Switch [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Switch</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Acls</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Copp</TD><TD  PORT="O1">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DnsRecords</TD><TD  PORT="O2"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ForwardingGroups</TD><TD  PORT="O4"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancer</TD><TD  PORT="O5"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LoadBalancerGroup</TD><TD  PORT="O6"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD  PORT="O9"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">QosRules</TD><TD  PORT="O10"></TD>
+      </TR>
+    </TABLE>
+    >];
+    Logical_Switch_Port [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Switch_Port</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Addresses</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Dhcpv4Options</TD><TD  PORT="O1">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Dhcpv6Options</TD><TD  PORT="O2">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">DynamicAddresses</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Enabled</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HaChassisGroup</TD><TD  PORT="O6">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ParentName</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">PortSecurity</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Tag</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">TagRequest</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Up</TD><TD >O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Meter [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Bands</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Fair</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Unit</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    Meter_Band [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter_Band</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Action</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">BurstSize</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Rate</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    NAT [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>NAT</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">AllowedExtIps</TD><TD  PORT="O0">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExemptedExtIps</TD><TD  PORT="O1">O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalMac</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalPortRange</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalIp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">LogicalPort</TD><TD >O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Type</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    NB_Global [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>NB_Global</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Connections</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HvCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">HvCfgTimestamp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ipsec</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">NbCfgTimestamp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Options</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SbCfg</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SbCfgTimestamp</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ssl</TD><TD  PORT="O11">O</TD>
+      </TR>
+    </TABLE>
+    >];
+    Port_Group [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Port_Group</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Acls</TD><TD  PORT="O0"></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Name</TD><TD >I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ports</TD><TD  PORT="O3"></TD>
+      </TR>
+    </TABLE>
+    >];
+    QoS [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>QoS</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Action</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Bandwidth</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Direction</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Match</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Priority</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+    SSL [tooltip="" label=<      
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>SSL</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">BootstrapCaCert</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">CaCert</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Certificate</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">PrivateKey</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SslCiphers</TD><TD ></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">SslProtocols</TD><TD ></TD>
+      </TR>
+    </TABLE>
+    >];
+
+    HA_Chassis_Group:O1:e -> HA_Chassis:input:c 
+    Load_Balancer:O1:e -> Load_Balancer_Health_Check:input:c 
+    Load_Balancer_Group:O0:e -> Load_Balancer:input:c 
+    Logical_Router:O0:e -> Copp:input:c 
+    Logical_Router:O3:e -> Load_Balancer:input:c 
+    Logical_Router:O4:e -> Load_Balancer_Group:input:c 
+    Logical_Router:O6:e -> NAT:input:c 
+    Logical_Router:O8:e -> Logical_Router_Policy:input:c 
+    Logical_Router:O9:e -> Logical_Router_Port:input:c 
+    Logical_Router:O10:e -> Logical_Router_Static_Route:input:c 
+    Logical_Router_Port:O2:e -> Gateway_Chassis:input:c 
+    Logical_Router_Port:O3:e -> HA_Chassis_Group:input:c 
+    Logical_Router_Static_Route:O0:e -> BFD:input:c 
+    Logical_Switch:O0:e -> ACL:input:c 
+    Logical_Switch:O1:e -> Copp:input:c 
+    Logical_Switch:O2:e -> DNS:input:c 
+    Logical_Switch:O4:e -> Forwarding_Group:input:c 
+    Logical_Switch:O5:e -> Load_Balancer:input:c 
+    Logical_Switch:O6:e -> Load_Balancer_Group:input:c 
+    Logical_Switch:O9:e -> Logical_Switch_Port:input:c 
+    Logical_Switch:O10:e -> QoS:input:c 
+    Logical_Switch_Port:O1:e -> DHCP_Options:input:c 
+    Logical_Switch_Port:O2:e -> DHCP_Options:input:c 
+    Logical_Switch_Port:O6:e -> HA_Chassis_Group:input:c 
+    Meter:O0:e -> Meter_Band:input:c 
+    NAT:O0:e -> Address_Set:input:c 
+    NAT:O1:e -> Address_Set:input:c 
+    NB_Global:O0:e -> Connection:input:c 
+    NB_Global:O11:e -> SSL:input:c 
+    Port_Group:O0:e -> ACL:input:c 
+    Port_Group:O3:e -> Logical_Switch_Port:input:c 
+}

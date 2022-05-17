@@ -125,7 +125,7 @@ func dbCmd(client *ssh.Client, externalIds ExternalIds, db DBType, cmd string) (
 }
 
 func GetHelp(client *ssh.Client,externalIds ExternalIds, db DBType) (*bytes.Buffer,error) {
-	return dbCmd(client,externalIds,NB,"--help")
+	return dbCmd(client,externalIds,db,"--help")
 }
 
 func DumpFlowsSB(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, error) {
@@ -133,11 +133,29 @@ func DumpFlowsSB(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, err
 	return dbCmd(client,externalIds,SB,"dump-flows")
 }
 
-func DumpFlowsNB(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, error) {
+func DumpFlowsLS(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, error) {
 //ovn-sbctl='sudo docker exec ovn_controller ovn-sbctl --db=$SB
 	return dbCmd(client,externalIds,NB,"ls-list")
 }
 
 func RunCmd(client *ssh.Client, externalIds ExternalIds, cmd string, db DBType) (*bytes.Buffer, error) {
 	return dbCmd(client,externalIds,db,cmd)
+}
+
+func GetDBFile(client *ssh.Client, externalIds ExternalIds,db DBType) (buf *bytes.Buffer, dbFile string, err error) {
+	switch db {
+	case NB:
+		dbFile = "ovnnb_db.db"
+	case SB:		
+		dbFile = "ovnsb_db.db"
+	}
+
+	cmd := fmt.Sprintf("sudo cat /var/lib/openvswitch/ovn/%s", dbFile)
+
+	buf, _, err = SshCommand(client, cmd)
+	if err != nil {
+		return nil, dbFile, fmt.Errorf("SshCommand: %v", err)
+	}
+
+	return buf, dbFile, nil
 }
