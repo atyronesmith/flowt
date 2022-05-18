@@ -68,7 +68,7 @@ func GetFuncMap() template.FuncMap {
 		"BuildMap": func(m map[string]string) string {
 			var addrs []string
 			for k, v := range m {
-				addrs = append(addrs, fmt.Sprintf("\"%s=%s\"",k,v))
+				addrs = append(addrs, fmt.Sprintf("\"%s\"=\"%s\"",k,v))
 			}
 			return strings.Join(addrs," ")
 		},

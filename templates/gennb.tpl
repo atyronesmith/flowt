@@ -1,6 +1,9 @@
 #!/bin/bash
+
+set -e
+
 {{range $dhcpKey, $dhcp := .Db.DHCPOptions -}}
-CIDR_{{ DashToUnder $dhcpKey}}=$(ovn-nbctl create dhcp_options cidr={{$dhcp.Cidr}} \
+CIDR_{{ DashToUnder $dhcpKey}}=$(ovn-nbctl create dhcp_options "cidr"="{{$dhcp.Cidr}}" \
   options='{{BuildMap $dhcp.Options}}')
 {{end -}}
 
@@ -15,16 +18,16 @@ ovn-nbctl lsp-set-addresses {{$port.Name}} {{ BuildAddresses $port.Addresses }}
 ovn-nbctl lsp-set-port-security {{$port.Name}} {{ BuildAddresses $port.Addresses }}
 {{- end}}
 {{- if $port.Enabled}}
-ovn-nbctl lsp-set-enabled {{$port.Name}} {{$port.Enabled}}
+ovn-nbctl lsp-set-enabled {{$port.Name}} {{if $port.Enabled}}enabled{{else}}disabled{{end}}
 {{- end}}
 {{- if $port.Type}}
-ovn-nbctl lsp-set-type {{ $switchName }} {{$port.Name}} {{$port.Type}}
+ovn-nbctl lsp-set-type {{$port.Name}} {{$port.Type}}
 {{- end}}
 {{- range $optionKey, $optionValue := $port.Options}}
-ovn-nbctl lsp-set-options {{ $switchName }} {{$optionKey}}={{$optionValue}}
+ovn-nbctl lsp-set-options {{$port.Name}} {{$optionKey}}={{$optionValue}}
 {{- end}}
 {{- if $port.Dhcpv4Options}}
-ovn-nbctl lsp-set-dhcp4-options "$CIDR_{{AccessStringSlice $port.Dhcpv4Options}}"
+ovn-nbctl lsp-set-dhcpv4-options {{$port.Name}} "$CIDR_{{AccessStringSlice $port.Dhcpv4Options}}"
 {{- end}}
 {{- end}}
 {{- end}}
@@ -32,7 +35,7 @@ ovn-nbctl lsp-set-dhcp4-options "$CIDR_{{AccessStringSlice $port.Dhcpv4Options}}
 {{- $uuid := UUIDToString .}}
 {{- $acl := index $.Db.ACL $uuid}}
 {{- /* TODO -- --after-lb --meter */}}
-ovn-nbctl acl-add --type=switch {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}--severity={{$acl.Severity}} {{end}}{{if $acl.Name}}--name={{$acl.Name}} {{end}}{{if $acl.Label}}--label={{$acl.Label}} {{end}}{{$switchName}} {{$acl.Direction}} {{$acl.Priority}} '{{$acl.Match}}' {{$acl.Action}}
+ovn-nbctl --type=switch acl-add {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}--severity={{$acl.Severity}} {{end}}{{if $acl.Name}}--name={{$acl.Name}} {{end}}{{if $acl.Label}}--label={{$acl.Label}} {{end}}{{$switchName}} {{$acl.Direction}} {{$acl.Priority}} '{{$acl.Match}}' {{$acl.Action}}
 {{- end }}
 {{end -}}
 
@@ -64,7 +67,7 @@ ovn-nbctl lr-route-add {{$routerName}} {{$port.IpPrefix}} {{$port.Nexthop}} {{if
 {{- $nat := LookupNAT $.Db.NAT $natRef }}
 {{ if $nat }}
 {{- $isStateless := index $nat.Options "stateless" -}}
-ovn-nbctl lr-nat-add{{if $isStateless}} --stateless{{end}} {{$routerName}} {{$nat.Type}} {{$nat.ExternalIp}} {{$nat.LogicalIp}} {{if and $nat.LogicalPort $nat.ExternalMac}}{{$nat.LogicalPort}} {{$nat.ExternalMac}}{{end}}
+ovn-nbctl  lr-nat-add{{if $isStateless}} --stateless{{end}} {{$routerName}} {{$nat.Type}} {{$nat.ExternalIp}} {{$nat.LogicalIp}} {{if and $nat.LogicalPort $nat.ExternalMac}}{{$nat.LogicalPort}} {{$nat.ExternalMac}}{{end}}
 {{- end }}
 {{- end }}
 {{ end -}}
@@ -81,6 +84,6 @@ ovn-nbctl pg-set-ports {{$pgName}} {{ $p.Name }}
 {{- $uuid := UUIDToString .}}
 {{- $acl := index $.Db.ACL $uuid}}
 {{- /* TODO -- --after-lb --meter */}}
-ovn-nbctl acl-add --type=port-group {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}--severity={{$acl.Severity}} {{end}}{{if $acl.Name}}--name={{$acl.Name}} {{end}}{{if $acl.Label}}--label={{$acl.Label}} {{end}}{{$pgName}} {{$acl.Direction}} {{$acl.Priority}} '{{$acl.Match}}' {{$acl.Action}}
+ovn-nbctl --type=port-group acl-add {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}--severity={{$acl.Severity}} {{end}}{{if $acl.Name}}--name={{$acl.Name}} {{end}}{{if $acl.Label}}--label={{$acl.Label}} {{end}}{{$pgName}} {{$acl.Direction}} {{$acl.Priority}} '{{$acl.Match}}' {{$acl.Action}}
 {{- end }}
 {{ end -}}
