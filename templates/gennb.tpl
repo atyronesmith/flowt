@@ -87,3 +87,13 @@ ovn-nbctl pg-set-ports {{$pgName}} {{ $p.Name }}
 ovn-nbctl --type=port-group acl-add {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}--severity={{$acl.Severity}} {{end}}{{if $acl.Name}}--name={{$acl.Name}} {{end}}{{if $acl.Label}}--label={{$acl.Label}} {{end}}{{$pgName}} {{$acl.Direction}} {{$acl.Priority}} '{{$acl.Match}}' {{$acl.Action}}
 {{- end }}
 {{ end -}}
+
+{{- range $key, $haChassisGroup := .Db.HAChassisGroup}}
+{{- $haName := MapSetString $haChassisGroup.Name $key}}
+ovn-nbctl ha-chassis-group-add {{$haName}}
+{{- range $haChassisGroup.HaChassis}} 
+{{- $uuid := UUIDToString .}}
+{{- $ch := index $.Db.HAChassis $uuid}}
+ovn-nbctl ha-chassis-group-add-chassis {{$haName}} {{$ch.ChassisName}} {{$ch.Priority}}
+{{- end }}
+{{ end -}}
