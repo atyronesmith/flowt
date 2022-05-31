@@ -57,7 +57,7 @@ func DBReadData(filename string) (map[string]interface{}, error) {
 func DBRead(filename string) (OVNDbType, *OVSdbSchema, error) {
 	ovsSchema := OVSdbSchema{}
 
-	if err := ovsSchema.ReadOvsSchema(filename); err != nil {
+	if err := ovsSchema.ReadOvsDbSchema(filename); err != nil {
 		return nil, nil, fmt.Errorf("%v", err)
 	}
 
@@ -83,7 +83,6 @@ func DBRead(filename string) (OVNDbType, *OVSdbSchema, error) {
 
 	lineNo := 1
 
-	
 	dd, err := ovsSchema.NewDb()
 	if err != nil {
 		return nil, nil, err
@@ -103,7 +102,7 @@ func DBRead(filename string) (OVNDbType, *OVSdbSchema, error) {
 				return nil, nil, fmt.Errorf("error while unmarshalling(%d): %v", lineNo, err)
 			}
 			if err := conjungo.Merge(dd, ddDelta, nil); err != nil {
-				fmt.Printf("Merge error: %v\n",err)
+				fmt.Printf("Merge error: %v\n", err)
 				os.Exit(1)
 			}
 			if dd.IsValid() {

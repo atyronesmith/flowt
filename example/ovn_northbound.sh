@@ -3,9 +3,9 @@
 set -e
 
 CIDR_1d646b6e_fcce_4b0a_8895_5e173e6648f9=$(ovn-nbctl create dhcp_options "cidr"="192.168.10.0/24" \
-  options='"dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}" "lease_time"="43200" "mtu"="8942" "router"="192.168.10.1" "server_id"="192.168.10.1" "server_mac"="fa:16:3e:53:b0:2f" "classless_static_route"="{169.254.169.254/32,192.168.10.2, 0.0.0.0/0,192.168.10.1}"')
+  options='"classless_static_route"="{169.254.169.254/32,192.168.10.2, 0.0.0.0/0,192.168.10.1}" "dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}" "lease_time"="43200" "mtu"="8942" "router"="192.168.10.1" "server_id"="192.168.10.1" "server_mac"="fa:16:3e:53:b0:2f"')
 CIDR_3aacef64_db3c_4f79_930d_6282a3e6b95a=$(ovn-nbctl create dhcp_options "cidr"="192.168.33.0/24" \
-  options='"mtu"="8942" "router"="192.168.33.1" "server_id"="192.168.33.1" "server_mac"="fa:16:3e:1f:5d:84" "classless_static_route"="{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}" "dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}" "lease_time"="43200"')
+  options='"classless_static_route"="{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}" "dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}" "lease_time"="43200" "mtu"="8942" "router"="192.168.33.1" "server_id"="192.168.33.1" "server_mac"="fa:16:3e:1f:5d:84"')
 
 ovn-nbctl ls-add neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f
 ovn-nbctl lsp-add neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f 008572d0-b96b-40ef-a3b0-6b20f3650390 

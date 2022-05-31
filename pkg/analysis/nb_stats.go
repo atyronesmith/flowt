@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/atyronesmith/flowt/pkg/dbparse"
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
@@ -63,7 +62,7 @@ func GenNBStats(db *dbtypes.OVNNorthbound) error {
 
 	type tStruct struct {
 		Stats NBStats
-		Db    dbparse.OVNDbType
+		Db    *dbtypes.OVNNorthbound
 	}
 
 	nbs := nbStats(db)

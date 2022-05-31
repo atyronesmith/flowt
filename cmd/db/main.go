@@ -17,7 +17,7 @@ import (
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
-func mapMerge(data interface{}, delta interface{}) (bool,error) {
+func mapMerge(data interface{}, delta interface{}) (bool, error) {
 
 	deltaType := reflect.ValueOf(delta)
 	dataType := reflect.ValueOf(data)
@@ -35,14 +35,14 @@ func mapMerge(data interface{}, delta interface{}) (bool,error) {
 			// Check to see if data already has an entry
 			// If it does, continue down the layers
 			// If it does not, add the new delta data to data
-			if dk, ok := d[k];ok {
-				a, err := mapMerge(dk,v)
+			if dk, ok := d[k]; ok {
+				a, err := mapMerge(dk, v)
 				if err != nil {
 					return false, err
 				}
 				if a {
 					d[k] = v
-				}				
+				}
 			} else {
 				d[k] = v
 			}
@@ -108,6 +108,7 @@ func main() {
 			analysis.GenSBStats(db.(*dbtypes.OVNSouthbound))
 		}
 	}
+	
 	if len(chartFile) > 0 && dbSchema.Type == dbparse.NB {
 		if err = genChart(db, chartFile); err != nil {
 			fmt.Printf("%v\n", err)
@@ -156,8 +157,8 @@ func main() {
 
 	dFile.Write(buf.Bytes())
 
-	pretty, _ := json.MarshalIndent(db,"","    ")
-	os.WriteFile( outDir + outBaseName + ".json",pretty,0644)
+	pretty, _ := json.MarshalIndent(db, "", "    ")
+	os.WriteFile(outDir+outBaseName+".json", pretty, 0644)
 }
 
 func genChart(db dbparse.OVNDbType, chartFile string) error {

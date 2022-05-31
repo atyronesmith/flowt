@@ -53,7 +53,7 @@ type OVSdbSchema struct {
 	Tables  map[string]interface{} `json:"tables"`
 }
 
-func (schema *OVSdbSchema) ReadOvsSchema(filename string) error {
+func (schema *OVSdbSchema) ReadOvsDbSchema(filename string) error {
 	var in io.Reader
 
 	f, err := os.Open(filename)

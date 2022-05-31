@@ -47,7 +47,7 @@ func main() {
 
 	ovsSchema := dbparse.OVSdbSchema{}
 
-	if err := ovsSchema.ReadOvsSchema(flag.Arg(0)); err != nil {
+	if err := ovsSchema.ReadOvsDbSchema(flag.Arg(0)); err != nil {
 		fmt.Printf("Error while reading db info: %s, %v\n", flag.Arg(0), err)
 		os.Exit(1)
 	}
