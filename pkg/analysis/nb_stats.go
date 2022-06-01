@@ -58,7 +58,7 @@ func nbStats(nb *dbtypes.OVNNorthbound) NBStats {
 }
 
 func GenNBStats(db *dbtypes.OVNNorthbound) error {
-	fName := "templates/ovnnbstats.tpl"
+	fName := "templates/ovnnbstats.tmpl"
 
 	type tStruct struct {
 		Stats NBStats

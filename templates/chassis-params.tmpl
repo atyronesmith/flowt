@@ -17,7 +17,7 @@ computes:
 {{- end -}}
 sb_inactivity_probe: {{if $inactivity_probe}}{{$inactivity_probe}}{{else}}180000{{end}}
 {{$inactivity_probe := 180000}}
-{{- range $key, $value := .Db.Connection -}}
+{{- range $key, $value := .NBDb.Connection -}}
 {{ $inactivity_probe = $value.InactivityProbe}}
 {{- end -}}
 nb_inactivity_probe: {{if $inactivity_probe}}{{$inactivity_probe}}{{else}}180000{{end}}

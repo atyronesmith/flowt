@@ -13,7 +13,7 @@ import (
 )
 
 type tStruct struct {
-	Db          *dbparse.OVNDbType
+	NBDb        *dbtypes.OVNNorthbound
 	SBDb        *dbtypes.OVNSouthbound
 	Computes    []string
 	Controllers []string
@@ -70,7 +70,7 @@ func main() {
 	}
 
 	tPlate := tStruct{
-		Db: &nbDb,
+		NBDb: nbDb.(*dbtypes.OVNNorthbound),
 	}
 
 	processNB(tPlate, outDir)
@@ -109,7 +109,7 @@ func processSB(tPlate tStruct, outDir string) {
 		}
 	}
 
-	tplFile := "templates/chassis-params.tpl"
+	tplFile := "templates/chassis-params.tmpl"
 	buf, err := utils.ProcessTemplate(tplFile, "chassis-params", utils.GetFuncMap(), &tPlate)
 	if err != nil {
 		fmt.Printf("unable to process template file: %s, %v", tplFile, err)
@@ -120,7 +120,7 @@ func processSB(tPlate tStruct, outDir string) {
 }
 
 func processNB(tPlate tStruct, outDir string) {
-	tplFile := "templates/gennb.tpl"
+	tplFile := "templates/gennb.tmpl"
 	buf, err := utils.ProcessTemplate(tplFile, "generate", utils.GetFuncMap(), &tPlate)
 	if err != nil {
 		fmt.Printf("Unable to process template file: %s, %v", tplFile, err)

@@ -140,9 +140,9 @@ func main() {
 		DbDef:  &dbDef,
 	}
 
-	buf, err := utils.ProcessTemplate("templates/schema_dot.tpl", "dotschema", utils.GetFuncMap(), &tPlate)
+	buf, err := utils.ProcessTemplate("templates/schema_dot.tmpl", "dotschema", utils.GetFuncMap(), &tPlate)
 	if err != nil {
-		fmt.Printf("unable to process template file: %s, %v", "templates/schema_dot.tpl", err)
+		fmt.Printf("unable to process template file: %s, %v", "templates/schema_dot.tmpl", err)
 		os.Exit(1)
 	}
 
@@ -173,7 +173,7 @@ func genChart(db dbparse.OVNDbType, chartFile string) error {
 		},
 	}
 
-	tplFilename := "templates/lsw.tpl"
+	tplFilename := "templates/lsw.tmpl"
 	fBuf, err := os.ReadFile(tplFilename)
 	if err != nil {
 		return fmt.Errorf("unable to read template file: %s", tplFilename)

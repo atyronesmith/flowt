@@ -10,7 +10,7 @@ import (
 
 
 func GenSBStats(db *dbtypes.OVNSouthbound) error {
-	fName := "templates/ovnsbstats.tpl"
+	fName := "templates/ovnsbstats.tmpl"
 
 	buf, err := utils.ProcessTemplate(fName,"chart",utils.GetFuncMap(),db)
 	if err != nil {

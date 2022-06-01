@@ -83,9 +83,9 @@ func main() {
 		DBDef:   dbDef,
 	}
 
-	buf, err := utils.ProcessTemplate("templates/dbschema.tpl", "dbschema", utils.GetFuncMap(), &tPlate)
+	buf, err := utils.ProcessTemplate("templates/dbschema.tmpl", "dbschema", utils.GetFuncMap(), &tPlate)
 	if err != nil {
-		fmt.Printf("unable to process template file: %s, %v", "templates/dbschema.tpl", err)
+		fmt.Printf("unable to process template file: %s, %v", "templates/dbschema.tmpl", err)
 		os.Exit(1)
 	}
 
