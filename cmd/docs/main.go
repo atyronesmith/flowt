@@ -26,7 +26,7 @@ func main() {
 
 	flag.Usage = func() {
 		fmt.Fprintf(CommandLine.Output(), "Read XML version of OVN db schema docs and generate tooltips.\n\n")
-		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] db_to_parse\n", filepath.Base(os.Args[0]))
+		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] db_to_parse > cmd/db/data/ovn_*.json\n", filepath.Base(os.Args[0]))
 		fmt.Fprintf(CommandLine.Output(), "       db_to_parse  -- Path to NB or SB database.\n")
 		flag.PrintDefaults()
 	}
@@ -83,9 +83,7 @@ func main() {
 	var reMoreSpace = regexp.MustCompile(`(?m)([\w,])\s{2,}([\w<])`)
 
 	fmt.Printf("{\n")
-	// we iterate through every user within our users array and
-	// print out the user Type, their name, and their facebook url
-	// as just an example
+
 	count := 0
 	for _, tbl := range dbase.Table {
 		if count > 0 {
@@ -99,6 +97,7 @@ func main() {
 		txt := reSentenceSpace.ReplaceAllString(sb.String(), ".  ")
 		txt = reMoreSpace.ReplaceAllString(txt, "$1 $2")
 		txt = strings.Replace(txt, "\n", "", -1)
+		txt = strings.Replace(txt, "\"", "", -1)
 		fmt.Printf(" \"%s\"", strings.TrimSpace(strings.Replace(txt, "\n", "", -1)))
 		count++
 	}

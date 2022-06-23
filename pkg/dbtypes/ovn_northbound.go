@@ -320,6 +320,6 @@ type OVNNorthbound struct {
 	SSL                      map[string]SSLNB                      `json:"SSL"`
 }
 
-func (nb *OVNNorthbound) IsValid() bool {
+func (nb OVNNorthbound) IsValid() bool {
 	return len(nb.LogicalSwitchPort) > 0
 }

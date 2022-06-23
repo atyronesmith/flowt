@@ -2,280 +2,297 @@ digraph {
     concentrate=True;
     node [shape="none" fontsize="14"]
     edge [fontname="Helvetica,Arial,sans-serif"]
-    Address_Set [tooltip="This  table  contains address sets synced from the Address_Set table in the  OVN_Northbound database and address sets generated from the Port_Group table in the OVN_Northbound database.  See the documentation for the Address_Set table and Port_Group table in the OVN_Northbound database for details." label=<      
+
+    LEGEND [tooltip="" label=<      
+    <TABLE BORDER="2" COLOR="cornsilk2" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3">
+      <TR>
+        <TD ALIGN="center" BGCOLOR="#E4E4E4" COLSPAN="2"><B>LEGEND</B></TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Optional</TD><TD>O</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Index</TD><TD>I</TD>
+      </TR>
+      <TR>
+        <TD ALIGN="left">Ephemeral</TD><TD>E</TD>
+      </TR>
+    </TABLE>
+    >];
+    Address_Set [tooltip="This table contains address sets synced from the table in the <B>OVN_Northbound</B> database and address sets generated from the table in the <B>OVN_Northbound</B> database.  See the documentation for the table and table in the <B>OVN_Northbound</B>      database for details." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Address_Set</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Addresses</TD><TD ></TD>
+        <TD ALIGN="left">Addresses</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
     </TABLE>
     >];
-    BFD [tooltip="" label=<      
+    BFD [tooltip="Contains BFD parameter for ovn-controller bfd configuration." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>BFD</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">DetectMult</TD><TD ></TD>
+        <TD ALIGN="left">DetectMult</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Disc</TD><TD >I</TD>
+        <TD ALIGN="left">Disc</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">DstIp</TD><TD >I</TD>
+        <TD ALIGN="left">DstIp</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+        <TD ALIGN="left">LogicalPort</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">MinRx</TD><TD ></TD>
+        <TD ALIGN="left">MinRx</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">MinTx</TD><TD ></TD>
+        <TD ALIGN="left">MinTx</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SrcPort</TD><TD >I</TD>
+        <TD ALIGN="left">SrcPort</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Status</TD><TD ></TD>
+        <TD ALIGN="left">Status</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Chassis [tooltip="Each row in this table represents a hypervisor or gateway (a  chassis) in the physical network.  Each chassis, via ovn-controller/ovn-controller-vtep, adds and updates its own row, and keeps a copy of  the remaining rows to determine how to reach other hypervisors." label=<      
+    Chassis [tooltip="Each row in this table represents a hypervisor or gateway (a chassis) in the physical network.  Each chassis, via      /, adds and updates its own row, and keeps a copy of the remaining rows to determine how to reach other hypervisors.  When a chassis shuts down gracefully, it should remove its own row.  (This is not critical because resources hosted on the chassis are equally unreachable regardless of whether the row is present.)  If a chassis shuts down permanently without removing its row, some kind of manual or automatic cleanup is eventually needed; we can devise a process for that as necessary." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Chassis</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Encaps</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Encaps</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Hostname</TD><TD ></TD>
+        <TD ALIGN="left">Hostname</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+        <TD ALIGN="left">NbCfg</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+        <TD ALIGN="left">OtherConfig</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TransportZones</TD><TD ></TD>
+        <TD ALIGN="left">TransportZones</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">VtepLogicalSwitches</TD><TD ></TD>
+        <TD ALIGN="left">VtepLogicalSwitches</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Chassis_Private [tooltip="Each row in this table maintains per chassis private data that are accessed only by the owning chassis (write only) and ovn-northd, not by any other chassis. These data are stored in this separate table instead of the Chassis table for performance considerations: the rows in this table can be conditionally monitored by chassises so that each chassis only get update notifications for its own row, to avoid unnecessary chassis private data update flooding in a large scale deployment." label=<      
+    Chassis_Private [tooltip="Each row in this table maintains per chassis private data that are accessed only by the owning chassis (write only) and ovn-northd, not by any other chassis.  These data are stored in this separate table instead of the <B>Chassis</B> table for performance considerations:      the rows in this table can be conditionally monitored by chassises so that each chassis only get update notifications for its own row, to avoid unnecessary chassis private data update flooding in a large scale deployment." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Chassis_Private</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O0">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+        <TD ALIGN="left">NbCfg</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">NbCfgTimestamp</TD><TD ></TD>
+        <TD ALIGN="left">NbCfgTimestamp</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Connection [tooltip="" label=<      
+    Connection [tooltip="Configuration for a database connection to an Open vSwitch database      (OVSDB) client.  This table primarily configures the Open vSwitch database server      ().  The Open vSwitch database server can initiate and maintain active connections to remote clients.  It can also listen for database connections." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Connection</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">InactivityProbe</TD><TD >O</TD>
+        <TD ALIGN="left">InactivityProbe</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">IsConnected</TD><TD >E</TD>
+        <TD ALIGN="left">IsConnected</TD><TD>E</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">MaxBackoff</TD><TD >O</TD>
+        <TD ALIGN="left">MaxBackoff</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">OtherConfig</TD><TD ></TD>
+        <TD ALIGN="left">OtherConfig</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ReadOnly</TD><TD ></TD>
+        <TD ALIGN="left">ReadOnly</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Role</TD><TD ></TD>
+        <TD ALIGN="left">Role</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Status</TD><TD >E</TD>
+        <TD ALIGN="left">Status</TD><TD>E</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Target</TD><TD >I</TD>
+        <TD ALIGN="left">Target</TD><TD>I</TD>
       </TR>
     </TABLE>
     >];
-    Controller_Event [tooltip="" label=<      
+    Controller_Event [tooltip="Database table used by to report CMS related events. Please note there is no guarantee a given event is written exactly once in the db. It is CMS responsibility to squash duplicated lines or to filter out duplicated events" label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Controller_Event</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O0">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">EventInfo</TD><TD ></TD>
+        <TD ALIGN="left">EventInfo</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">EventType</TD><TD ></TD>
+        <TD ALIGN="left">EventType</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SeqNum</TD><TD ></TD>
+        <TD ALIGN="left">SeqNum</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    DHCP_Options [tooltip="" label=<      
+    DHCP_Options [tooltip="Each row in this table stores the DHCP Options supported by native OVN DHCP.  populates this table with the supported DHCP options.  looks up this table to get the DHCP codes of the DHCP options defined in the put_dhcp_opts action.  Please refer to the RFC 2132 for the possible list of DHCP options that can be defined here." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DHCP_Options</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Code</TD><TD ></TD>
+        <TD ALIGN="left">Code</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD ></TD>
+        <TD ALIGN="left">Name</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Type</TD><TD ></TD>
+        <TD ALIGN="left">Type</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    DHCPv6_Options [tooltip="" label=<      
+    DHCPv6_Options [tooltip="Each row in this table stores the DHCPv6 Options supported by native OVN DHCPv6.  populates this table with the supported DHCPv6 options.  looks up this table to get the DHCPv6 codes of the DHCPv6 options defined in the action. Please refer to RFC 3315 and RFC 3646 for the list of DHCPv6 options that can be defined here." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DHCPv6_Options</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Code</TD><TD ></TD>
+        <TD ALIGN="left">Code</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD ></TD>
+        <TD ALIGN="left">Name</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Type</TD><TD ></TD>
+        <TD ALIGN="left">Type</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    DNS [tooltip="" label=<      
+    DNS [tooltip="Each row in this table stores the DNS records. The OVN action uses this table for DNS resolution." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>DNS</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Datapaths</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Records</TD><TD ></TD>
+        <TD ALIGN="left">Records</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Datapath_Binding [tooltip="" label=<      
+    Datapath_Binding [tooltip="Each row in this table represents a logical datapath, which implements a logical pipeline among the ports in the <B>Port_Binding</B> table associated with it.  In practice, the pipeline in a given logical datapath implements either a logical switch or a logical router.  The main purpose of a row in this table is provide a physical binding for a logical datapath.  A logical datapath does not have a physical location, so its physical binding information is limited: just .  The rest of the data in this table does not affect packet forwarding." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Datapath_Binding</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LoadBalancers</TD><TD ></TD>
+        <TD ALIGN="left">LoadBalancers</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+        <TD ALIGN="left">TunnelKey</TD><TD>I</TD>
       </TR>
     </TABLE>
     >];
-    Encap [tooltip="The encaps column in the Chassis table refers to rows in this table to identify how OVN may transmit logical dataplane packets to this chassis. Each chassis,  via  ovn-controller(8)  or  ovn-controller-vtep(8), adds and updates its own rows and keeps a copy of the remaining rows to determine how to reach other chassis." label=<      
+    Encap [tooltip="The <B>Chassis</B> column in the table refers to rows in this table to identify how OVN may transmit logical dataplane packets to this chassis.  Each chassis, via (8) or      (8), adds and updates its own rows and keeps a copy of the remaining rows to determine how to reach other chassis." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Encap</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ChassisName</TD><TD ></TD>
+        <TD ALIGN="left">ChassisName</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ip</TD><TD >I</TD>
+        <TD ALIGN="left">Ip</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Type</TD><TD >I</TD>
+        <TD ALIGN="left">Type</TD><TD>I</TD>
       </TR>
     </TABLE>
     >];
-    FDB [tooltip="" label=<      
+    FDB [tooltip="This table is primarily used to learn the MACs observed on a VIF      (or a localnet port with 'localnet_learn_fdb' enabled)      which belongs to a record in whose port security is disabled and 'unknown' address set.  If port security is disabled on a record, OVN should allow traffic with any source mac from the VIF.  This table will be used to deliver a packet to the VIF, If a packet's is learnt." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>FDB</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">DpKey</TD><TD >I</TD>
+        <TD ALIGN="left">DpKey</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Mac</TD><TD >I</TD>
+        <TD ALIGN="left">Mac</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">PortKey</TD><TD ></TD>
+        <TD ALIGN="left">PortKey</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Gateway_Chassis [tooltip="" label=<      
+    Gateway_Chassis [tooltip="Association of <B>Port_Binding</B> rows of <B>type</B>  to a <B>Chassis</B>. The traffic going out through a specific port will be redirected to a chassis, or a set of them in high availability configurations." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Gateway_Chassis</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O0">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Priority</TD><TD ></TD>
+        <TD ALIGN="left">Priority</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
@@ -285,304 +302,304 @@ digraph {
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O0">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Priority</TD><TD ></TD>
+        <TD ALIGN="left">Priority</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    HA_Chassis_Group [tooltip="" label=<      
+    HA_Chassis_Group [tooltip="Table representing a group of chassis which can provide High availability services. Each chassis in the group is represented by the table <B>HA_Chassis</B>. The HA chassis with highest priority will be the master of this group. If the master chassis failover is detected, the HA chassis with the next higher priority takes over the responsibility of providing the HA. If column of the table <B>Port_Binding</B> references this table, then this HA chassis group provides the gateway functionality and redirects the gateway traffic to the master of this group." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>HA_Chassis_Group</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">HaChassis</TD><TD  PORT="O1"></TD>
+        <TD ALIGN="left">HaChassis</TD><TD PORT="O1">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">RefChassis</TD><TD  PORT="O3"></TD>
+        <TD ALIGN="left">RefChassis</TD><TD PORT="O3">_</TD>
       </TR>
     </TABLE>
     >];
-    IGMP_Group [tooltip="" label=<      
+    IGMP_Group [tooltip="Contains learned IGMP groups indexed by address/datapath/chassis." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>IGMP_Group</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Address</TD><TD >I</TD>
+        <TD ALIGN="left">Address</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O1">IO</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O1">IO</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapath</TD><TD  PORT="O2">IO</TD>
+        <TD ALIGN="left">Datapath</TD><TD PORT="O2">IO</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ports</TD><TD  PORT="O3"></TD>
+        <TD ALIGN="left">Ports</TD><TD PORT="O3">_</TD>
       </TR>
     </TABLE>
     >];
-    IP_Multicast [tooltip="" label=<      
+    IP_Multicast [tooltip="IP Multicast configuration options. For now only applicable to IGMP." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>IP_Multicast</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapath</TD><TD  PORT="O0">I</TD>
+        <TD ALIGN="left">Datapath</TD><TD PORT="O0">I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Enabled</TD><TD >O</TD>
+        <TD ALIGN="left">Enabled</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">EthSrc</TD><TD ></TD>
+        <TD ALIGN="left">EthSrc</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">IdleTimeout</TD><TD >O</TD>
+        <TD ALIGN="left">IdleTimeout</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ip4Src</TD><TD ></TD>
+        <TD ALIGN="left">Ip4Src</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ip6Src</TD><TD ></TD>
+        <TD ALIGN="left">Ip6Src</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Querier</TD><TD >O</TD>
+        <TD ALIGN="left">Querier</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">QueryInterval</TD><TD >O</TD>
+        <TD ALIGN="left">QueryInterval</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">QueryMaxResp</TD><TD >O</TD>
+        <TD ALIGN="left">QueryMaxResp</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SeqNo</TD><TD ></TD>
+        <TD ALIGN="left">SeqNo</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TableSize</TD><TD >O</TD>
+        <TD ALIGN="left">TableSize</TD><TD>O</TD>
       </TR>
     </TABLE>
     >];
-    Load_Balancer [tooltip="" label=<      
+    Load_Balancer [tooltip="Each row represents a load balancer." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Load_Balancer</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Datapaths</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD ></TD>
+        <TD ALIGN="left">Name</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Protocol</TD><TD >O</TD>
+        <TD ALIGN="left">Protocol</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Vips</TD><TD ></TD>
+        <TD ALIGN="left">Vips</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Logical_DP_Group [tooltip="" label=<      
+    Logical_DP_Group [tooltip="Each row in this table represents a group of logical datapaths referenced by the <B>Logical_Flow</B> column in the <B>Logical_Flow</B> table." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_DP_Group</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapaths</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Datapaths</TD><TD PORT="O0">_</TD>
       </TR>
     </TABLE>
     >];
-    Logical_Flow [tooltip="Each row in this table represents one logical flow.  ovn-northd populates this table with logical flows that implement the L2 and L3 topologies specified in the OVN_Northbound database.  Each  hypervisor, via  ovn-controller,  translates  the logical flows into OpenFlow flows specific to its hypervisor and installs them into Open vSwitch.  Logical flows are expressed in an OVN-specific format, described  here.  A  logical datapath flow is much like an OpenFlow flow, except that the flows are written in terms  of  logical  ports  and  logical  datapaths instead  of  physical ports and physical datapaths. Translation between logical and physical flows helps to ensure  isolation  between  logical datapaths.  (The  logical flow abstraction also allows the OVN centralized components to do less work, since they do not have to separately compute and push out physical flows to each chassis.)  The default action when no flow matches is to drop packets." label=<      
+    Logical_Flow [tooltip="Each row in this table represents one logical flow.  populates this table with logical flows that implement the L2 and L3 topologies specified in the <B>OVN_Northbound</B> database.  Each hypervisor, via      , translates the logical flows into OpenFlow flows specific to its hypervisor and installs them into Open vSwitch.  Logical flows are expressed in an OVN-specific format, described here.  A logical datapath flow is much like an OpenFlow flow, except that the flows are written in terms of logical ports and logical datapaths instead of physical ports and physical datapaths.  Translation between logical and physical flows helps to ensure isolation between logical datapaths.  (The logical flow abstraction also allows the OVN centralized components to do less work, since they do not have to separately compute and push out physical flows to each chassis.)          The default action when no flow matches is to drop packets.  This following description focuses on the life cycle of a packet through a logical datapath, ignoring physical details of the implementation.  Please refer to in      (7) for the physical information.  The description here is written as if OVN itself executes these steps, but in fact OVN (that is, ) programs Open vSwitch, via OpenFlow and OVSDB, to execute them on its behalf.  At a high level, OVN passes each packet through the logical datapath's logical ingress pipeline, which may output the packet to one or more logical port or logical multicast groups.  For each such logical output port, OVN passes the packet through the datapath's logical egress pipeline, which may either drop the packet or deliver it to the destination.  Between the two pipelines, outputs to logical multicast groups are expanded into logical ports, so that the egress pipeline only processes a single logical output port at a time.  Between the two pipelines is also where, when necessary, OVN encapsulates a packet in a tunnel (or tunnels) to transmit to remote hypervisors.  In more detail, to start, OVN searches the <B>Logical_Flow</B>      table for a row with correct <B>logical_datapath</B> or a <B>logical_dp_group</B>, a <B>pipeline</B> of      , a <B>table_id</B> of 0, and a that is true for the packet.  If none is found, OVN drops the packet.  If OVN finds more than one, it chooses the match with the highest <B>priority</B>.  Then OVN executes each of the actions specified in the row's <B>actions</B> column, in the order specified.  Some actions, such as those to modify packet headers, require no further details.  The and actions are special.  The action causes the above process to be repeated recursively, except that OVN searches for <B>table_id</B> of 1 instead of 0.  Similarly, any action in a row found in that table would cause a further search for a <B>table_id</B> of 2, and so on.  When recursive processing completes, flow control returns to the action following .  The action also introduces recursion.  Its effect depends on the current value of the field.  Suppose designates a logical port.  First, OVN compares to ; if they are equal, it treats the as a no-op by default.  In the common case, where they are different, the packet enters the egress pipeline.  This transition to the egress pipeline discards register data, e.g.  ...  and connection tracking state, to achieve uniform behavior regardless of whether the egress pipeline is on a different hypervisor      (because registers aren't preserve across tunnel encapsulation).  To execute the egress pipeline, OVN again searches the table for a row with correct or a <B>logical_dp_group</B>, a <B>table_id</B> of 0, a <B>match</B> that is true for the packet, but now looking for a <B>pipeline</B> of      .  If no matching row is found, the output becomes a no-op.  Otherwise, OVN executes the actions for the matching flow (which is chosen from multiple, if necessary, as already described).  In the pipeline, the action acts as already described, except that it, of course, searches for flows.  The action, however, now directly outputs the packet to the output port (which is now fixed, because is read-only within the egress pipeline).  The description earlier assumed that referred to a logical port.  If it instead designates a logical multicast group, then the description above still applies, with the addition of fan-out from the logical multicast group to each logical port in the group.  For each member of the group, OVN executes the logical pipeline as described, with the logical output port replaced by the group member.  populates the <B>Logical_Flow</B> table with the logical flows described in detail in (8)." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Logical_Flow</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Actions</TD><TD ></TD>
+        <TD ALIGN="left">Actions</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ControllerMeter</TD><TD >O</TD>
+        <TD ALIGN="left">ControllerMeter</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalDatapath</TD><TD  PORT="O3">O</TD>
+        <TD ALIGN="left">LogicalDatapath</TD><TD PORT="O3">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalDpGroup</TD><TD  PORT="O4">O</TD>
+        <TD ALIGN="left">LogicalDpGroup</TD><TD PORT="O4">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Match</TD><TD ></TD>
+        <TD ALIGN="left">Match</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Pipeline</TD><TD ></TD>
+        <TD ALIGN="left">Pipeline</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Priority</TD><TD ></TD>
+        <TD ALIGN="left">Priority</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TableId</TD><TD ></TD>
+        <TD ALIGN="left">TableId</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Tags</TD><TD ></TD>
+        <TD ALIGN="left">Tags</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    MAC_Binding [tooltip="" label=<      
+    MAC_Binding [tooltip="Each row in this table specifies a binding from an IP address to an Ethernet address that has been discovered through ARP (for IPv4) or neighbor discovery (for IPv6).  This table is primarily used to discover bindings on physical networks, because IP-to-MAC bindings for virtual machines are usually populated statically into the table.  This table expresses a functional relationship: (<B>logical_port</B>, <B>ip</B>) =      <B>mac</B>.  In outline, the lifetime of a logical router's MAC binding looks like this:" label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>MAC_Binding</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapath</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Datapath</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ip</TD><TD >I</TD>
+        <TD ALIGN="left">Ip</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+        <TD ALIGN="left">LogicalPort</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Mac</TD><TD ></TD>
+        <TD ALIGN="left">Mac</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Meter [tooltip="" label=<      
+    Meter [tooltip="Each row in this table represents a meter that can be used for QoS or rate-limiting." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Bands</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Bands</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Unit</TD><TD ></TD>
+        <TD ALIGN="left">Unit</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Meter_Band [tooltip="" label=<      
+    Meter_Band [tooltip="Each row in this table represents a meter band which specifies the rate above which the configured action should be applied.  These bands are referenced by the <B>Meter</B> column in the <B>Meter</B> table." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Meter_Band</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Action</TD><TD ></TD>
+        <TD ALIGN="left">Action</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">BurstSize</TD><TD ></TD>
+        <TD ALIGN="left">BurstSize</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Rate</TD><TD ></TD>
+        <TD ALIGN="left">Rate</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Multicast_Group [tooltip="" label=<      
+    Multicast_Group [tooltip="The rows in this table define multicast groups of logical ports.  Multicast groups allow a single packet transmitted over a tunnel to a hypervisor to be delivered to multiple VMs on that hypervisor, which uses bandwidth more efficiently.  Each row in this table defines a logical multicast group numbered within <B>datapath</B>, whose logical ports are listed in the <B>ports</B> column." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Multicast_Group</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapath</TD><TD  PORT="O0">I</TD>
+        <TD ALIGN="left">Datapath</TD><TD PORT="O0">I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD ></TD>
+        <TD ALIGN="left">Name</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ports</TD><TD  PORT="O2"></TD>
+        <TD ALIGN="left">Ports</TD><TD PORT="O2">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+        <TD ALIGN="left">TunnelKey</TD><TD>I</TD>
       </TR>
     </TABLE>
     >];
-    Port_Binding [tooltip="" label=<      
+    Port_Binding [tooltip="Each row in this table binds a logical port to a realization.  For most logical ports, this means binding to some physical location, for example by binding a logical port to a VIF that belongs to a VM running on a particular hypervisor.  Other logical ports, such as logical patch ports, can be realized without a specific physical location, but their bindings are still expressed through rows in this table.  For every record in database, creates a record in this table.  populates and maintains every column except the and columns, which it leaves empty in new records.  /      populates the column for the records that identify the logical ports that are located on its hypervisor/gateway, which / in turn finds out by monitoring the local hypervisor's Open_vSwitch database, which identifies logical ports via the conventions described in .  (The exceptions are for records with of      , whose locations are identified by via the column in this table.  is still responsible to populate the column.)           also populates the column of records whose is      .  When a chassis shuts down gracefully, it should clean up the column that it previously had populated.  (This is not critical because resources hosted on the chassis are equally unreachable regardless of whether their rows are present.)  To handle the case where a VM is shut down abruptly on one chassis, then brought up again on a different one,      / must overwrite the column with new information." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Port_Binding</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Chassis</TD><TD  PORT="O0">O</TD>
+        <TD ALIGN="left">Chassis</TD><TD PORT="O0">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Datapath</TD><TD  PORT="O1">I</TD>
+        <TD ALIGN="left">Datapath</TD><TD PORT="O1">I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Encap</TD><TD  PORT="O2">O</TD>
+        <TD ALIGN="left">Encap</TD><TD PORT="O2">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">GatewayChassis</TD><TD  PORT="O4"></TD>
+        <TD ALIGN="left">GatewayChassis</TD><TD PORT="O4">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">HaChassisGroup</TD><TD  PORT="O5">O</TD>
+        <TD ALIGN="left">HaChassisGroup</TD><TD PORT="O5">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalPort</TD><TD ></TD>
+        <TD ALIGN="left">LogicalPort</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Mac</TD><TD ></TD>
+        <TD ALIGN="left">Mac</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">NatAddresses</TD><TD ></TD>
+        <TD ALIGN="left">NatAddresses</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ParentPort</TD><TD >O</TD>
+        <TD ALIGN="left">ParentPort</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">RequestedChassis</TD><TD  PORT="O11">O</TD>
+        <TD ALIGN="left">RequestedChassis</TD><TD PORT="O11">O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Tag</TD><TD >O</TD>
+        <TD ALIGN="left">Tag</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">TunnelKey</TD><TD >I</TD>
+        <TD ALIGN="left">TunnelKey</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Type</TD><TD ></TD>
+        <TD ALIGN="left">Type</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Up</TD><TD >O</TD>
+        <TD ALIGN="left">Up</TD><TD>O</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">VirtualParent</TD><TD >O</TD>
+        <TD ALIGN="left">VirtualParent</TD><TD>O</TD>
       </TR>
     </TABLE>
     >];
-    Port_Group [tooltip="" label=<      
+    Port_Group [tooltip="This table contains names for the logical switch ports in the <B>OVN_Northbound</B> database that belongs to the same group that is defined in <B>OVN_Northbound</B>      in the <B>OVN_Northbound</B> database." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Port_Group</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD >I</TD>
+        <TD ALIGN="left">Name</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ports</TD><TD ></TD>
+        <TD ALIGN="left">Ports</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
@@ -592,16 +609,16 @@ digraph {
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>RBAC_Permission</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Authorization</TD><TD ></TD>
+        <TD ALIGN="left">Authorization</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">InsertDelete</TD><TD ></TD>
+        <TD ALIGN="left">InsertDelete</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Table</TD><TD ></TD>
+        <TD ALIGN="left">Table</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Update</TD><TD ></TD>
+        <TD ALIGN="left">Update</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
@@ -611,35 +628,35 @@ digraph {
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>RBAC_Role</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Name</TD><TD ></TD>
+        <TD ALIGN="left">Name</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Permissions</TD><TD  PORT="O1"></TD>
+        <TD ALIGN="left">Permissions</TD><TD PORT="O1">_</TD>
       </TR>
     </TABLE>
     >];
-    SB_Global [tooltip="Southbound  configuration  for  an  OVN  system.  This  table must have exactly one row." label=<      
+    SB_Global [tooltip="Southbound configuration for an OVN system.  This table must have exactly one row." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>SB_Global</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Connections</TD><TD  PORT="O0"></TD>
+        <TD ALIGN="left">Connections</TD><TD PORT="O0">_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ipsec</TD><TD ></TD>
+        <TD ALIGN="left">Ipsec</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">NbCfg</TD><TD ></TD>
+        <TD ALIGN="left">NbCfg</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ssl</TD><TD  PORT="O5">O</TD>
+        <TD ALIGN="left">Ssl</TD><TD PORT="O5">O</TD>
       </TR>
     </TABLE>
     >];
@@ -649,59 +666,59 @@ digraph {
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>SSL</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">BootstrapCaCert</TD><TD ></TD>
+        <TD ALIGN="left">BootstrapCaCert</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">CaCert</TD><TD ></TD>
+        <TD ALIGN="left">CaCert</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Certificate</TD><TD ></TD>
+        <TD ALIGN="left">Certificate</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">PrivateKey</TD><TD ></TD>
+        <TD ALIGN="left">PrivateKey</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SslCiphers</TD><TD ></TD>
+        <TD ALIGN="left">SslCiphers</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SslProtocols</TD><TD ></TD>
+        <TD ALIGN="left">SslProtocols</TD><TD>_</TD>
       </TR>
     </TABLE>
     >];
-    Service_Monitor [tooltip="" label=<      
+    Service_Monitor [tooltip="Each row in this table configures monitoring a service for its liveness.  The service can be an IPv4 TCP or UDP service.  periodically sends out service monitor packets and updates the status of the service. Service monitoring for IPv6 services is not supported.  uses this feature to implement the load balancer health check feature offered to the CMS through the northbound database." label=<      
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="3">
       <TR>
         <TD ALIGN="center" PORT="input" BGCOLOR="#E4E4E4" COLSPAN="2"><B>Service_Monitor</B></TD>
       </TR>
       <TR>
-        <TD ALIGN="left">ExternalIds</TD><TD ></TD>
+        <TD ALIGN="left">ExternalIds</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Ip</TD><TD >I</TD>
+        <TD ALIGN="left">Ip</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">LogicalPort</TD><TD >I</TD>
+        <TD ALIGN="left">LogicalPort</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Options</TD><TD ></TD>
+        <TD ALIGN="left">Options</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Port</TD><TD >I</TD>
+        <TD ALIGN="left">Port</TD><TD>I</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Protocol</TD><TD >IO</TD>
+        <TD ALIGN="left">Protocol</TD><TD>IO</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SrcIp</TD><TD ></TD>
+        <TD ALIGN="left">SrcIp</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">SrcMac</TD><TD ></TD>
+        <TD ALIGN="left">SrcMac</TD><TD>_</TD>
       </TR>
       <TR>
-        <TD ALIGN="left">Status</TD><TD >O</TD>
+        <TD ALIGN="left">Status</TD><TD>O</TD>
       </TR>
     </TABLE>
     >];
