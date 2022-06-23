@@ -6,11 +6,10 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/atyronesmith/flowt/pkg/dbparse"
 	"github.com/golang/glog"
 	"golang.org/x/crypto/ssh"
 )
-
-type DBType string
 
 const (
 	NB = "ovn-nbctl"
@@ -19,17 +18,15 @@ const (
 	L_OF = "ovs-ofctl"
 )
 
-var DBTypeMap map[string]DBType = map[string]DBType {
-	"nb": NB,
-	"NB": NB,
-	"northdb": NB,
-	"north": NB,
-	"sb": SB,
-	"SB": SB,
-	"southdb": SB,
-	"south": SB,
-	"vs" : L_VS,
-	"of" : L_OF,
+var DBTypeMap map[string]dbparse.OVSDBType = map[string]dbparse.OVSDBType {
+	"nb": dbparse.NB,
+	"NB": dbparse.NB,
+	"northdb": dbparse.NB,
+	"north": dbparse.NB,
+	"sb": dbparse.SB,
+	"SB": dbparse.SB,
+	"southdb": dbparse.SB,
+	"south": dbparse.SB,
 }
 
 type ExternalIds map[string]string
@@ -103,18 +100,14 @@ func DumpPorts(client *ssh.Client, bridge string) (*bytes.Buffer, error) {
 	return buf, nil
 }
 
-func dbCmd(client *ssh.Client, externalIds ExternalIds, db DBType, cmd string) (*bytes.Buffer, error) {
+func dbCmd(client *ssh.Client, externalIds ExternalIds, db dbparse.OVSDBType, cmd string) (*bytes.Buffer, error) {
 //ovn-sbctl='sudo docker exec ovn_controller ovn-sbctl --db=$SB
 
 	switch db {
-	case NB:
+	case dbparse.NB:
 		cmd = fmt.Sprintf("sudo podman exec ovn_controller ovn-nbctl --db=%s %s", GetNBRemote(externalIds), cmd)
-	case SB:		
+	case dbparse.SB:		
 		cmd = fmt.Sprintf("sudo podman exec ovn_controller ovn-sbctl --db=%s %s", GetSBRemote(externalIds), cmd)
-	case L_VS:
-		cmd = fmt.Sprintf("sudo ovs-vsctl %s", cmd)
-	case L_OF:
-		cmd = fmt.Sprintf("sudo ovs-ofctl %s", cmd)
 	}
 	buf, _, err := SshCommand(client, cmd)
 	if err != nil {
@@ -124,38 +117,39 @@ func dbCmd(client *ssh.Client, externalIds ExternalIds, db DBType, cmd string) (
 	return buf, nil
 }
 
-func GetHelp(client *ssh.Client,externalIds ExternalIds, db DBType) (*bytes.Buffer,error) {
+func GetHelp(client *ssh.Client,externalIds ExternalIds, db dbparse.OVSDBType) (*bytes.Buffer,error) {
 	return dbCmd(client,externalIds,db,"--help")
 }
 
 func DumpFlowsSB(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, error) {
 //ovn-sbctl='sudo docker exec ovn_controller ovn-sbctl --db=$SB
-	return dbCmd(client,externalIds,SB,"dump-flows")
+	return dbCmd(client,externalIds,dbparse.SB,"dump-flows")
 }
 
 func DumpFlowsLS(client *ssh.Client,externalIds ExternalIds) (*bytes.Buffer, error) {
 //ovn-sbctl='sudo docker exec ovn_controller ovn-sbctl --db=$SB
-	return dbCmd(client,externalIds,NB,"ls-list")
+	return dbCmd(client,externalIds,dbparse.NB,"ls-list")
 }
 
-func RunCmd(client *ssh.Client, externalIds ExternalIds, cmd string, db DBType) (*bytes.Buffer, error) {
+func RunCmd(client *ssh.Client, externalIds ExternalIds, cmd string, db dbparse.OVSDBType) (*bytes.Buffer, error) {
 	return dbCmd(client,externalIds,db,cmd)
 }
 
-func GetDBFile(client *ssh.Client, externalIds ExternalIds,db DBType) (buf *bytes.Buffer, dbFile string, err error) {
-	switch db {
-	case NB:
-		dbFile = "ovnnb_db.db"
-	case SB:		
-		dbFile = "ovnsb_db.db"
-	}
+func GetDBPod(client *ssh.Client, db dbparse.OVSDBType) (buf *bytes.Buffer, err error) {
+	return getDBFile(client,db,"podman exec northd cat /etc/ovn")
+}
 
-	cmd := fmt.Sprintf("sudo cat /var/lib/openvswitch/ovn/%s", dbFile)
+func GetDBOSP(client *ssh.Client,db dbparse.OVSDBType) (buf *bytes.Buffer, err error) {
+	return getDBFile(client,db,"sudo cat /var/lib/openvswitch/ovn")
+}
 
-	buf, _, err = SshCommand(client, cmd)
+func getDBFile(client *ssh.Client,db dbparse.OVSDBType, cmd string) (buf *bytes.Buffer, err error) {
+
+	fullCmd := cmd + "/" + db.Filename()
+	buf, _, err = SshCommand(client,fullCmd)
 	if err != nil {
-		return nil, dbFile, fmt.Errorf("SshCommand: %v", err)
+		return nil, fmt.Errorf("SshCommand: %v", err)
 	}
 
-	return buf, dbFile, nil
+	return buf, nil
 }

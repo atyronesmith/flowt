@@ -2,13 +2,13 @@ package dbparse
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
 	"math"
 	"os"
 	"reflect"
-	"regexp"
 	"runtime"
 	"sort"
 
@@ -53,7 +53,7 @@ type OVSdbSchema struct {
 	Tables  map[string]interface{} `json:"tables"`
 }
 
-func (schema *OVSdbSchema) ReadOvsDbSchema(filename string) error {
+func (schema *OVSdbSchema) ReadOvsDbSchemaFile(filename string) error {
 	var in io.Reader
 
 	f, err := os.Open(filename)
@@ -69,14 +69,23 @@ func (schema *OVSdbSchema) ReadOvsDbSchema(filename string) error {
 		return fmt.Errorf("error occured on file: %s, %v", filename, err)
 	}
 
+	return schema.ReadOvsDbSchema(in,int(stats.Size()))
+}
+
+func (schema *OVSdbSchema) ReadOvsDbSchemaBuf(buf bytes.Buffer) error {
+
+	rdr := bytes.NewReader(buf.Bytes())
+
+	return schema.ReadOvsDbSchema(rdr,buf.Len())
+}
+
+func (schema *OVSdbSchema) ReadOvsDbSchema(in io.Reader, maxTokenSize int) error {
 	scanner := bufio.NewScanner(in)
 
-	scanner.Buffer(make([]byte, 0), int(stats.Size()))
+	scanner.Buffer(make([]byte, 0), maxTokenSize)
 	scanner.Split(bufio.ScanLines)
 
 	// db file must be unformatted
-	jsonObj := regexp.MustCompile(`^{.*}\s*$`)
-
 	for scanner.Scan() {
 		line := scanner.Text()
 
@@ -93,7 +102,7 @@ func (schema *OVSdbSchema) ReadOvsDbSchema(filename string) error {
 		}
 	}
 
-	return fmt.Errorf("error, could not find ovsdb header: %s", filename)
+	return fmt.Errorf("error, could not find ovsdb header")
 }
 
 func (schema *OVSdbSchema) NewDb() (OVNDbType, error) {

@@ -31,6 +31,17 @@ func (s OVSDBType) Postfix() string {
 	}
 }
 
+func (s OVSDBType) Filename() string {
+	switch s {
+		case NB:
+			return "ovnnb_db.db"
+		case SB:
+			return "ovnsb_db.db"
+		default:
+			return "Unknown"
+	}
+}
+
 var toStringOVSDBType = map[OVSDBType]string{
 	Unknown: "Unknown",
 	NB: "OVN_Northbound",
