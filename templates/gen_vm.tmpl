@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+{{ range $nsKey, $ns := .Namespace }}
+ip netns add {{ $nsKey }}
+{{- end }}
+{{ range $vmPort := .Ports }}
+ovs-vsctl \
+      -- add-port br-int {{ $vmPort.PortName}} \
+      -- set interface {{ $vmPort.PortName }} type=internal \
+      -- set Interface {{ $vmPort.PortName }} external_ids:iface-id={{ $vmPort.Port }}
+ip link set {{ $vmPort.PortName}} netns {{ $vmPort.Namespace }}
+ip netns exec {{ $vmPort.Namespace }} ip link set lo up
+ip netns exec {{ $vmPort.Namespace }} ip link set {{ $vmPort.PortName}} address {{ $vmPort.Mac }}
+ip netns exec {{ $vmPort.Namespace }} ip addr add {{ $vmPort.IP4 }} dev {{ $vmPort.PortName }}
+ip netns exec {{ $vmPort.Namespace }} ip link set {{ $vmPort.PortName}} up
+{{- range $route := $vmPort.Routes }}
+ip netns exec {{ $vmPort.Namespace }} ip route add {{ $route.Src }} via {{ $route.Dst }} dev {{ $vmPort.PortName}}
+{{- end }}
+{{ end }}

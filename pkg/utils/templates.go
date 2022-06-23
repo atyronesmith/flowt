@@ -14,7 +14,7 @@ func ProcessTemplate(templateFile string,name string, funcMap template.FuncMap,d
 
 	fBuf, err := os.ReadFile(templateFile)
 	if err != nil {
-		return nil, fmt.Errorf("nable to read template file: %s, %v", templateFile, err)
+		return nil, fmt.Errorf("unable to read template file: %s, %v", templateFile, err)
 	}
 	tpl, err := template.New(name).Funcs(funcMap).Parse(string(fBuf))
 	if err != nil {

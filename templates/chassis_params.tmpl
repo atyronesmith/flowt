@@ -1,14 +1,17 @@
-controllers:
+---
+controller_chassis:
 {{- range $chassisId := .Controllers -}}
 {{$chassis := index $.SBDb.Chassis $chassisId}}
   - hostname: "{{$chassis.Hostname}}"
-    ovn-bridge-mappings: "{{ index $chassis.ExternalIds "ovn-bridge-mappings"}}"
+    ovn_bridge_mappings: "{{ index $chassis.ExternalIds "ovn-bridge-mappings"}}"
 {{- end }}
-computes:
+compute_chassis:
 {{- range $chassisId := .Computes -}}
 {{$chassis := index $.SBDb.Chassis $chassisId}}
   - hostname: "{{$chassis.Hostname}}"
-    ovn-bridge-mappings: "{{ index $chassis.ExternalIds "ovn-bridge-mappings"}}"
+    ovn_bridge_mappings: "{{ index $chassis.ExternalIds "ovn-bridge-mappings"}}"
+    datapath_type: "{{ index $chassis.ExternalIds "datapath-type"}}"
+    ovn_monitor_all: "{{ index $chassis.ExternalIds "ovn-monitor-all"}}"
 {{- end }}
 
 {{$inactivity_probe := 180000}}

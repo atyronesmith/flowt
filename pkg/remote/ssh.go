@@ -14,7 +14,7 @@ type Ssh struct {
 	config *ssh.ClientConfig
 }
 
-func NewSsh() (*Ssh, error) {
+func NewSsh(user string) (*Ssh, error) {
 
 	dirname, err := os.UserHomeDir()
 	if err != nil {
@@ -25,7 +25,7 @@ func NewSsh() (*Ssh, error) {
 	//
 	// If you have an encrypted private key, the crypto/x509 package
 	// can be used to decrypt it.
-	keyFile := dirname + "/.ssh/undercloud.pkey"
+	keyFile := dirname + "/.ssh/id_rsa"
 	key, err := ioutil.ReadFile(keyFile)
 	if err != nil {
 		return nil, fmt.Errorf("readFileError: private key %v", err)
@@ -37,7 +37,7 @@ func NewSsh() (*Ssh, error) {
 	}
 
 	sshConfig := &ssh.ClientConfig{
-		User: "heat-admin",
+		User: user,
 		Auth: []ssh.AuthMethod{
 			// Use the PublicKeys method for remote authentication.
 			ssh.PublicKeys(signer),

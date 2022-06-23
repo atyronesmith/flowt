@@ -6,51 +6,75 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/atyronesmith/flowt/pkg/remote"
+	"golang.org/x/exp/slices"
 )
 
-func main() {
-	var dbase string
+var commands = []string{"osp", "scale"}
 
-	isVerbose := flag.Bool("verbose", false, "Print extra runtime information.")
-	isHelp := flag.Bool("help", false, "Print usage information.")
-	flag.StringVar(&dbase,"db","NB", "Use NB (northbound) | SB (southbound) | L_OF (local ofctl) | L_VS (local vsctl).")
+func main() {
+	var optDbase string
+	var optVerbose, optHelp bool
+	var host string
+
+	flag.CommandLine.BoolVar(&optVerbose, "verbose", false, "Print extra runtime information.")
+	flag.BoolVar(&optHelp, "help", false, "Print usage information.")
+	flag.StringVar(&optDbase, "db", "NB", "Use NB (northbound) | SB (southbound)")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	flag.Usage = func() {
-		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] host [cmd ..]\n", filepath.Base(os.Args[0]))
-		fmt.Fprintf(CommandLine.Output(), "       host  -- Host to gather flow rules.\n")
+		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] osp <host> | scale <host>\n", filepath.Base(os.Args[0]))
+		fmt.Fprintf(CommandLine.Output(), "       osp   host -- Retrieve DB from OSP Controller host.\n")
+		fmt.Fprintf(CommandLine.Output(), "       scale host -- Retrieve DB from Scale Controller host.\n")
 		flag.PrintDefaults()
 	}
 
 	flag.Parse()
 
-	if *isVerbose {
+	if optVerbose {
 		fmt.Println("Verbose...")
 	}
 
-	if *isHelp || flag.NArg() < 1 {
+	if optHelp || flag.NArg() < 2 {
 		flag.Usage()
 
 		os.Exit(0)
 	}
 
-	host := flag.Arg(0)
-
-	if host == "" {
+	db, ok := remote.DBTypeMap[optDbase]
+	if !ok {
 		flag.Usage()
 		os.Exit(1)
 	}
 
-	ssh, err := remote.NewSsh()
-	if err != nil {
-		fmt.Printf("Error creating ssh config, %v", err)
+	command := flag.Arg(0)
+	if !slices.Contains(commands, command) {
+		fmt.Printf("Unknown command: %s\n", command)
 		os.Exit(1)
 	}
 
+	host = flag.Arg(1)
+
+	var buf *bytes.Buffer
+
+	var ssh *remote.Ssh
+	var err error
+
+	if command == "osp" {
+		ssh, err = remote.NewSsh("heat-admin")
+		if err != nil {
+			fmt.Printf("Error creating ssh config, %v", err)
+			os.Exit(1)
+		}
+	} else if command == "scale" {
+		ssh, err = remote.NewSsh("root")
+		if err != nil {
+			fmt.Printf("Error creating ssh config, %v", err)
+			os.Exit(1)
+		}
+	}
 	client, err := ssh.ConnectSSH(host)
 	if err != nil {
 		fmt.Printf("Error connectiong to host: %s, %s\n", host, err)
@@ -59,39 +83,22 @@ func main() {
 	}
 	defer client.Close()
 
-	externalIds, err := remote.GetExternalIds(client)
-	if err != nil {
-		fmt.Printf("%v", err)
-		os.Exit(1)
+	if command == "osp" {
+		buf, err = remote.GetDBOSP(client, db)
+		if err != nil {
+			fmt.Printf("%v", err)
+			os.Exit(1)
+		}
+	} else if command == "scale" {
+		buf, err = remote.GetDBPod(client, db)
+		if err != nil {
+			fmt.Printf("%v", err)
+			os.Exit(1)
+		}
+
 	}
 
-	var buf *bytes.Buffer
-
-	if flag.NArg() > 1 {
-		db, ok := remote.DBTypeMap[dbase]
-		if !ok {
-			flag.Usage()
-			os.Exit(1)
-		}
-		cmdStrings := flag.Args()
-		cmd := strings.Join(cmdStrings[1:], " ")
-		buf, err = remote.RunCmd(client, externalIds, cmd, db)
-		if err != nil {
-			fmt.Printf("%v", err)
-			os.Exit(1)
-		}
-		fmt.Printf("%s\n", buf)
-	} else {
-		db, ok := remote.DBTypeMap[dbase]
-		if !ok {
-			flag.Usage()
-			os.Exit(1)
-		}
-		buf, dbFile, err := remote.GetDBFile(client,externalIds,db)
-		if err != nil {
-			fmt.Printf("%v", err)
-			os.Exit(1)
-		}
-		os.WriteFile(dbFile, buf.Bytes(), 0644)
+	if buf != nil {
+		fmt.Printf("%s\n", buf.String())
 	}
 }
