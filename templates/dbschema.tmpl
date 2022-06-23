@@ -28,7 +28,7 @@ func (sb *OVNSouthbound) IsValid() bool {
 	return len(sb.SBGlobal) > 0 
 }
 {{else}}
-func (nb *{{.DBDef.Name}}) IsValid() bool {
+func (nb {{.DBDef.Name}}) IsValid() bool {
 	return len(nb.NBGlobal) > 0 
 }
 {{end}}
