@@ -13,6 +13,15 @@ import (
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
+const (
+	OVN_NB_GEN_SCRIPT   = "ovn_nb_net.sh"
+	OVN_NB_INVENTORY    = "inventory_ovn.yaml"
+	OVN_NB_VM_SCRIPT    = "ovn_nb_vm.sh"
+	NORTHBOUND_NET_TMPL = "templates/gennb.tmpl"
+	NORTHBOUND_VM_TMPL  = "templates/gen_vm.tmpl"
+	CHASSIS_PARAM_TMPL  = "templates/chassis_params.tmpl"
+)
+
 type tStruct struct {
 	NBDb        *dbtypes.OVNNorthbound
 	SBDb        *dbtypes.OVNSouthbound
@@ -23,6 +32,16 @@ type tStruct struct {
 type routeDef struct {
 	Src string
 	Dst string
+}
+
+type vmPort struct {
+	Port      string
+	PortName  string
+	Namespace string
+	Mac       string
+	IP4       string
+	Hostname  string
+	Routes    []routeDef
 }
 
 func main() {
@@ -79,7 +98,11 @@ func main() {
 		NBDb: nbDb.(*dbtypes.OVNNorthbound),
 	}
 
-	processNB(tPlate, outDir)
+	err = processNB(tPlate, outDir)
+	if err != nil {
+		fmt.Printf("Error generating NB create commands: %v", err)
+		os.Exit(1)
+	}
 
 	var sbDbFile string
 	if sbDbFile = flag.Arg(1); sbDbFile == "" {
@@ -99,34 +122,47 @@ func main() {
 
 	tPlate.SBDb = sbDb.(*dbtypes.OVNSouthbound)
 
-	processSB(tPlate, outDir)
-
-	err = genVMs(nbDb)
+	err = processSB(tPlate, outDir)
 	if err != nil {
-		fmt.Printf("Fail: %s\n", err)
+		fmt.Printf("Error generating SB create commands: %v", err)
+		os.Exit(1)
+	}
+
+	err = genVMs(nbDb, sbDb, outDir)
+	if err != nil {
+		fmt.Printf("Error generating VM port commands: %v\n", err)
 		os.Exit(1)
 	}
 }
 
-func genVMs(db dbparse.OVNDbType) error {
-
-	type vmPort struct {
-		Port      string
-		PortName  string
-		Namespace string
-		Mac       string
-		IP4       string
-		Routes    []routeDef
-	}
-	var vmPorts []vmPort
+func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
+	vmPorts := make(map[string][]vmPort, 1)
 
 	namespaces := make(map[string]string)
 
-	nb := db.(*dbtypes.OVNNorthbound)
+	nb := nbDB.(*dbtypes.OVNNorthbound)
+	sb := sbDB.(*dbtypes.OVNSouthbound)
 
 	for _, lsp := range nb.LogicalSwitchPort {
 		if lsp.Type == nil {
 			// This is a VM port
+
+			// Lookup a binding for this port in the SB db
+			var portBinding *dbtypes.PortBindingSB
+			for _, pb := range sb.PortBinding {
+				if *pb.LogicalPort == *lsp.Name {
+					pbCopy := pb
+					portBinding = &pbCopy
+					break
+				}
+			}
+			if portBinding == nil {
+				return fmt.Errorf("no port binding for LSP: %s", *lsp.Name)
+			}
+			chassis, ok := sb.Chassis[string(portBinding.Chassis[0])]
+			if !ok {
+				return fmt.Errorf("no chassis for port binding: %v", *portBinding)
+			}
 
 			// Get the Neutron VM Id
 			deviceId, ok := lsp.ExternalIds["neutron:device_id"]
@@ -145,6 +181,7 @@ func genVMs(db dbparse.OVNDbType) error {
 			}
 			vmp := vmPort{}
 
+			vmp.Hostname = *chassis.Hostname + "-ovs"
 			vmp.Namespace = deviceId
 			vmp.Port = *lsp.Name
 			// ovs ports can only be 15 characters
@@ -183,7 +220,10 @@ func genVMs(db dbparse.OVNDbType) error {
 					vmp.Routes = append(vmp.Routes, routeDef)
 				}
 			}
-			vmPorts = append(vmPorts, vmp)
+			// if _, ok := vmPorts[vmp.Hostname]; !ok {
+			// 	vmPorts[vmp.Hostname] = make([]vmPort, 1)
+			// }
+			vmPorts[vmp.Hostname] = append(vmPorts[vmp.Hostname], vmp)
 		}
 	}
 
@@ -192,23 +232,26 @@ func genVMs(db dbparse.OVNDbType) error {
 		Namespace map[string]string
 	}
 
-	data := &tData{
-		Ports:     vmPorts,
-		Namespace: namespaces,
-	}
+	for hostname, p := range vmPorts {
 
-	tplFile := "templates/gen_vm.tmpl"
-	buf, err := utils.ProcessTemplate(tplFile, "vm", utils.GetFuncMap(), &data)
-	if err != nil {
-		fmt.Printf("Unable to process template file: %s, %v", tplFile, err)
-		os.Exit(1)
-	}
-	fmt.Printf("%s\n", buf.String())
+		data := &tData{
+			Ports:     p,
+			Namespace: namespaces,
+		}
 
+		buf, err := utils.ProcessTemplate(NORTHBOUND_VM_TMPL, "vm", utils.GetFuncMap(), &data)
+		if err != nil {
+			fmt.Printf("Unable to process template file: %s, %v", NORTHBOUND_VM_TMPL, err)
+			os.Exit(1)
+		}
+//		fmt.Printf("%s\n", buf.String())
+
+		writeData(outDir, buf, outDir, hostname)
+	}
 	return nil
 }
 
-func processSB(tPlate tStruct, outDir string) {
+func processSB(tPlate tStruct, outDir string) error {
 	sb := tPlate.SBDb
 
 	// Differentiate between controllers and computes
@@ -220,29 +263,33 @@ func processSB(tPlate tStruct, outDir string) {
 		}
 	}
 
-	tplFile := "templates/chassis_params.tmpl"
-	buf, err := utils.ProcessTemplate(tplFile, "chassis_params", utils.GetFuncMap(), &tPlate)
+	buf, err := utils.ProcessTemplate(CHASSIS_PARAM_TMPL, "chassis_params", utils.GetFuncMap(), &tPlate)
 	if err != nil {
-		fmt.Printf("unable to process template file: %s, %v", tplFile, err)
+		fmt.Printf("unable to process template file: %s, %v", CHASSIS_PARAM_TMPL, err)
 		os.Exit(1)
 	}
 
-	writeData(outDir, buf, outDir+"/inventory_ovn.yaml")
+	return writeData(outDir, buf, outDir, OVN_NB_INVENTORY)
 }
 
-func processNB(tPlate tStruct, outDir string) {
-	tplFile := "templates/gennb.tmpl"
-	buf, err := utils.ProcessTemplate(tplFile, "generate", utils.GetFuncMap(), &tPlate)
+func processNB(tPlate tStruct, outDir string) error {
+	buf, err := utils.ProcessTemplate(NORTHBOUND_NET_TMPL, "nb_net", utils.GetFuncMap(), &tPlate)
 	if err != nil {
-		fmt.Printf("Unable to process template file: %s, %v", tplFile, err)
+		fmt.Printf("Unable to process template file: %s, %v", NORTHBOUND_NET_TMPL, err)
 		os.Exit(1)
 	}
 
-	writeData(outDir, buf, outDir+"/ovn_northbound.sh")
+	return writeData(outDir, buf, outDir, OVN_NB_GEN_SCRIPT)
 }
 
-func writeData(outDir string, buf *bytes.Buffer, fileName string) {
-	dFile, err := os.Create(fileName)
+func writeData(outDir string, buf *bytes.Buffer, dir string, fileName string) error {
+	_, err := os.Stat(dir)
+	if os.IsNotExist(err) {
+		if err = os.MkdirAll(dir, 0755); err != nil {
+			return fmt.Errorf("unable to mkdir: %s", dir)
+		}
+	}
+	dFile, err := os.Create(dir + "/" + fileName)
 	if err != nil {
 		fmt.Printf("unable to create/open file: %s", fileName)
 	}
@@ -250,5 +297,8 @@ func writeData(outDir string, buf *bytes.Buffer, fileName string) {
 
 	fmt.Printf("Writing %s...\n", fileName)
 
-	dFile.Write(buf.Bytes())
+	if _, err = dFile.Write(buf.Bytes()); err != nil {
+		return fmt.Errorf("unable to write instructions to: %s", dir+"/"+fileName)
+	}
+	return nil
 }
