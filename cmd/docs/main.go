@@ -60,16 +60,12 @@ func main() {
 
 	stringValue := string(byteValue)
 
+	// Remove references in xml file: <ref column="hv_cfg"/>, <ref table="Controller_Event"
 	var reRef = regexp.MustCompile(`(?m)<ref (?:.*?)((?:db|table|column)=\"([^"]+)\")+/>`)
+	stringValue = reRef.ReplaceAllString(stringValue, "&lt;B&gt;$2&lt;/B&gt;")
 
-	var substitution = "&lt;B&gt;$2&lt;/B&gt;"
-
-	stringValue = reRef.ReplaceAllString(stringValue, substitution)
-
-	var reCode = regexp.MustCompile(`(?m)<code>/s*([^<]+)/s*</code>`)
-
-	substitution = "&lt;B&gt;$1&lt;/B&gt;"
-	stringValue = reCode.ReplaceAllString(stringValue, substitution)
+	var reCode = regexp.MustCompile(`(?m)<code>\s*([^<]+)\s*</code>`)
+	stringValue = reCode.ReplaceAllString(stringValue, "&lt;B&gt;$1&lt;/B&gt;")
 
 	byteValue = []byte(stringValue)
 

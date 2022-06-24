@@ -91,7 +91,7 @@ func (schema *OVSdbSchema) ReadOvsDbSchema(in io.Reader, maxTokenSize int) error
 
 		if jsonObj.MatchString(line) {
 			if err := json.Unmarshal([]byte(line), schema); err != nil {
-				return fmt.Errorf("unable to unmarshall json string %v", err)
+				return fmt.Errorf("unable to unmarshall json string: %s, %v", line, err)
 			}
 			if len(schema.Version) > 0 && len(schema.ChkSum) > 0 && len(schema.Type.String()) > 0 {
 				return nil
@@ -324,7 +324,7 @@ func (tbl *DbDef) AugmentSchema() error {
 
 	toolTipObj := make(map[string]string)
 	if err := json.Unmarshal(dat, &toolTipObj); err != nil {
-		return fmt.Errorf("unable to unmarshall json string %v", err)
+		return fmt.Errorf("unable to unmarshall json string: %v", err)
 	}
 
 	for toolKey,toolValue := range toolTipObj {
