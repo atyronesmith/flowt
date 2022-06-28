@@ -26,32 +26,30 @@ func nbStats(nb *dbtypes.OVNNorthbound) NBStats {
 	stats.NAT = make(map[string]int)
 
 	for _, v := range nb.LogicalSwitchPort {
-		if v.Type != nil {
-			switch *v.Type {
-			case "":
-				stats.NumVMPorts++
-			case "router":
-				stats.NumRouterPorts++
-			case "localport":
-				stats.NumLocalPorts++
-			case "localnet":
-				stats.NumLocalNetPorts++
-			case "l2gateway":
-				stats.NumL2GatewayPorts++
-			case "vtep":
-				stats.NumVTEPPorts++
-			case "external":
-				stats.NumExternalPorts++
-			case "virtual":
-				stats.NumVirtualPorts++
-			case "remote":
-				stats.NumRemotePorts++
-			}
+		switch v.Type {
+		case "":
+			stats.NumVMPorts++
+		case "router":
+			stats.NumRouterPorts++
+		case "localport":
+			stats.NumLocalPorts++
+		case "localnet":
+			stats.NumLocalNetPorts++
+		case "l2gateway":
+			stats.NumL2GatewayPorts++
+		case "vtep":
+			stats.NumVTEPPorts++
+		case "external":
+			stats.NumExternalPorts++
+		case "virtual":
+			stats.NumVirtualPorts++
+		case "remote":
+			stats.NumRemotePorts++
 		}
 	}
 
 	for _, v := range nb.NAT {
-		stats.NAT[*v.Type]++
+		stats.NAT[v.Type]++
 	}
 
 	return stats

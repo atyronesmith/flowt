@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"flag"
 	"fmt"
 	"os"
@@ -144,22 +143,22 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 	sb := sbDB.(*dbtypes.OVNSouthbound)
 
 	for _, lsp := range nb.LogicalSwitchPort {
-		if lsp.Type == nil {
+		if len(lsp.Type) == 0 {
 			// This is a VM port
 
 			// Lookup a binding for this port in the SB db
 			var portBinding *dbtypes.PortBindingSB
 			for _, pb := range sb.PortBinding {
-				if *pb.LogicalPort == *lsp.Name {
+				if pb.LogicalPort == lsp.Name {
 					pbCopy := pb
 					portBinding = &pbCopy
 					break
 				}
 			}
 			if portBinding == nil {
-				return fmt.Errorf("no port binding for LSP: %s", *lsp.Name)
+				return fmt.Errorf("no port binding for LSP: %s", lsp.Name)
 			}
-			chassis, ok := sb.Chassis[string(portBinding.Chassis[0])]
+			chassis, ok := sb.Chassis[portBinding.Chassis.String()]
 			if !ok {
 				return fmt.Errorf("no chassis for port binding: %v", *portBinding)
 			}
@@ -170,7 +169,7 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 				return fmt.Errorf("missing device_id?")
 			}
 			// Use the full device id for the namespace
-			namespaces[deviceId] = *lsp.Name
+			namespaces[deviceId] = lsp.Name
 
 			if len(lsp.Addresses) != 1 {
 				return fmt.Errorf("multiple or missing port address definitions not supported yet")
@@ -181,11 +180,11 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 			}
 			vmp := vmPort{}
 
-			vmp.Hostname = *chassis.Hostname + "-ovs"
+			vmp.Hostname = chassis.Hostname + "-ovs"
 			vmp.Namespace = deviceId
-			vmp.Port = *lsp.Name
+			vmp.Port = lsp.Name
 			// ovs ports can only be 15 characters
-			vmp.PortName = (*lsp.Name)[:15]
+			vmp.PortName = (lsp.Name)[:15]
 			vmp.Mac = addresses[0]
 			cidrs, ok := lsp.ExternalIds["neutron:cidrs"]
 			if !ok {
@@ -193,32 +192,27 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 			}
 			vmp.IP4 = cidrs
 
-			if len(lsp.Dhcpv4Options) > 1 {
-				return fmt.Errorf("multiple dhcp configuration not yet supported: %v", lsp.Dhcpv4Options)
+			dhcpOptions, ok := nb.DHCPOptions[lsp.Dhcpv4Options.String()]
+			if !ok {
+				return fmt.Errorf("missing dhcp4 option: %s", lsp.Dhcpv4Options.String())
 			}
-			if len(lsp.Dhcpv4Options) == 1 {
-				dhcpOptions, ok := nb.DHCPOptions[string(lsp.Dhcpv4Options[0])]
-				if !ok {
-					return fmt.Errorf("missing dhcp4 option: %s", lsp.Dhcpv4Options[0])
+			routeString, ok := dhcpOptions.Options["classless_static_route"]
+			if !ok {
+				return fmt.Errorf("missing dhcp4 option, classless_static_route: %s", lsp.Dhcpv4Options.String())
+			}
+			routeString = strings.Trim(routeString, "{}")
+			// "{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}"
+			routes := strings.Split(routeString, ", ")
+			for _, r := range routes {
+				srcDst := strings.Split(r, ",")
+				if len(srcDst) != 2 {
+					return fmt.Errorf("invalid route: %s", r)
 				}
-				routeString, ok := dhcpOptions.Options["classless_static_route"]
-				if !ok {
-					return fmt.Errorf("missing dhcp4 option, classless_static_route: %s", lsp.Dhcpv4Options[0])
+				routeDef := routeDef{
+					Src: srcDst[0],
+					Dst: srcDst[1],
 				}
-				routeString = strings.Trim(routeString, "{}")
-				// "{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}"
-				routes := strings.Split(routeString, ", ")
-				for _, r := range routes {
-					srcDst := strings.Split(r, ",")
-					if len(srcDst) != 2 {
-						return fmt.Errorf("invalid route: %s", r)
-					}
-					routeDef := routeDef{
-						Src: srcDst[0],
-						Dst: srcDst[1],
-					}
-					vmp.Routes = append(vmp.Routes, routeDef)
-				}
+				vmp.Routes = append(vmp.Routes, routeDef)
 			}
 			// if _, ok := vmPorts[vmp.Hostname]; !ok {
 			// 	vmPorts[vmp.Hostname] = make([]vmPort, 1)
@@ -244,9 +238,9 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 			fmt.Printf("Unable to process template file: %s, %v", NORTHBOUND_VM_TMPL, err)
 			os.Exit(1)
 		}
-//		fmt.Printf("%s\n", buf.String())
+		//		fmt.Printf("%s\n", buf.String())
 
-		writeData(outDir, buf, outDir, hostname)
+		utils.WriteByteData(buf, outDir, hostname)
 	}
 	return nil
 }
@@ -257,9 +251,9 @@ func processSB(tPlate tStruct, outDir string) error {
 	// Differentiate between controllers and computes
 	for _, v := range sb.ChassisPrivate {
 		if _, ok := v.ExternalIds["neutron:ovn-metadata-id"]; ok {
-			tPlate.Computes = append(tPlate.Computes, v.Chassis[0].String())
+			tPlate.Computes = append(tPlate.Computes, v.Chassis.String())
 		} else {
-			tPlate.Controllers = append(tPlate.Controllers, v.Chassis[0].String())
+			tPlate.Controllers = append(tPlate.Controllers, v.Chassis.String())
 		}
 	}
 
@@ -269,7 +263,7 @@ func processSB(tPlate tStruct, outDir string) error {
 		os.Exit(1)
 	}
 
-	return writeData(outDir, buf, outDir, OVN_NB_INVENTORY)
+	return utils.WriteByteData(buf, outDir, OVN_NB_INVENTORY)
 }
 
 func processNB(tPlate tStruct, outDir string) error {
@@ -279,26 +273,26 @@ func processNB(tPlate tStruct, outDir string) error {
 		os.Exit(1)
 	}
 
-	return writeData(outDir, buf, outDir, OVN_NB_GEN_SCRIPT)
+	return utils.WriteByteData(buf, outDir, OVN_NB_GEN_SCRIPT)
 }
 
-func writeData(outDir string, buf *bytes.Buffer, dir string, fileName string) error {
-	_, err := os.Stat(dir)
-	if os.IsNotExist(err) {
-		if err = os.MkdirAll(dir, 0755); err != nil {
-			return fmt.Errorf("unable to mkdir: %s", dir)
-		}
-	}
-	dFile, err := os.Create(dir + "/" + fileName)
-	if err != nil {
-		fmt.Printf("unable to create/open file: %s", fileName)
-	}
-	defer dFile.Close()
+// func writeData(outDir string, buf *bytes.Buffer, dir string, fileName string) error {
+// 	_, err := os.Stat(dir)
+// 	if os.IsNotExist(err) {
+// 		if err = os.MkdirAll(dir, 0755); err != nil {
+// 			return fmt.Errorf("unable to mkdir: %s", dir)
+// 		}
+// 	}
+// 	dFile, err := os.Create(dir + "/" + fileName)
+// 	if err != nil {
+// 		fmt.Printf("unable to create/open file: %s", fileName)
+// 	}
+// 	defer dFile.Close()
 
-	fmt.Printf("Writing %s...\n", fileName)
+// 	fmt.Printf("Writing %s...\n", fileName)
 
-	if _, err = dFile.Write(buf.Bytes()); err != nil {
-		return fmt.Errorf("unable to write instructions to: %s", dir+"/"+fileName)
-	}
-	return nil
-}
+// 	if _, err = dFile.Write(buf.Bytes()); err != nil {
+// 		return fmt.Errorf("unable to write instructions to: %s", dir+"/"+fileName)
+// 	}
+// 	return nil
+// }

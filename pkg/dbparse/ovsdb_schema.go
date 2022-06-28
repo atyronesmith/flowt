@@ -37,8 +37,8 @@ type TableDef struct {
 }
 
 type DbDef struct {
-	Schema *OVSdbSchema
-	Name   string
+	Schema    *OVSdbSchema
+	Name      string
 	TableDefs []TableDef
 }
 
@@ -69,14 +69,14 @@ func (schema *OVSdbSchema) ReadOvsDbSchemaFile(filename string) error {
 		return fmt.Errorf("error occured on file: %s, %v", filename, err)
 	}
 
-	return schema.ReadOvsDbSchema(in,int(stats.Size()))
+	return schema.ReadOvsDbSchema(in, int(stats.Size()))
 }
 
 func (schema *OVSdbSchema) ReadOvsDbSchemaBuf(buf bytes.Buffer) error {
 
 	rdr := bytes.NewReader(buf.Bytes())
 
-	return schema.ReadOvsDbSchema(rdr,buf.Len())
+	return schema.ReadOvsDbSchema(rdr, buf.Len())
 }
 
 func (schema *OVSdbSchema) ReadOvsDbSchema(in io.Reader, maxTokenSize int) error {
@@ -124,7 +124,7 @@ const (
 	Set
 )
 
-func mapKey(key interface{}, t reflect.Kind, cType CType, column *TableCol) error {
+func mapKey(maxEntries int, key interface{}, t reflect.Kind, cType CType, column *TableCol) error {
 	var aType string
 	var keyMap map[string]interface{}
 
@@ -156,7 +156,7 @@ func mapKey(key interface{}, t reflect.Kind, cType CType, column *TableCol) erro
 		rType = "bool"
 	case "uuid":
 		rType = "UUID"
-		if cType == Atomic {
+		if maxEntries != 1 && cType == Atomic {
 			cType = Set
 		}
 		if rTable, ok := keyMap["refTable"]; ok {
@@ -168,7 +168,7 @@ func mapKey(key interface{}, t reflect.Kind, cType CType, column *TableCol) erro
 
 	switch cType {
 	case Atomic:
-		column.Type = "*" + rType
+		column.Type = rType
 		return nil
 	case Map:
 		column.Type = fmt.Sprintf("OVSMap[%s]", rType)
@@ -186,12 +186,28 @@ func parseType(t interface{}, column *TableCol) error {
 
 	if k == reflect.String {
 		// An atomic type, "integer", "real", "boolean", "string", or "uuid"
-		return mapKey(t, k, Atomic, column)
+		return mapKey(1, t, k, Atomic, column)
 	} else if k == reflect.Map {
 		tMap := t.(map[string]interface{})
 
 		value, hasValue := tMap["value"]
 		key := tMap["key"]
+
+		min, hasMin := tMap["min"]
+		var minEntries int = 1
+		if hasMin {
+			minEntries = int(min.(float64))
+		}
+		// max is absent, > 0, or "unlimited"
+		max, hasMax := tMap["max"]
+		var maxEntries int = 1
+		if hasMax {
+			if reflect.ValueOf(max).Kind() == reflect.String {
+				maxEntries = math.MaxInt // Unlimited case
+			} else {
+				maxEntries = int(max.(float64))
+			}
+		}
 
 		if hasValue {
 			if reflect.ValueOf(value).Kind() == reflect.String {
@@ -199,41 +215,26 @@ func parseType(t interface{}, column *TableCol) error {
 					function, file, line, _ := runtime.Caller(1)
 					fmt.Printf("%s, %s, %d\n", runtime.FuncForPC(function).Name(), file, line)
 				}
-				return mapKey(value, reflect.String, Map, column)
+				return mapKey(maxEntries, value, reflect.String, Map, column)
 			} else if reflect.ValueOf(value).Kind() == reflect.Map {
-				return mapKey(value, reflect.Map, Map, column)
+				return mapKey(maxEntries, value, reflect.Map, Map, column)
 			}
 		} else {
 			// min is absent, 0, or 1
-			min, hasMin := tMap["min"]
-			var minInt int = 1
-			if hasMin {
-				minInt = int(min.(float64))
-			}
-			// max is absent, > 0, or "unlimited"
-			max, hasMax := tMap["max"]
-			var maxInt int = 1
-			if hasMax {
-				if reflect.ValueOf(max).Kind() == reflect.String {
-					maxInt = math.MaxInt // Unlimited case
-				} else {
-					maxInt = int(max.(float64))
-				}
-			}
 			// If min == 0 && max == 1, and key is not a map --> optional scalar of type key
 			// if min == 0, and max == "unlimited", and key is not a map --> set of type key:type
 			// if min == 0, and key is a map
 			//    map->type == "uuid" then set of uuid(string)
 			//    otherwise atomic(map->type)
-			if minInt == 0 && maxInt == 1 {
+			if minEntries == 0 && maxEntries == 1 {
 				column.Optional = true
-				return mapKey(key, reflect.ValueOf(key).Kind(), Atomic, column)
-			} else if minInt == 1 && maxInt == 1 {
-				return mapKey(key, reflect.ValueOf(key).Kind(), Atomic, column)
-			} else if maxInt == math.MaxInt {
-				return mapKey(key, reflect.ValueOf(key).Kind(), Set, column)
+				return mapKey(maxEntries, key, reflect.ValueOf(key).Kind(), Atomic, column)
+			} else if minEntries == 1 && maxEntries == 1 {
+				return mapKey(maxEntries, key, reflect.ValueOf(key).Kind(), Atomic, column)
+			} else if maxEntries == math.MaxInt {
+				return mapKey(maxEntries, key, reflect.ValueOf(key).Kind(), Set, column)
 			} else {
-				return fmt.Errorf("could not parse type, min: %d, max: %x", minInt, maxInt)
+				return fmt.Errorf("could not parse type, min: %d, max: %x", minEntries, maxEntries)
 			}
 		}
 
@@ -242,7 +243,7 @@ func parseType(t interface{}, column *TableCol) error {
 	return fmt.Errorf("unable to parse type: %v", t)
 }
 
-func (db *DbDef) ParseSchema(tbl *OVSdbSchema) (error) {
+func (db *DbDef) ParseSchema(tbl *OVSdbSchema) error {
 	db.Schema = tbl
 
 	tblMap := tbl.Tables // Tables contains the unmarshalled schema
@@ -327,7 +328,7 @@ func (tbl *DbDef) AugmentSchema() error {
 		return fmt.Errorf("unable to unmarshall json string: %v", err)
 	}
 
-	for toolKey,toolValue := range toolTipObj {
+	for toolKey, toolValue := range toolTipObj {
 		for idx := range tbl.TableDefs {
 			if toolKey == tbl.TableDefs[idx].JsonName {
 				tbl.TableDefs[idx].ToolTip = toolValue

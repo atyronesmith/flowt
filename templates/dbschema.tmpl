@@ -24,7 +24,7 @@ type {{ .DBDef.Name }} struct {
 }
 
 {{ if eq .DBDef.Name "OVNSouthbound" }}
-func (sb *OVNSouthbound) IsValid() bool {
+func (sb OVNSouthbound) IsValid() bool {
 	return len(sb.SBGlobal) > 0 
 }
 {{else}}

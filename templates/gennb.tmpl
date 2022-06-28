@@ -27,7 +27,7 @@ ovn-nbctl lsp-set-type {{$port.Name}} {{$port.Type}}
 ovn-nbctl lsp-set-options {{$port.Name}} {{$optionKey}}={{$optionValue}}
 {{- end}}
 {{- if $port.Dhcpv4Options}}
-ovn-nbctl lsp-set-dhcpv4-options {{$port.Name}} "$CIDR_{{AccessStringSlice $port.Dhcpv4Options}}"
+ovn-nbctl lsp-set-dhcpv4-options {{$port.Name}} "$CIDR_{{ DashToUnder $port.Dhcpv4Options}}"
 {{- end}}
 {{- end}}
 {{- end}}

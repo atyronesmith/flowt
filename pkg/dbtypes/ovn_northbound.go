@@ -1,51 +1,52 @@
 package dbtypes
 
 // Type: OVN_Northbound
-// Version: 5.34.1
+// Version: 5.35.1
 // Tables: 27
 
 // ACL
 type ACLNB struct {
-	Action      *string        `json:"action"`
-	Direction   *string        `json:"direction"`
+	Action      string         `json:"action"`
+	Direction   string         `json:"direction"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Label       *int           `json:"label"`
-	Log         *bool          `json:"log"`
-	Match       *string        `json:"match"`
-	Meter       *string        `json:"meter,omitempty"`
-	Name        *string        `json:"name,omitempty"`
-	Priority    *int           `json:"priority"`
-	Severity    *string        `json:"severity,omitempty"`
+	Label       int            `json:"label"`
+	Log         bool           `json:"log"`
+	Match       string         `json:"match"`
+	Meter       string         `json:"meter,omitempty"`
+	Name        string         `json:"name,omitempty"`
+	Options     OVSMap[string] `json:"options"`
+	Priority    int            `json:"priority"`
+	Severity    string         `json:"severity,omitempty"`
 }
 
 // Address_Set
 type AddressSetNB struct {
 	Addresses   OVSSet[string] `json:"addresses"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Name        *string        `json:"name"`
+	Name        string         `json:"name"`
 }
 
 // BFD
 type BFDNB struct {
-	DetectMult  *int           `json:"detect_mult,omitempty"`
-	DstIp       *string        `json:"dst_ip"`
+	DetectMult  int            `json:"detect_mult,omitempty"`
+	DstIp       string         `json:"dst_ip"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	LogicalPort *string        `json:"logical_port"`
-	MinRx       *int           `json:"min_rx,omitempty"`
-	MinTx       *int           `json:"min_tx,omitempty"`
+	LogicalPort string         `json:"logical_port"`
+	MinRx       int            `json:"min_rx,omitempty"`
+	MinTx       int            `json:"min_tx,omitempty"`
 	Options     OVSMap[string] `json:"options"`
-	Status      *string        `json:"status,omitempty"`
+	Status      string         `json:"status,omitempty"`
 }
 
 // Connection
 type ConnectionNB struct {
 	ExternalIds     OVSMap[string] `json:"external_ids"`
-	InactivityProbe *int           `json:"inactivity_probe,omitempty"`
-	IsConnected     *bool          `json:"is_connected"`
-	MaxBackoff      *int           `json:"max_backoff,omitempty"`
+	InactivityProbe int            `json:"inactivity_probe,omitempty"`
+	IsConnected     bool           `json:"is_connected"`
+	MaxBackoff      int            `json:"max_backoff,omitempty"`
 	OtherConfig     OVSMap[string] `json:"other_config"`
 	Status          OVSMap[string] `json:"status"`
-	Target          *string        `json:"target"`
+	Target          string         `json:"target"`
 }
 
 // Copp
@@ -55,7 +56,7 @@ type CoppNB struct {
 
 // DHCP_Options
 type DHCPOptionsNB struct {
-	Cidr        *string        `json:"cidr"`
+	Cidr        string         `json:"cidr"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Options     OVSMap[string] `json:"options"`
 }
@@ -70,33 +71,33 @@ type DNSNB struct {
 type ForwardingGroupNB struct {
 	ChildPort   OVSSet[string] `json:"child_port"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Liveness    *bool          `json:"liveness"`
-	Name        *string        `json:"name"`
-	Vip         *string        `json:"vip"`
-	Vmac        *string        `json:"vmac"`
+	Liveness    bool           `json:"liveness"`
+	Name        string         `json:"name"`
+	Vip         string         `json:"vip"`
+	Vmac        string         `json:"vmac"`
 }
 
 // Gateway_Chassis
 type GatewayChassisNB struct {
-	ChassisName *string        `json:"chassis_name"`
+	ChassisName string         `json:"chassis_name"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Name        *string        `json:"name"`
+	Name        string         `json:"name"`
 	Options     OVSMap[string] `json:"options"`
-	Priority    *int           `json:"priority"`
+	Priority    int            `json:"priority"`
 }
 
 // HA_Chassis
 type HAChassisNB struct {
-	ChassisName *string        `json:"chassis_name"`
+	ChassisName string         `json:"chassis_name"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Priority    *int           `json:"priority"`
+	Priority    int            `json:"priority"`
 }
 
 // HA_Chassis_Group
 type HAChassisGroupNB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	HaChassis   OVSSet[UUID]   `json:"ha_chassis"` //  HA_Chassis
-	Name        *string        `json:"name"`
+	Name        string         `json:"name"`
 }
 
 // Load_Balancer
@@ -104,9 +105,9 @@ type LoadBalancerNB struct {
 	ExternalIds     OVSMap[string] `json:"external_ids"`
 	HealthCheck     OVSSet[UUID]   `json:"health_check"` //  Load_Balancer_Health_Check
 	IpPortMappings  OVSMap[string] `json:"ip_port_mappings"`
-	Name            *string        `json:"name"`
+	Name            string         `json:"name"`
 	Options         OVSMap[string] `json:"options"`
-	Protocol        *string        `json:"protocol,omitempty"`
+	Protocol        string         `json:"protocol,omitempty"`
 	SelectionFields OVSSet[string] `json:"selection_fields"`
 	Vips            OVSMap[string] `json:"vips"`
 }
@@ -114,24 +115,24 @@ type LoadBalancerNB struct {
 // Load_Balancer_Group
 type LoadBalancerGroupNB struct {
 	LoadBalancer OVSSet[UUID] `json:"load_balancer"` //  Load_Balancer
-	Name         *string      `json:"name"`
+	Name         string       `json:"name"`
 }
 
 // Load_Balancer_Health_Check
 type LoadBalancerHealthCheckNB struct {
 	ExternalIds OVSMap[string] `json:"external_ids"`
 	Options     OVSMap[string] `json:"options"`
-	Vip         *string        `json:"vip"`
+	Vip         string         `json:"vip"`
 }
 
 // Logical_Router
 type LogicalRouterNB struct {
-	Copp              OVSSet[UUID]   `json:"copp,omitempty"` //  Copp
-	Enabled           *bool          `json:"enabled,omitempty"`
+	Copp              UUID           `json:"copp,omitempty"` //  Copp
+	Enabled           bool           `json:"enabled,omitempty"`
 	ExternalIds       OVSMap[string] `json:"external_ids"`
 	LoadBalancer      OVSSet[UUID]   `json:"load_balancer"`       //  Load_Balancer
 	LoadBalancerGroup OVSSet[UUID]   `json:"load_balancer_group"` //  Load_Balancer_Group
-	Name              *string        `json:"name"`
+	Name              string         `json:"name"`
 	Nat               OVSSet[UUID]   `json:"nat"` //  NAT
 	Options           OVSMap[string] `json:"options"`
 	Policies          OVSSet[UUID]   `json:"policies"`      //  Logical_Router_Policy
@@ -141,52 +142,52 @@ type LogicalRouterNB struct {
 
 // Logical_Router_Policy
 type LogicalRouterPolicyNB struct {
-	Action      *string        `json:"action"`
+	Action      string         `json:"action"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Match       *string        `json:"match"`
-	Nexthop     *string        `json:"nexthop,omitempty"`
+	Match       string         `json:"match"`
+	Nexthop     string         `json:"nexthop,omitempty"`
 	Nexthops    OVSSet[string] `json:"nexthops"`
 	Options     OVSMap[string] `json:"options"`
-	Priority    *int           `json:"priority"`
+	Priority    int            `json:"priority"`
 }
 
 // Logical_Router_Port
 type LogicalRouterPortNB struct {
-	Enabled        *bool          `json:"enabled,omitempty"`
+	Enabled        bool           `json:"enabled,omitempty"`
 	ExternalIds    OVSMap[string] `json:"external_ids"`
 	GatewayChassis OVSSet[UUID]   `json:"gateway_chassis"`            //  Gateway_Chassis
-	HaChassisGroup OVSSet[UUID]   `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
+	HaChassisGroup UUID           `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
 	Ipv6Prefix     OVSSet[string] `json:"ipv6_prefix"`
 	Ipv6RaConfigs  OVSMap[string] `json:"ipv6_ra_configs"`
-	Mac            *string        `json:"mac"`
-	Name           *string        `json:"name"`
+	Mac            string         `json:"mac"`
+	Name           string         `json:"name"`
 	Networks       OVSSet[string] `json:"networks"`
 	Options        OVSMap[string] `json:"options"`
-	Peer           *string        `json:"peer,omitempty"`
+	Peer           string         `json:"peer,omitempty"`
 }
 
 // Logical_Router_Static_Route
 type LogicalRouterStaticRouteNB struct {
-	Bfd         OVSSet[UUID]   `json:"bfd,omitempty"` //  BFD
+	Bfd         UUID           `json:"bfd,omitempty"` //  BFD
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	IpPrefix    *string        `json:"ip_prefix"`
-	Nexthop     *string        `json:"nexthop"`
+	IpPrefix    string         `json:"ip_prefix"`
+	Nexthop     string         `json:"nexthop"`
 	Options     OVSMap[string] `json:"options"`
-	OutputPort  *string        `json:"output_port,omitempty"`
-	Policy      *string        `json:"policy,omitempty"`
-	RouteTable  *string        `json:"route_table"`
+	OutputPort  string         `json:"output_port,omitempty"`
+	Policy      string         `json:"policy,omitempty"`
+	RouteTable  string         `json:"route_table"`
 }
 
 // Logical_Switch
 type LogicalSwitchNB struct {
 	Acls              OVSSet[UUID]   `json:"acls"`           //  ACL
-	Copp              OVSSet[UUID]   `json:"copp,omitempty"` //  Copp
+	Copp              UUID           `json:"copp,omitempty"` //  Copp
 	DnsRecords        OVSSet[UUID]   `json:"dns_records"`    //  DNS
 	ExternalIds       OVSMap[string] `json:"external_ids"`
 	ForwardingGroups  OVSSet[UUID]   `json:"forwarding_groups"`   //  Forwarding_Group
 	LoadBalancer      OVSSet[UUID]   `json:"load_balancer"`       //  Load_Balancer
 	LoadBalancerGroup OVSSet[UUID]   `json:"load_balancer_group"` //  Load_Balancer_Group
-	Name              *string        `json:"name"`
+	Name              string         `json:"name"`
 	OtherConfig       OVSMap[string] `json:"other_config"`
 	Ports             OVSSet[UUID]   `json:"ports"`     //  Logical_Switch_Port
 	QosRules          OVSSet[UUID]   `json:"qos_rules"` //  QoS
@@ -195,74 +196,74 @@ type LogicalSwitchNB struct {
 // Logical_Switch_Port
 type LogicalSwitchPortNB struct {
 	Addresses        OVSSet[string] `json:"addresses"`
-	Dhcpv4Options    OVSSet[UUID]   `json:"dhcpv4_options,omitempty"` //  DHCP_Options
-	Dhcpv6Options    OVSSet[UUID]   `json:"dhcpv6_options,omitempty"` //  DHCP_Options
-	DynamicAddresses *string        `json:"dynamic_addresses,omitempty"`
-	Enabled          *bool          `json:"enabled,omitempty"`
+	Dhcpv4Options    UUID           `json:"dhcpv4_options,omitempty"` //  DHCP_Options
+	Dhcpv6Options    UUID           `json:"dhcpv6_options,omitempty"` //  DHCP_Options
+	DynamicAddresses string         `json:"dynamic_addresses,omitempty"`
+	Enabled          bool           `json:"enabled,omitempty"`
 	ExternalIds      OVSMap[string] `json:"external_ids"`
-	HaChassisGroup   OVSSet[UUID]   `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
-	Name             *string        `json:"name"`
+	HaChassisGroup   UUID           `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
+	Name             string         `json:"name"`
 	Options          OVSMap[string] `json:"options"`
-	ParentName       *string        `json:"parent_name,omitempty"`
+	ParentName       string         `json:"parent_name,omitempty"`
 	PortSecurity     OVSSet[string] `json:"port_security"`
-	Tag              *int           `json:"tag,omitempty"`
-	TagRequest       *int           `json:"tag_request,omitempty"`
-	Type             *string        `json:"type"`
-	Up               *bool          `json:"up,omitempty"`
+	Tag              int            `json:"tag,omitempty"`
+	TagRequest       int            `json:"tag_request,omitempty"`
+	Type             string         `json:"type"`
+	Up               bool           `json:"up,omitempty"`
 }
 
 // Meter
 type MeterNB struct {
 	Bands       OVSSet[UUID]   `json:"bands"` //  Meter_Band
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Fair        *bool          `json:"fair,omitempty"`
-	Name        *string        `json:"name"`
-	Unit        *string        `json:"unit"`
+	Fair        bool           `json:"fair,omitempty"`
+	Name        string         `json:"name"`
+	Unit        string         `json:"unit"`
 }
 
 // Meter_Band
 type MeterBandNB struct {
-	Action      *string        `json:"action"`
-	BurstSize   *int           `json:"burst_size"`
+	Action      string         `json:"action"`
+	BurstSize   int            `json:"burst_size"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Rate        *int           `json:"rate"`
+	Rate        int            `json:"rate"`
 }
 
 // NAT
 type NATNB struct {
-	AllowedExtIps     OVSSet[UUID]   `json:"allowed_ext_ips,omitempty"`  //  Address_Set
-	ExemptedExtIps    OVSSet[UUID]   `json:"exempted_ext_ips,omitempty"` //  Address_Set
+	AllowedExtIps     UUID           `json:"allowed_ext_ips,omitempty"`  //  Address_Set
+	ExemptedExtIps    UUID           `json:"exempted_ext_ips,omitempty"` //  Address_Set
 	ExternalIds       OVSMap[string] `json:"external_ids"`
-	ExternalIp        *string        `json:"external_ip"`
-	ExternalMac       *string        `json:"external_mac,omitempty"`
-	ExternalPortRange *string        `json:"external_port_range"`
-	LogicalIp         *string        `json:"logical_ip"`
-	LogicalPort       *string        `json:"logical_port,omitempty"`
+	ExternalIp        string         `json:"external_ip"`
+	ExternalMac       string         `json:"external_mac,omitempty"`
+	ExternalPortRange string         `json:"external_port_range"`
+	LogicalIp         string         `json:"logical_ip"`
+	LogicalPort       string         `json:"logical_port,omitempty"`
 	Options           OVSMap[string] `json:"options"`
-	Type              *string        `json:"type"`
+	Type              string         `json:"type"`
 }
 
 // NB_Global
 type NBGlobalNB struct {
 	Connections    OVSSet[UUID]   `json:"connections"` //  Connection
 	ExternalIds    OVSMap[string] `json:"external_ids"`
-	HvCfg          *int           `json:"hv_cfg"`
-	HvCfgTimestamp *int           `json:"hv_cfg_timestamp"`
-	Ipsec          *bool          `json:"ipsec"`
-	Name           *string        `json:"name"`
-	NbCfg          *int           `json:"nb_cfg"`
-	NbCfgTimestamp *int           `json:"nb_cfg_timestamp"`
+	HvCfg          int            `json:"hv_cfg"`
+	HvCfgTimestamp int            `json:"hv_cfg_timestamp"`
+	Ipsec          bool           `json:"ipsec"`
+	Name           string         `json:"name"`
+	NbCfg          int            `json:"nb_cfg"`
+	NbCfgTimestamp int            `json:"nb_cfg_timestamp"`
 	Options        OVSMap[string] `json:"options"`
-	SbCfg          *int           `json:"sb_cfg"`
-	SbCfgTimestamp *int           `json:"sb_cfg_timestamp"`
-	Ssl            OVSSet[UUID]   `json:"ssl,omitempty"` //  SSL
+	SbCfg          int            `json:"sb_cfg"`
+	SbCfgTimestamp int            `json:"sb_cfg_timestamp"`
+	Ssl            UUID           `json:"ssl,omitempty"` //  SSL
 }
 
 // Port_Group
 type PortGroupNB struct {
 	Acls        OVSSet[UUID]   `json:"acls"` //  ACL
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Name        *string        `json:"name"`
+	Name        string         `json:"name"`
 	Ports       OVSSet[UUID]   `json:"ports"` //  Logical_Switch_Port
 }
 
@@ -270,21 +271,21 @@ type PortGroupNB struct {
 type QoSNB struct {
 	Action      OVSMap[int]    `json:"action"`
 	Bandwidth   OVSMap[int]    `json:"bandwidth"`
-	Direction   *string        `json:"direction"`
+	Direction   string         `json:"direction"`
 	ExternalIds OVSMap[string] `json:"external_ids"`
-	Match       *string        `json:"match"`
-	Priority    *int           `json:"priority"`
+	Match       string         `json:"match"`
+	Priority    int            `json:"priority"`
 }
 
 // SSL
 type SSLNB struct {
-	BootstrapCaCert *bool          `json:"bootstrap_ca_cert"`
-	CaCert          *string        `json:"ca_cert"`
-	Certificate     *string        `json:"certificate"`
+	BootstrapCaCert bool           `json:"bootstrap_ca_cert"`
+	CaCert          string         `json:"ca_cert"`
+	Certificate     string         `json:"certificate"`
 	ExternalIds     OVSMap[string] `json:"external_ids"`
-	PrivateKey      *string        `json:"private_key"`
-	SslCiphers      *string        `json:"ssl_ciphers"`
-	SslProtocols    *string        `json:"ssl_protocols"`
+	PrivateKey      string         `json:"private_key"`
+	SslCiphers      string         `json:"ssl_ciphers"`
+	SslProtocols    string         `json:"ssl_protocols"`
 }
 
 type OVNNorthbound struct {
@@ -321,5 +322,5 @@ type OVNNorthbound struct {
 }
 
 func (nb OVNNorthbound) IsValid() bool {
-	return len(nb.LogicalSwitchPort) > 0
+	return len(nb.NBGlobal) > 0
 }
