@@ -76,7 +76,7 @@
             },
             "hostname": "sos-novacompute-0.localdomain",
             "name": "d36bd4c1-d875-40f3-85ba-5b1531a2f38c",
-            "nb_cfg": null,
+            "nb_cfg": 0,
             "other_config": {
                 "datapath-type": "system",
                 "iface-types": "bareudp,erspan,geneve,gre,gtpu,internal,ip6erspan,ip6gre,lisp,patch,stt,system,tap,vxlan",
@@ -118,7 +118,7 @@
             },
             "hostname": "controller-0.localdomain",
             "name": "103ca35b-b7ab-4349-a57d-cf9da2ec0e79",
-            "nb_cfg": null,
+            "nb_cfg": 0,
             "other_config": {
                 "datapath-type": "system",
                 "iface-types": "bareudp,erspan,geneve,gre,gtpu,internal,ip6erspan,ip6gre,lisp,patch,stt,system,tap,vxlan",
@@ -141,9 +141,7 @@
     },
     "Chassis_Private": {
         "62894b12-dd97-4837-9848-28eeea15cbaa": {
-            "chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
+            "chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
             "external_ids": {
                 "neutron:ovn-metadata-id": "da5a4a64-6b8f-5e0f-b0f9-5a33d27b9c6c",
                 "neutron:ovn-metadata-sb-cfg": "17"
@@ -153,9 +151,7 @@
             "nb_cfg_timestamp": 1652731645352
         },
         "78e4beb6-ba7b-4fe3-a8ef-b22adc6987e3": {
-            "chassis": [
-                "d41d5758-7d65-4566-ac8f-2d2d23123a66"
-            ],
+            "chassis": "d41d5758-7d65-4566-ac8f-2d2d23123a66",
             "external_ids": null,
             "name": "103ca35b-b7ab-4349-a57d-cf9da2ec0e79",
             "nb_cfg": 17,
@@ -166,10 +162,10 @@
         "6a205f43-fd08-4b43-b824-04e32635aa64": {
             "external_ids": null,
             "inactivity_probe": 60000,
-            "is_connected": null,
+            "is_connected": false,
             "other_config": null,
-            "read_only": null,
-            "role": null,
+            "read_only": false,
+            "role": "",
             "status": null,
             "target": "ptcp:6642:172.17.0.181"
         }
@@ -342,7 +338,7 @@
             "type": "ipv4"
         },
         "e580036a-7120-4429-988d-32f48009845a": {
-            "code": null,
+            "code": 0,
             "name": "offerip",
             "type": "ipv4"
         },
@@ -464,9 +460,7 @@
     "Gateway_Chassis": null,
     "HA_Chassis": {
         "bf8f0145-ab98-4de1-84f6-6f243f04e72a": {
-            "chassis": [
-                "d41d5758-7d65-4566-ac8f-2d2d23123a66"
-            ],
+            "chassis": "d41d5758-7d65-4566-ac8f-2d2d23123a66",
             "external_ids": {
                 "chassis-name": "103ca35b-b7ab-4349-a57d-cf9da2ec0e79"
             },
@@ -486,78 +480,63 @@
     "IGMP_Group": null,
     "IP_Multicast": {
         "01caba6c-53fe-4b3d-9ee3-1835af5bdaca": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
-            "enabled": false,
-            "eth_src": null,
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
+            "eth_src": "",
             "idle_timeout": 300,
-            "ip4_src": null,
-            "ip6_src": null,
+            "ip4_src": "",
+            "ip6_src": "",
             "querier": true,
             "query_interval": 150,
             "query_max_resp": 1,
-            "seq_no": null,
+            "seq_no": 0,
             "table_size": 2048
         },
         "118702b9-4b3d-4dfe-9601-0deab6487fe5": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
-            "enabled": false,
-            "eth_src": null,
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
+            "eth_src": "",
             "idle_timeout": 300,
-            "ip4_src": null,
-            "ip6_src": null,
+            "ip4_src": "",
+            "ip6_src": "",
             "querier": true,
             "query_interval": 150,
             "query_max_resp": 1,
-            "seq_no": null,
+            "seq_no": 0,
             "table_size": 2048
         },
         "59d85dd4-391f-42c2-a803-2de538ebee8b": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
-            "enabled": false,
-            "eth_src": null,
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
+            "eth_src": "",
             "idle_timeout": 300,
-            "ip4_src": null,
-            "ip6_src": null,
+            "ip4_src": "",
+            "ip6_src": "",
             "querier": true,
             "query_interval": 150,
             "query_max_resp": 1,
-            "seq_no": null,
+            "seq_no": 0,
             "table_size": 2048
         },
         "e2882a89-7dce-4d09-b505-5b96d2292f29": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
-            "enabled": false,
-            "eth_src": null,
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
+            "eth_src": "",
             "idle_timeout": 300,
-            "ip4_src": null,
-            "ip6_src": null,
+            "ip4_src": "",
+            "ip6_src": "",
             "querier": true,
             "query_interval": 150,
             "query_max_resp": 1,
-            "seq_no": null,
+            "seq_no": 0,
             "table_size": 2048
         },
         "ee1b40a4-7872-47cd-a573-960d84466e74": {
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
-            "enabled": false,
-            "eth_src": null,
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
+            "eth_src": "",
             "idle_timeout": 300,
-            "ip4_src": null,
-            "ip6_src": null,
+            "ip4_src": "",
+            "ip6_src": "",
             "querier": true,
             "query_interval": 150,
             "query_max_resp": 1,
-            "seq_no": null,
+            "seq_no": 0,
             "table_size": 2048
         }
     },
@@ -602,9 +581,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.spa == 192.168.122.0/24 \u0026\u0026 arp.tpa == 192.168.122.141 \u0026\u0026 arp.op == 1 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 110,
@@ -618,9 +595,7 @@
                 "stage-hint": "be60c6a4",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[10] == 1 \u0026\u0026 (outport == @neutron_pg_drop \u0026\u0026 ip)",
             "pipeline": "egress",
             "priority": 2001,
@@ -633,9 +608,7 @@
                 "source": "northd.c:5930",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip6 \u0026\u0026 tcp",
             "pipeline": "ingress",
             "priority": 120,
@@ -649,9 +622,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "ip \u0026\u0026 outport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "egress",
             "priority": 110,
@@ -666,9 +637,7 @@
                 "source": "northd.c:6007",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.new \u0026\u0026 ct.est \u0026\u0026 !ct.rpl \u0026\u0026 ct_label.blocked == 1",
             "pipeline": "ingress",
             "priority": 6,
@@ -681,12 +650,10 @@
                 "source": "northd.c:13062",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 3,
             "tags": null
         },
@@ -696,12 +663,10 @@
                 "source": "northd.c:5708",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 5,
             "tags": null
         },
@@ -711,12 +676,10 @@
                 "source": "northd.c:6421",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 4,
             "tags": null
         },
@@ -726,9 +689,7 @@
                 "source": "northd.c:11917",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_rs || nd_ra",
             "pipeline": "ingress",
             "priority": 84,
@@ -742,9 +703,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "outport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.dst == fa:16:3e:94:cf:4a \u0026\u0026 ip",
             "pipeline": "egress",
             "priority": 80,
@@ -760,9 +719,7 @@
                 "stage-hint": "d70a4f78",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[7] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip4)",
             "pipeline": "egress",
             "priority": 2002,
@@ -776,9 +733,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.141",
             "pipeline": "ingress",
             "priority": 91,
@@ -791,12 +746,10 @@
                 "source": "northd.c:10933",
                 "stage-name": "lr_in_nd_ra_response"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 9,
             "tags": null
         },
@@ -807,9 +760,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.src == fa:16:3e:a9:84:91 \u0026\u0026 ip4.src == {192.0.11.219}",
             "pipeline": "ingress",
             "priority": 90,
@@ -824,9 +775,7 @@
                 "source": "northd.c:10700",
                 "stage-name": "lr_in_learn_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "arp",
             "pipeline": "ingress",
             "priority": 90,
@@ -840,9 +789,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.src == fa:16:3e:a9:2d:c1 \u0026\u0026 ip4.src == {192.0.10.141}",
             "pipeline": "ingress",
             "priority": 90,
@@ -858,13 +805,11 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_admission"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.dst == fa:16:3e:ff:cd:02 \u0026\u0026 inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "0d95c17e-2f72-430c-9915-ef90e867b4fc": {
@@ -874,9 +819,7 @@
                 "stage-hint": "be60c6a4",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[9] == 1 \u0026\u0026 (outport == @neutron_pg_drop \u0026\u0026 ip)",
             "pipeline": "egress",
             "priority": 2001,
@@ -889,12 +832,10 @@
                 "source": "northd.c:7987",
                 "stage-name": "ls_in_dns_response"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 22,
             "tags": null
         },
@@ -905,9 +846,7 @@
                 "stage-hint": "11a5f3a5",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[9] == 1 \u0026\u0026 (inport == @neutron_pg_drop \u0026\u0026 ip)",
             "pipeline": "ingress",
             "priority": 2001,
@@ -920,9 +859,7 @@
                 "source": "northd.c:6027",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.new \u0026\u0026 ct.est \u0026\u0026 !ct.rpl \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "egress",
             "priority": 4,
@@ -935,12 +872,10 @@
                 "source": "northd.c:6622",
                 "stage-name": "ls_in_qos_mark"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 10,
             "tags": null
         },
@@ -950,9 +885,7 @@
                 "source": "northd.c:6611",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "eth.src == $svc_monitor_mac",
             "pipeline": "egress",
             "priority": 34000,
@@ -965,12 +898,10 @@
                 "source": "northd.c:5519",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 1,
             "tags": null
         },
@@ -980,9 +911,7 @@
                 "source": "northd.c:11903",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.src_mcast ||ip4.src == 255.255.255.255 || ip4.src == 127.0.0.0/8 || ip4.dst == 127.0.0.0/8 || ip4.src == 0.0.0.0/8 || ip4.dst == 0.0.0.0/8",
             "pipeline": "ingress",
             "priority": 100,
@@ -995,9 +924,7 @@
                 "source": "northd.c:6037",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 ct_label.blocked == 1",
             "pipeline": "egress",
             "priority": 2,
@@ -1011,9 +938,7 @@
                 "stage-hint": "dba9f60e",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "eth.dst == fa:16:3e:57:37:78",
             "pipeline": "ingress",
             "priority": 50,
@@ -1026,12 +951,10 @@
                 "source": "northd.c:6771",
                 "stage-name": "ls_out_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 7,
             "tags": null
         },
@@ -1042,9 +965,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "outport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.dst == {fa:16:3e:a9:2d:c1}",
             "pipeline": "egress",
             "priority": 50,
@@ -1060,9 +981,7 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.2 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"d0327ab0-796b-4e17-9f4d-9aaa6b42107d\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -1078,9 +997,7 @@
                 "stage-hint": "84bce1be",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[8] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip6)",
             "pipeline": "egress",
             "priority": 2002,
@@ -1094,9 +1011,7 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"d0327ab0-796b-4e17-9f4d-9aaa6b42107d\"",
             "pipeline": "egress",
             "priority": 50,
@@ -1112,9 +1027,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 ip6.dst == fe80::/64",
             "pipeline": "ingress",
             "priority": 194,
@@ -1128,9 +1041,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 90,
@@ -1145,9 +1056,7 @@
                 "source": "northd.c:6418",
                 "stage-name": "ls_out_acl"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "1",
             "pipeline": "egress",
             "priority": 65535,
@@ -1160,9 +1069,7 @@
                 "source": "northd.c:6466",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.inv || (ct.est \u0026\u0026 ct.rpl \u0026\u0026 ct_label.blocked == 1)",
             "pipeline": "ingress",
             "priority": 65532,
@@ -1176,9 +1083,7 @@
                 "stage-hint": "50fd9110",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[8] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 icmp4)",
             "pipeline": "egress",
             "priority": 2002,
@@ -1191,12 +1096,10 @@
                 "source": "northd.c:7518",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 24,
             "tags": null
         },
@@ -1206,12 +1109,10 @@
                 "source": "northd.c:5979",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 8,
             "tags": null
         },
@@ -1222,9 +1123,7 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -1239,12 +1138,10 @@
                 "source": "northd.c:6420",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 9,
             "tags": null
         },
@@ -1255,9 +1152,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.141 \u0026\u0026 arp.spa == 192.168.122.0/24 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 90,
@@ -1270,12 +1165,10 @@
                 "source": "northd.c:6770",
                 "stage-name": "ls_in_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 14,
             "tags": null
         },
@@ -1285,9 +1178,7 @@
                 "source": "northd.c:11921",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.mcast_rsvd",
             "pipeline": "ingress",
             "priority": 83,
@@ -1300,9 +1191,7 @@
                 "source": "northd.c:5920",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip4 \u0026\u0026 sctp",
             "pipeline": "ingress",
             "priority": 120,
@@ -1316,9 +1205,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 ip4 \u0026\u0026 ip.ttl == {0, 1} \u0026\u0026 !ip.later_frag",
             "pipeline": "ingress",
             "priority": 100,
@@ -1331,9 +1218,7 @@
                 "source": "northd.c:5977",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "1",
             "pipeline": "egress",
             "priority": 65535,
@@ -1347,9 +1232,7 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "ip \u0026\u0026 outport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "egress",
             "priority": 110,
@@ -1364,9 +1247,7 @@
                 "source": "northd.c:6027",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.new \u0026\u0026 ct.est \u0026\u0026 !ct.rpl \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "ingress",
             "priority": 4,
@@ -1380,9 +1261,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "nd_ns \u0026\u0026 ip6.dst == {fe80::f816:3eff:fede:b5e3, ff02::1:ffde:b5e3} \u0026\u0026 nd.target == fe80::f816:3eff:fede:b5e3 \u0026\u0026 inport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -1398,9 +1277,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.68 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"71d95a8d-9844-409b-b113-d40250684a69\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -1416,9 +1293,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.src == {192.168.122.141, 192.168.122.255} \u0026\u0026 reg9[0] == 0",
             "pipeline": "ingress",
             "priority": 100,
@@ -1431,9 +1306,7 @@
                 "source": "northd.c:6013",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.trk",
             "pipeline": "ingress",
             "priority": 5,
@@ -1446,9 +1319,7 @@
                 "source": "northd.c:10664",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "arp.op == 2",
             "pipeline": "ingress",
             "priority": 100,
@@ -1462,13 +1333,11 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_admission"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.dst == fa:16:3e:de:b5:e3 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "272313f6-8937-47b6-845e-f68d1d9c0337": {
@@ -1477,9 +1346,7 @@
                 "source": "northd.c:5715",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.src == $svc_monitor_mac",
             "pipeline": "egress",
             "priority": 110,
@@ -1492,12 +1359,10 @@
                 "source": "northd.c:5847",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 6,
             "tags": null
         },
@@ -1508,9 +1373,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.src == 192.168.10.0/24 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 153,
@@ -1524,9 +1387,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "flags[1] == 0 \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.10.1",
             "pipeline": "ingress",
             "priority": 80,
@@ -1540,9 +1401,7 @@
                 "stage-hint": "3aacef64",
                 "stage-name": "ls_out_acl"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "outport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:1f:5d:84 \u0026\u0026 ip4.src == 192.168.33.1 \u0026\u0026 udp \u0026\u0026 udp.src == 67 \u0026\u0026 udp.dst == 68",
             "pipeline": "egress",
             "priority": 34000,
@@ -1558,9 +1417,7 @@
                 "stage-hint": "c3a526ca",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "reg7 == 0 \u0026\u0026 ip4.dst == 0.0.0.0/0",
             "pipeline": "ingress",
             "priority": 1,
@@ -1574,9 +1431,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_unsnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.127 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 flags.loopback == 1 \u0026\u0026 flags.use_snat_zone == 1 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -1589,9 +1444,7 @@
                 "source": "northd.c:11186",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.mcast || ip6.mcast",
             "pipeline": "ingress",
             "priority": 500,
@@ -1604,12 +1457,10 @@
                 "source": "northd.c:13066",
                 "stage-name": "lr_out_post_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 4,
             "tags": null
         },
@@ -1620,13 +1471,11 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_out_chk_dnat_local"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.127 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "2cdd03b6-78bd-4c72-a289-e49dd37fbdd1": {
@@ -1636,13 +1485,11 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "ip \u0026\u0026 outport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-27023655-efe2-4757-859b-2e0121b685a3"
             }
@@ -1654,9 +1501,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "arp.tpa == 192.0.11.219 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -1672,9 +1517,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "arp.tpa == 192.0.10.141 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -1687,9 +1530,7 @@
                 "source": "northd.c:10681",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_ns",
             "pipeline": "ingress",
             "priority": 100,
@@ -1703,9 +1544,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 arp.spa == 192.168.10.0/24 \u0026\u0026 arp.tpa == 192.168.10.1 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 110,
@@ -1719,9 +1558,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "arp.tpa == 192.0.11.219 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -1734,9 +1571,7 @@
                 "source": "northd.c:5763",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ip",
             "pipeline": "egress",
             "priority": 100,
@@ -1750,9 +1585,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == {fe80::f816:3eff:feff:cd02}",
             "pipeline": "ingress",
             "priority": 60,
@@ -1766,9 +1599,7 @@
                 "stage-hint": "472843af",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "ip \u0026\u0026 inport == \"provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -1784,13 +1615,11 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == {fa:16:3e:d7:da:20}",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "71d95a8d-9844-409b-b113-d40250684a69"
             }
@@ -1801,9 +1630,7 @@
                 "source": "northd.c:5937",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1",
             "pipeline": "ingress",
             "priority": 110,
@@ -1817,13 +1644,11 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_admission"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.mcast \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "3ac7cd85-dcf1-4226-9793-39de0d3c1ce8": {
@@ -1832,9 +1657,7 @@
                 "source": "northd.c:5930",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip6 \u0026\u0026 sctp",
             "pipeline": "ingress",
             "priority": 120,
@@ -1847,9 +1670,7 @@
                 "source": "northd.c:6013",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.trk",
             "pipeline": "egress",
             "priority": 5,
@@ -1863,9 +1684,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.src == fa:16:3e:a9:84:91 \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 90,
@@ -1880,9 +1699,7 @@
                 "source": "northd.c:5920",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip4 \u0026\u0026 tcp",
             "pipeline": "ingress",
             "priority": 120,
@@ -1896,9 +1713,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "outport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.dst == {fa:16:3e:a9:84:91}",
             "pipeline": "egress",
             "priority": 50,
@@ -1914,9 +1729,7 @@
                 "stage-hint": "1d646b6e",
                 "stage-name": "ls_in_dhcp_options"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip4.src == 192.168.10.68 \u0026\u0026 ip4.dst == {192.168.10.1, 255.255.255.255} \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 100,
@@ -1931,9 +1744,7 @@
                 "source": "northd.c:5712",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.dst == $svc_monitor_mac",
             "pipeline": "ingress",
             "priority": 110,
@@ -1946,9 +1757,7 @@
                 "source": "northd.c:5940",
                 "stage-name": "ls_out_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1",
             "pipeline": "egress",
             "priority": 110,
@@ -1961,13 +1770,11 @@
                 "source": "northd.c:13061",
                 "stage-name": "lr_out_chk_dnat_local"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
-            "table_id": null,
+            "priority": 0,
+            "table_id": 0,
             "tags": null
         },
         "42e6531f-ac48-4dc3-9e3a-f02cfe3f503b": {
@@ -1977,9 +1784,7 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "ip \u0026\u0026 inport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -1994,9 +1799,7 @@
                 "source": "northd.c:5748",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "eth.mcast",
             "pipeline": "ingress",
             "priority": 110,
@@ -2009,9 +1812,7 @@
                 "source": "northd.c:5829",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.mcast",
             "pipeline": "ingress",
             "priority": 110,
@@ -2024,12 +1825,10 @@
                 "source": "northd.c:5904",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 7,
             "tags": null
         },
@@ -2040,9 +1839,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip4.src == {192.168.33.102}",
             "pipeline": "ingress",
             "priority": 90,
@@ -2058,13 +1855,11 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == {fa:16:3e:94:cf:4a}",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "9fbc5b58-cf4c-4e83-8801-a73b41bdf27b"
             }
@@ -2076,13 +1871,11 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"d0327ab0-796b-4e17-9f4d-9aaa6b42107d\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "d0327ab0-796b-4e17-9f4d-9aaa6b42107d"
             }
@@ -2093,13 +1886,11 @@
                 "source": "northd.c:7567",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "vlan.present",
             "pipeline": "ingress",
             "priority": 100,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "48da4ce5-6a04-4845-89a4-38758827d263": {
@@ -2109,9 +1900,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 90,
@@ -2127,9 +1916,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.src == fa:16:3e:a9:2d:c1 \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 90,
@@ -2145,9 +1932,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.122.141 \u0026\u0026 icmp4.type == 8 \u0026\u0026 icmp4.code == 0",
             "pipeline": "ingress",
             "priority": 90,
@@ -2160,9 +1945,7 @@
                 "source": "northd.c:7526",
                 "stage-name": "ls_in_l2_unknown"
             },
-            "logical_dp_group": [
-                "e89c9a14-3712-4f92-94c5-ba72bf13b3a2"
-            ],
+            "logical_dp_group": "e89c9a14-3712-4f92-94c5-ba72bf13b3a2",
             "match": "outport == \"none\"",
             "pipeline": "ingress",
             "priority": 50,
@@ -2175,9 +1958,7 @@
                 "source": "northd.c:6606",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "eth.dst == $svc_monitor_mac",
             "pipeline": "ingress",
             "priority": 34000,
@@ -2191,9 +1972,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.src == fa:16:3e:a9:84:91 \u0026\u0026 ip",
             "pipeline": "ingress",
             "priority": 80,
@@ -2208,9 +1987,7 @@
                 "source": "northd.c:11020",
                 "stage-name": "lr_in_ip_routing_ecmp"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "reg8[0..15] == 0",
             "pipeline": "ingress",
             "priority": 150,
@@ -2224,9 +2001,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_out_egr_loop"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.122.127 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 100,
@@ -2240,9 +2015,7 @@
                 "stage-hint": "7bcb2def",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[8] == 1 \u0026\u0026 (inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4)",
             "pipeline": "ingress",
             "priority": 2002,
@@ -2256,13 +2029,11 @@
                 "stage-hint": "472843af",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "inport == \"provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0"
             }
@@ -2273,9 +2044,7 @@
                 "source": "northd.c:11826",
                 "stage-name": "lr_in_arp_request"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.dst == 00:00:00:00:00:00 \u0026\u0026 ip4",
             "pipeline": "ingress",
             "priority": 100,
@@ -2289,9 +2058,7 @@
                 "stage-hint": "50fd9110",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[7] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 icmp4)",
             "pipeline": "egress",
             "priority": 2002,
@@ -2305,13 +2072,11 @@
                 "stage-hint": "b7039c88",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"d54273a6-ecbd-4ab0-ba13-adbd2a2ae204\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "d54273a6-ecbd-4ab0-ba13-adbd2a2ae204"
             }
@@ -2323,13 +2088,11 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "a5525be6-6773-4438-8e2a-cd7b41223ff4"
             }
@@ -2341,9 +2104,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "flags[1] == 0 \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.127",
             "pipeline": "ingress",
             "priority": 80,
@@ -2357,13 +2118,11 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.src == {fa:16:3e:a9:84:91}",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "6cbd2589-3c49-4f6a-a139-8cd6fa93522e"
             }
@@ -2375,9 +2134,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "eth.dst == fa:16:3e:a9:84:91",
             "pipeline": "ingress",
             "priority": 50,
@@ -2390,12 +2147,10 @@
                 "source": "northd.c:13063",
                 "stage-name": "lr_in_dnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 6,
             "tags": null
         },
@@ -2406,9 +2161,7 @@
                 "stage-hint": "1d646b6e",
                 "stage-name": "ls_in_dhcp_response"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip4 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67 \u0026\u0026 reg0[3]",
             "pipeline": "ingress",
             "priority": 100,
@@ -2423,12 +2176,10 @@
                 "source": "northd.c:7988",
                 "stage-name": "ls_in_external_port"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 23,
             "tags": null
         },
@@ -2438,12 +2189,10 @@
                 "source": "northd.c:13068",
                 "stage-name": "lr_in_ecmp_stateful"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 7,
             "tags": null
         },
@@ -2453,9 +2202,7 @@
                 "source": "northd.c:10705",
                 "stage-name": "lr_in_learn_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_na",
             "pipeline": "ingress",
             "priority": 90,
@@ -2468,13 +2215,11 @@
                 "source": "northd.c:5830",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.mcast",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "5cff7fd7-01ce-4245-869b-dfcf1d97017f": {
@@ -2483,12 +2228,10 @@
                 "source": "northd.c:13065",
                 "stage-name": "lr_out_post_undnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 2,
             "tags": null
         },
@@ -2499,9 +2242,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "ip \u0026\u0026 inport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -2516,12 +2257,10 @@
                 "source": "northd.c:11713",
                 "stage-name": "lr_in_chk_pkt_len"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 16,
             "tags": null
         },
@@ -2532,9 +2271,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "arp.tpa == 192.0.10.141 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -2550,9 +2287,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == fe80::f816:3eff:feff:cd02 \u0026\u0026 icmp6.type == 128 \u0026\u0026 icmp6.code == 0",
             "pipeline": "ingress",
             "priority": 90,
@@ -2565,12 +2300,10 @@
                 "source": "northd.c:10686",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 1,
             "tags": null
         },
@@ -2580,12 +2313,10 @@
                 "source": "northd.c:7869",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 18,
             "tags": null
         },
@@ -2595,9 +2326,7 @@
                 "source": "northd.c:5920",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip4 \u0026\u0026 udp",
             "pipeline": "ingress",
             "priority": 120,
@@ -2611,9 +2340,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "outport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.dst == fa:16:3e:a9:84:91 \u0026\u0026 ip",
             "pipeline": "egress",
             "priority": 80,
@@ -2629,9 +2356,7 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "ip \u0026\u0026 outport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "egress",
             "priority": 110,
@@ -2647,9 +2372,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.src == {192.168.10.1, 192.168.10.255} \u0026\u0026 reg9[0] == 0",
             "pipeline": "ingress",
             "priority": 100,
@@ -2662,9 +2385,7 @@
                 "source": "northd.c:5842",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.dst == $svc_monitor_mac",
             "pipeline": "ingress",
             "priority": 110,
@@ -2677,12 +2398,10 @@
                 "source": "northd.c:13058",
                 "stage-name": "lr_in_defrag"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 5,
             "tags": null
         },
@@ -2693,9 +2412,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.141",
             "pipeline": "ingress",
             "priority": 90,
@@ -2709,13 +2426,11 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_admission"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.mcast \u0026\u0026 inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "6693055c-4949-4c90-a8b6-590be92ddc90": {
@@ -2724,12 +2439,10 @@
                 "source": "northd.c:11153",
                 "stage-name": "lr_in_policy"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 13,
             "tags": null
         },
@@ -2739,12 +2452,10 @@
                 "source": "northd.c:5979",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 3,
             "tags": null
         },
@@ -2755,9 +2466,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.127 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 92,
@@ -2770,9 +2479,7 @@
                 "source": "northd.c:13089",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_ns",
             "pipeline": "egress",
             "priority": 120,
@@ -2786,9 +2493,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 (arp || nd)",
             "pipeline": "ingress",
             "priority": 80,
@@ -2804,9 +2509,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "eth.dst == fa:16:3e:a9:2d:c1",
             "pipeline": "ingress",
             "priority": 50,
@@ -2820,13 +2523,11 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-27023655-efe2-4757-859b-2e0121b685a3"
             }
@@ -2838,9 +2539,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == {fe80::f816:3eff:fede:b5e3}",
             "pipeline": "ingress",
             "priority": 60,
@@ -2854,9 +2553,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "ip \u0026\u0026 inport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -2872,9 +2569,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.10.1 \u0026\u0026 icmp4.type == 8 \u0026\u0026 icmp4.code == 0",
             "pipeline": "ingress",
             "priority": 90,
@@ -2887,9 +2582,7 @@
                 "source": "northd.c:6450",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ip \u0026\u0026 (!ct.est || (ct.est \u0026\u0026 ct_label.blocked == 1))",
             "pipeline": "ingress",
             "priority": 1,
@@ -2902,9 +2595,7 @@
                 "source": "northd.c:11931",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.bcast",
             "pipeline": "ingress",
             "priority": 50,
@@ -2917,9 +2608,7 @@
                 "source": "northd.c:6034",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.est",
             "pipeline": "ingress",
             "priority": 3,
@@ -2932,9 +2621,7 @@
                 "source": "northd.c:6801",
                 "stage-name": "ls_out_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[1] == 1 \u0026\u0026 reg0[13] == 0",
             "pipeline": "egress",
             "priority": 100,
@@ -2948,13 +2635,11 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "inport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "2442a8af-8399-4cfb-86fc-5b379b8cf6b9"
             }
@@ -2966,9 +2651,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 ip4 \u0026\u0026 ip.ttl == {0, 1} \u0026\u0026 !ip.later_frag",
             "pipeline": "ingress",
             "priority": 100,
@@ -2981,12 +2664,10 @@
                 "source": "northd.c:7984",
                 "stage-name": "ls_in_dhcp_options"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 19,
             "tags": null
         },
@@ -2996,9 +2677,7 @@
                 "source": "northd.c:5948",
                 "stage-name": "ls_out_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[0] == 1",
             "pipeline": "egress",
             "priority": 100,
@@ -3012,9 +2691,7 @@
                 "stage-hint": "d3d87479",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "eth.dst == fa:16:3e:e6:32:42",
             "pipeline": "ingress",
             "priority": 50,
@@ -3028,13 +2705,11 @@
                 "stage-hint": "d3d87479",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "inport == \"f6e94716-7c85-403e-98ad-f42c19e7f6e5\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "f6e94716-7c85-403e-98ad-f42c19e7f6e5"
             }
@@ -3045,12 +2720,10 @@
                 "source": "northd.c:5621",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 8,
             "tags": null
         },
@@ -3061,9 +2734,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "flags[1] == 0 \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.141",
             "pipeline": "ingress",
             "priority": 80,
@@ -3076,9 +2747,7 @@
                 "source": "northd.c:7085",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "eth.src == {fa:16:3e:de:b5:e3} \u0026\u0026 (arp.op == 1 || nd_ns)",
             "pipeline": "ingress",
             "priority": 75,
@@ -3091,12 +2760,10 @@
                 "source": "northd.c:13064",
                 "stage-name": "lr_out_undnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 1,
             "tags": null
         },
@@ -3107,9 +2774,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.1 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -3124,9 +2789,7 @@
                 "source": "northd.c:5993",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.new \u0026\u0026 !ct.est",
             "pipeline": "egress",
             "priority": 7,
@@ -3140,9 +2803,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_unsnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.127 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 flags.loopback == 0 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -3155,12 +2816,10 @@
                 "source": "northd.c:7529",
                 "stage-name": "ls_in_l2_unknown"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 25,
             "tags": null
         },
@@ -3170,12 +2829,10 @@
                 "source": "northd.c:11192",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 15,
             "tags": null
         },
@@ -3185,12 +2842,10 @@
                 "source": "northd.c:11189",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 15,
             "tags": null
         },
@@ -3201,9 +2856,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "flags[1] == 0 \u0026\u0026 nd_ns \u0026\u0026 nd.target == fe80::f816:3eff:feff:cd02",
             "pipeline": "ingress",
             "priority": 80,
@@ -3216,9 +2869,7 @@
                 "source": "northd.c:11883",
                 "stage-name": "lr_out_delivery"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "egress",
             "priority": 100,
@@ -3232,9 +2883,7 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "ip \u0026\u0026 inport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -3249,12 +2898,10 @@
                 "source": "northd.c:6623",
                 "stage-name": "ls_out_qos_mark"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 5,
             "tags": null
         },
@@ -3265,9 +2912,7 @@
                 "stage-hint": "84bce1be",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[7] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip6)",
             "pipeline": "egress",
             "priority": 2002,
@@ -3281,9 +2926,7 @@
                 "stage-hint": "10e7da59",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "outport == \"008572d0-b96b-40ef-a3b0-6b20f3650390\"",
             "pipeline": "egress",
             "priority": 50,
@@ -3299,9 +2942,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.122.0/24",
             "pipeline": "ingress",
             "priority": 74,
@@ -3314,9 +2955,7 @@
                 "source": "northd.c:11956",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == fe80::f816:3eff:fede:b5e3 \u0026\u0026 udp.src == 547 \u0026\u0026 udp.dst == 546",
             "pipeline": "ingress",
             "priority": 100,
@@ -3330,9 +2969,7 @@
                 "stage-hint": "b7039c88",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "eth.dst == fa:16:3e:14:05:e3",
             "pipeline": "ingress",
             "priority": 50,
@@ -3345,9 +2982,7 @@
                 "source": "northd.c:7523",
                 "stage-name": "ls_in_l2_unknown"
             },
-            "logical_dp_group": [
-                "db12a3a4-edba-4374-aabf-192a07c02c0a"
-            ],
+            "logical_dp_group": "db12a3a4-edba-4374-aabf-192a07c02c0a",
             "match": "outport == \"none\"",
             "pipeline": "ingress",
             "priority": 50,
@@ -3361,9 +2996,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 arp.sha == fa:16:3e:d7:da:20 \u0026\u0026 arp.spa == {192.168.10.68}",
             "pipeline": "ingress",
             "priority": 90,
@@ -3379,9 +3012,7 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "outport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "egress",
             "priority": 50,
@@ -3397,9 +3028,7 @@
                 "stage-hint": "0906cc16",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[8] == 1 \u0026\u0026 (inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6)",
             "pipeline": "ingress",
             "priority": 2002,
@@ -3413,9 +3042,7 @@
                 "stage-hint": "3aacef64",
                 "stage-name": "ls_in_dhcp_options"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 100,
@@ -3431,9 +3058,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 arp.sha == fa:16:3e:94:cf:4a \u0026\u0026 arp.spa == {192.168.33.102}",
             "pipeline": "ingress",
             "priority": 90,
@@ -3449,9 +3074,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.src == 192.168.10.68 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 161,
@@ -3465,9 +3088,7 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "eth.dst == fa:16:3e:1c:fa:a5",
             "pipeline": "ingress",
             "priority": 50,
@@ -3481,9 +3102,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_out_egr_loop"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.122.141 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 100,
@@ -3496,9 +3115,7 @@
                 "source": "northd.c:5741",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "nd || nd_rs || nd_ra || mldv1 || mldv2 || (udp \u0026\u0026 udp.src == 546 \u0026\u0026 udp.dst == 547)",
             "pipeline": "ingress",
             "priority": 110,
@@ -3512,9 +3129,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "nd_ns \u0026\u0026 ip6.dst == {fe80::f816:3eff:feff:cd02, ff02::1:ffff:cd02} \u0026\u0026 nd.target == fe80::f816:3eff:feff:cd02",
             "pipeline": "ingress",
             "priority": 50,
@@ -3528,9 +3143,7 @@
                 "stage-hint": "114d0d10",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "reg7 == 0 \u0026\u0026 ip4.dst == 10.20.30.0/24",
             "pipeline": "ingress",
             "priority": 73,
@@ -3544,9 +3157,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.dst == {fa:16:3e:d7:da:20}",
             "pipeline": "egress",
             "priority": 50,
@@ -3561,9 +3172,7 @@
                 "source": "northd.c:6453",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ip \u0026\u0026 (!ct.est || (ct.est \u0026\u0026 ct_label.blocked == 1))",
             "pipeline": "egress",
             "priority": 1,
@@ -3576,9 +3185,7 @@
                 "source": "northd.c:10672",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_na",
             "pipeline": "ingress",
             "priority": 100,
@@ -3591,12 +3198,10 @@
                 "source": "northd.c:7985",
                 "stage-name": "ls_in_dhcp_response"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 20,
             "tags": null
         },
@@ -3607,9 +3212,7 @@
                 "stage-hint": "10e7da59",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "eth.dst == fa:16:3e:27:83:73",
             "pipeline": "ingress",
             "priority": 50,
@@ -3622,12 +3225,10 @@
                 "source": "northd.c:6769",
                 "stage-name": "ls_in_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 12,
             "tags": null
         },
@@ -3637,12 +3238,10 @@
                 "source": "northd.c:5905",
                 "stage-name": "ls_out_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 2,
             "tags": null
         },
@@ -3653,9 +3252,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.spa == 192.168.122.0/24 \u0026\u0026 arp.op == 1 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -3669,9 +3266,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 (arp || nd)",
             "pipeline": "ingress",
             "priority": 80,
@@ -3687,13 +3282,11 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "ip \u0026\u0026 outport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "a5525be6-6773-4438-8e2a-cd7b41223ff4"
             }
@@ -3705,9 +3298,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "eth.dst == fa:16:3e:94:cf:4a",
             "pipeline": "ingress",
             "priority": 50,
@@ -3721,9 +3312,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "arp.tpa == 192.168.33.102 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -3738,9 +3327,7 @@
                 "source": "northd.c:6505",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.est \u0026\u0026 ct.rel \u0026\u0026 !ct.new \u0026\u0026 !ct.inv \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "ingress",
             "priority": 65532,
@@ -3753,12 +3340,10 @@
                 "source": "northd.c:6424",
                 "stage-name": "ls_in_acl_after_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 13,
             "tags": null
         },
@@ -3769,9 +3354,7 @@
                 "stage-hint": "11a5f3a5",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[10] == 1 \u0026\u0026 (inport == @neutron_pg_drop \u0026\u0026 ip)",
             "pipeline": "ingress",
             "priority": 2001,
@@ -3784,12 +3367,10 @@
                 "source": "northd.c:6811",
                 "stage-name": "ls_in_nat_hairpin"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 16,
             "tags": null
         },
@@ -3799,9 +3380,7 @@
                 "source": "northd.c:8049",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.dst == $svc_monitor_mac",
             "pipeline": "ingress",
             "priority": 110,
@@ -3815,9 +3394,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "nd_ns \u0026\u0026 ip6.dst == {fe80::f816:3eff:fede:b5e3, ff02::1:ffde:b5e3} \u0026\u0026 nd.target == fe80::f816:3eff:fede:b5e3",
             "pipeline": "ingress",
             "priority": 50,
@@ -3831,9 +3408,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "arp.tpa == 192.168.122.141 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -3849,13 +3424,11 @@
                 "stage-hint": "472843af",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "ip \u0026\u0026 outport == \"provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0\"",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0"
             }
@@ -3866,9 +3439,7 @@
                 "source": "northd.c:5761",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ip",
             "pipeline": "ingress",
             "priority": 100,
@@ -3881,12 +3452,10 @@
                 "source": "northd.c:13059",
                 "stage-name": "lr_in_unsnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 4,
             "tags": null
         },
@@ -3897,9 +3466,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "outport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "egress",
             "priority": 50,
@@ -3915,9 +3482,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "nd_ns \u0026\u0026 ip6.dst == {fe80::f816:3eff:feff:cd02, ff02::1:ffff:cd02} \u0026\u0026 nd.target == fe80::f816:3eff:feff:cd02 \u0026\u0026 inport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -3932,12 +3497,10 @@
                 "source": "northd.c:11715",
                 "stage-name": "lr_in_larger_pkts"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 17,
             "tags": null
         },
@@ -3948,9 +3511,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.10.1 \u0026\u0026 arp.spa == 192.168.10.0/24",
             "pipeline": "ingress",
             "priority": 90,
@@ -3963,9 +3524,7 @@
                 "source": "northd.c:8124",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.mcast",
             "pipeline": "ingress",
             "priority": 70,
@@ -3979,9 +3538,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "flags[1] == 0 \u0026\u0026 nd_ns \u0026\u0026 nd.target == fe80::f816:3eff:fede:b5e3",
             "pipeline": "ingress",
             "priority": 80,
@@ -3994,12 +3551,10 @@
                 "source": "northd.c:7986",
                 "stage-name": "ls_in_dns_lookup"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 21,
             "tags": null
         },
@@ -4010,9 +3565,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "eth.dst == fa:16:3e:ff:cd:02",
             "pipeline": "ingress",
             "priority": 50,
@@ -4026,9 +3579,7 @@
                 "stage-hint": "3aacef64",
                 "stage-name": "ls_in_dhcp_response"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip4 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67 \u0026\u0026 reg0[3]",
             "pipeline": "ingress",
             "priority": 100,
@@ -4043,12 +3594,10 @@
                 "source": "northd.c:6624",
                 "stage-name": "ls_in_qos_meter"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 11,
             "tags": null
         },
@@ -4059,9 +3608,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "arp.tpa == 192.168.122.141 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -4075,9 +3622,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 reg0 == 192.168.122.141",
             "pipeline": "ingress",
             "priority": 100,
@@ -4091,9 +3636,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "outport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.dst == fa:16:3e:a9:2d:c1 \u0026\u0026 ip",
             "pipeline": "egress",
             "priority": 80,
@@ -4108,9 +3651,7 @@
                 "source": "northd.c:5945",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[0] == 1",
             "pipeline": "ingress",
             "priority": 100,
@@ -4123,9 +3664,7 @@
                 "source": "northd.c:6515",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "nd || nd_ra || nd_rs || mldv1 || mldv2",
             "pipeline": "egress",
             "priority": 65532,
@@ -4138,9 +3677,7 @@
                 "source": "northd.c:6468",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.inv || (ct.est \u0026\u0026 ct.rpl \u0026\u0026 ct_label.blocked == 1)",
             "pipeline": "egress",
             "priority": 65532,
@@ -4153,12 +3690,10 @@
                 "source": "northd.c:6810",
                 "stage-name": "ls_in_pre_hairpin"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 15,
             "tags": null
         },
@@ -4169,13 +3704,11 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.src == {fa:16:3e:a9:2d:c1}",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "8b332d14-b00a-4e75-af70-eac6e56afec4"
             }
@@ -4186,9 +3719,7 @@
                 "source": "northd.c:10710",
                 "stage-name": "lr_in_learn_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_ns",
             "pipeline": "ingress",
             "priority": 90,
@@ -4202,13 +3733,11 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "ip \u0026\u0026 outport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "2442a8af-8399-4cfb-86fc-5b379b8cf6b9"
             }
@@ -4220,9 +3749,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "outport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.dst == fa:16:3e:a9:84:91 \u0026\u0026 ip4.dst == {255.255.255.255, 224.0.0.0/4, 192.0.11.219}",
             "pipeline": "egress",
             "priority": 90,
@@ -4237,9 +3764,7 @@
                 "source": "northd.c:5930",
                 "stage-name": "ls_in_pre_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[2] == 1 \u0026\u0026 ip6 \u0026\u0026 udp",
             "pipeline": "ingress",
             "priority": 120,
@@ -4252,13 +3777,11 @@
                 "source": "northd.c:5848",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
-            "table_id": null,
+            "priority": 0,
+            "table_id": 0,
             "tags": null
         },
         "ac361896-02fc-4b3d-9abc-e4ddaa3646ef": {
@@ -4268,9 +3791,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_out_undnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.src == 192.168.10.68 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 100,
@@ -4284,9 +3805,7 @@
                 "stage-hint": "472843af",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "outport == \"provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0\"",
             "pipeline": "egress",
             "priority": 50,
@@ -4302,9 +3821,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "outport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.dst == {fa:16:3e:94:cf:4a}",
             "pipeline": "egress",
             "priority": 50,
@@ -4319,9 +3836,7 @@
                 "source": "northd.c:6007",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.new \u0026\u0026 ct.est \u0026\u0026 !ct.rpl \u0026\u0026 ct_label.blocked == 1",
             "pipeline": "egress",
             "priority": 6,
@@ -4334,13 +3849,11 @@
                 "source": "northd.c:10515",
                 "stage-name": "lr_in_admission"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "vlan.present || eth.src[40]",
             "pipeline": "ingress",
             "priority": 100,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "adaebabf-4a9c-42ce-82a2-fa3881782936": {
@@ -4350,9 +3863,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "eth.dst == fa:16:3e:de:b5:e3 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 50,
@@ -4365,9 +3876,7 @@
                 "source": "northd.c:7085",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "eth.src == {fa:16:3e:ff:cd:02} \u0026\u0026 (arp.op == 1 || nd_ns)",
             "pipeline": "ingress",
             "priority": 75,
@@ -4381,9 +3890,7 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "ip \u0026\u0026 inport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -4399,9 +3906,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == 192.168.10.0/24",
             "pipeline": "ingress",
             "priority": 74,
@@ -4414,9 +3919,7 @@
                 "source": "northd.c:5750",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "eth.mcast",
             "pipeline": "egress",
             "priority": 110,
@@ -4430,9 +3933,7 @@
                 "stage-hint": "b7039c88",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "arp.tpa == 192.168.33.100 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -4445,12 +3946,10 @@
                 "source": "northd.c:5556",
                 "stage-name": "ls_in_lookup_fdb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 3,
             "tags": null
         },
@@ -4461,9 +3960,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_gw_redirect"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 50,
@@ -4477,9 +3974,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_unsnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.141 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 flags.loopback == 1 \u0026\u0026 flags.use_snat_zone == 1 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -4492,12 +3987,10 @@
                 "source": "northd.c:6812",
                 "stage-name": "ls_in_hairpin"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 17,
             "tags": null
         },
@@ -4507,9 +4000,7 @@
                 "source": "northd.c:5623",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.mcast",
             "pipeline": "egress",
             "priority": 100,
@@ -4522,9 +4013,7 @@
                 "source": "northd.c:11956",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == fe80::f816:3eff:feff:cd02 \u0026\u0026 udp.src == 547 \u0026\u0026 udp.dst == 546",
             "pipeline": "ingress",
             "priority": 100,
@@ -4538,9 +4027,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.127",
             "pipeline": "ingress",
             "priority": 90,
@@ -4553,12 +4040,10 @@
                 "source": "northd.c:11759",
                 "stage-name": "lr_in_gw_redirect"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 18,
             "tags": null
         },
@@ -4569,9 +4054,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 (arp || nd)",
             "pipeline": "ingress",
             "priority": 80,
@@ -4587,9 +4070,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_unsnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.141 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 flags.loopback == 0 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -4603,13 +4084,11 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252"
             }
@@ -4620,9 +4099,7 @@
                 "source": "northd.c:6045",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "egress",
             "priority": 1,
@@ -4635,9 +4112,7 @@
                 "source": "northd.c:11834",
                 "stage-name": "lr_in_arp_request"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "eth.dst == 00:00:00:00:00:00 \u0026\u0026 ip6",
             "pipeline": "ingress",
             "priority": 100,
@@ -4651,9 +4126,7 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "outport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "egress",
             "priority": 50,
@@ -4669,9 +4142,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "flags[1] == 0 \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.127",
             "pipeline": "ingress",
             "priority": 80,
@@ -4684,9 +4155,7 @@
                 "source": "northd.c:11155",
                 "stage-name": "lr_in_policy_ecmp"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "reg8[0..15] == 0",
             "pipeline": "ingress",
             "priority": 150,
@@ -4700,9 +4169,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip6.dst == fe80::f816:3eff:fede:b5e3 \u0026\u0026 icmp6.type == 128 \u0026\u0026 icmp6.code == 0",
             "pipeline": "ingress",
             "priority": 90,
@@ -4715,9 +4182,7 @@
                 "source": "northd.c:11086",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "nd_rs || nd_ra",
             "pipeline": "ingress",
             "priority": 10550,
@@ -4730,9 +4195,7 @@
                 "source": "northd.c:10695",
                 "stage-name": "lr_in_learn_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "reg9[2] == 1 || reg9[3] == 0",
             "pipeline": "ingress",
             "priority": 100,
@@ -4746,13 +4209,11 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "ip \u0026\u0026 outport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252"
             }
@@ -4763,9 +4224,7 @@
                 "source": "northd.c:6487",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 !ct.rel \u0026\u0026 !ct.new \u0026\u0026 !ct.inv \u0026\u0026 ct.rpl \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "egress",
             "priority": 65532,
@@ -4779,9 +4238,7 @@
                 "stage-hint": "d70a4f78",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[8] == 1 \u0026\u0026 (outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip4)",
             "pipeline": "egress",
             "priority": 2002,
@@ -4795,9 +4252,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.dst == fa:16:3e:d7:da:20 \u0026\u0026 ip",
             "pipeline": "egress",
             "priority": 80,
@@ -4812,9 +4267,7 @@
                 "source": "northd.c:5835",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "nd || nd_rs || nd_ra || mldv1 || mldv2",
             "pipeline": "ingress",
             "priority": 110,
@@ -4827,12 +4280,10 @@
                 "source": "northd.c:5518",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 2,
             "tags": null
         },
@@ -4843,9 +4294,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 reg0 == 192.168.10.68",
             "pipeline": "ingress",
             "priority": 100,
@@ -4859,9 +4308,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == {192.168.10.1}",
             "pipeline": "ingress",
             "priority": 60,
@@ -4874,12 +4321,10 @@
                 "source": "northd.c:13067",
                 "stage-name": "lr_out_egr_loop"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 5,
             "tags": null
         },
@@ -4890,13 +4335,11 @@
                 "stage-hint": "10e7da59",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"008572d0-b96b-40ef-a3b0-6b20f3650390\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "008572d0-b96b-40ef-a3b0-6b20f3650390"
             }
@@ -4908,9 +4351,7 @@
                 "stage-hint": "dba9f60e",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "outport == \"bd253cba-647a-4264-97c2-b16c6196e414\"",
             "pipeline": "egress",
             "priority": 50,
@@ -4925,13 +4366,11 @@
                 "source": "northd.c:5844",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.src == $svc_monitor_mac",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "c525916e-b4ef-4d11-a023-223675ecf14f": {
@@ -4941,9 +4380,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_routing"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 ip6.dst == fe80::/64",
             "pipeline": "ingress",
             "priority": 194,
@@ -4956,12 +4393,10 @@
                 "source": "northd.c:11939",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 3,
             "tags": null
         },
@@ -4971,9 +4406,7 @@
                 "source": "northd.c:6507",
                 "stage-name": "ls_out_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.est \u0026\u0026 ct.rel \u0026\u0026 !ct.new \u0026\u0026 !ct.inv \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "egress",
             "priority": 65532,
@@ -4987,9 +4420,7 @@
                 "stage-hint": "1fa48926",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -5005,9 +4436,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "arp.tpa == 192.168.33.102 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -5021,9 +4450,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_dnat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.127 \u0026\u0026 inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 100,
@@ -5037,9 +4464,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.src == fa:16:3e:a9:2d:c1 \u0026\u0026 ip",
             "pipeline": "ingress",
             "priority": 80,
@@ -5055,9 +4480,7 @@
                 "stage-hint": "1d646b6e",
                 "stage-name": "ls_in_dhcp_options"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip4.src == 0.0.0.0 \u0026\u0026 ip4.dst == 255.255.255.255 \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 100,
@@ -5072,9 +4495,7 @@
                 "source": "northd.c:6797",
                 "stage-name": "ls_in_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[1] == 1 \u0026\u0026 reg0[13] == 0",
             "pipeline": "ingress",
             "priority": 100,
@@ -5088,9 +4509,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 ip4.src == 192.168.122.141",
             "pipeline": "ingress",
             "priority": 120,
@@ -5104,9 +4523,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip4.src == {192.168.10.68}",
             "pipeline": "ingress",
             "priority": 90,
@@ -5122,9 +4539,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 ip6.dst == {fe80::f816:3eff:fede:b5e3, ff02::1:ffde:b5e3} \u0026\u0026 nd_ns \u0026\u0026 nd.target == fe80::f816:3eff:fede:b5e3 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 90,
@@ -5137,9 +4552,7 @@
                 "source": "northd.c:11926",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.mcast || ip6.mcast",
             "pipeline": "ingress",
             "priority": 82,
@@ -5152,9 +4565,7 @@
                 "source": "northd.c:6783",
                 "stage-name": "ls_in_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[1] == 1 \u0026\u0026 reg0[13] == 1",
             "pipeline": "ingress",
             "priority": 100,
@@ -5167,13 +4578,11 @@
                 "source": "northd.c:7572",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "eth.src[40]",
             "pipeline": "ingress",
             "priority": 100,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "ce8cf45e-b303-4634-b459-1e6f1632bd93": {
@@ -5183,9 +4592,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "outport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.dst == fa:16:3e:94:cf:4a \u0026\u0026 ip4.dst == {255.255.255.255, 224.0.0.0/4, 192.168.33.102}",
             "pipeline": "egress",
             "priority": 90,
@@ -5201,9 +4608,7 @@
                 "stage-hint": "b7039c88",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "arp.tpa == 192.168.33.100 \u0026\u0026 arp.op == 1 \u0026\u0026 inport == \"d54273a6-ecbd-4ab0-ba13-adbd2a2ae204\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -5219,9 +4624,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"a5525be6-6773-4438-8e2a-cd7b41223ff4\"",
             "pipeline": "egress",
             "priority": 50,
@@ -5236,9 +4639,7 @@
                 "source": "northd.c:11883",
                 "stage-name": "lr_out_delivery"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "egress",
             "priority": 100,
@@ -5252,9 +4653,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.dst == fa:16:3e:d7:da:20 \u0026\u0026 ip4.dst == {255.255.255.255, 224.0.0.0/4, 192.168.10.68}",
             "pipeline": "egress",
             "priority": 90,
@@ -5270,9 +4669,7 @@
                 "stage-hint": "d3d87479",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "outport == \"f6e94716-7c85-403e-98ad-f42c19e7f6e5\"",
             "pipeline": "egress",
             "priority": 50,
@@ -5287,12 +4684,10 @@
                 "source": "northd.c:10945",
                 "stage-name": "lr_in_ip_routing_pre"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 10,
             "tags": null
         },
@@ -5302,9 +4697,7 @@
                 "source": "northd.c:11911",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "arp || nd",
             "pipeline": "ingress",
             "priority": 85,
@@ -5318,9 +4711,7 @@
                 "stage-hint": "b7039c88",
                 "stage-name": "ls_out_port_sec_l2"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "outport == \"d54273a6-ecbd-4ab0-ba13-adbd2a2ae204\"",
             "pipeline": "egress",
             "priority": 50,
@@ -5335,12 +4726,10 @@
                 "source": "northd.c:10932",
                 "stage-name": "lr_in_nd_ra_options"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 8,
             "tags": null
         },
@@ -5350,9 +4739,7 @@
                 "source": "northd.c:6788",
                 "stage-name": "ls_out_stateful"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "reg0[1] == 1 \u0026\u0026 reg0[13] == 1",
             "pipeline": "egress",
             "priority": 100,
@@ -5366,9 +4753,7 @@
                 "stage-hint": "3aacef64",
                 "stage-name": "ls_in_dhcp_options"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip4.src == 192.168.33.102 \u0026\u0026 ip4.dst == {192.168.33.1, 255.255.255.255} \u0026\u0026 udp.src == 68 \u0026\u0026 udp.dst == 67",
             "pipeline": "ingress",
             "priority": 100,
@@ -5383,9 +4768,7 @@
                 "source": "northd.c:5993",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.new \u0026\u0026 !ct.est",
             "pipeline": "ingress",
             "priority": 7,
@@ -5398,9 +4781,7 @@
                 "source": "northd.c:6417",
                 "stage-name": "ls_in_acl"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "1",
             "pipeline": "ingress",
             "priority": 65535,
@@ -5414,13 +4795,11 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_out_chk_dnat_local"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.dst == 192.168.122.141 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "egress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "d7f4d32f-5d15-4f11-8fef-81f407e61c17": {
@@ -5430,9 +4809,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 reg0 == 192.168.122.127",
             "pipeline": "ingress",
             "priority": 100,
@@ -5446,9 +4823,7 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.2 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -5461,12 +4836,10 @@
                 "source": "northd.c:6625",
                 "stage-name": "ls_out_qos_meter"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 6,
             "tags": null
         },
@@ -5476,9 +4849,7 @@
                 "source": "northd.c:11935",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4 \u0026\u0026 ip.ttl == {0, 1}",
             "pipeline": "ingress",
             "priority": 30,
@@ -5492,9 +4863,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.141 \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\")",
             "pipeline": "ingress",
             "priority": 92,
@@ -5508,9 +4877,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.src == 192.168.10.68 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\") \u0026\u0026 reg9[4] == 1",
             "pipeline": "egress",
             "priority": 162,
@@ -5524,9 +4891,7 @@
                 "stage-hint": "0906cc16",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[7] == 1 \u0026\u0026 (inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6)",
             "pipeline": "ingress",
             "priority": 2002,
@@ -5540,9 +4905,7 @@
                 "stage-hint": "cd72166f",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 arp.op == 1 \u0026\u0026 arp.tpa == 192.168.122.127",
             "pipeline": "ingress",
             "priority": 91,
@@ -5555,9 +4918,7 @@
                 "source": "northd.c:6034",
                 "stage-name": "ls_out_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "!ct.est",
             "pipeline": "egress",
             "priority": 3,
@@ -5571,9 +4932,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.68 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -5586,12 +4945,10 @@
                 "source": "northd.c:5709",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "egress",
-            "priority": null,
+            "priority": 0,
             "table_id": 1,
             "tags": null
         },
@@ -5601,12 +4958,10 @@
                 "source": "northd.c:11835",
                 "stage-name": "lr_in_arp_request"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 19,
             "tags": null
         },
@@ -5616,9 +4971,7 @@
                 "source": "northd.c:5744",
                 "stage-name": "ls_out_pre_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "nd || nd_rs || nd_ra || mldv1 || mldv2 || (udp \u0026\u0026 udp.src == 546 \u0026\u0026 udp.dst == 547)",
             "pipeline": "egress",
             "priority": 110,
@@ -5632,9 +4985,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_ip_input"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 ip6.dst == {fe80::f816:3eff:feff:cd02, ff02::1:ffff:cd02} \u0026\u0026 nd_ns \u0026\u0026 nd.target == fe80::f816:3eff:feff:cd02",
             "pipeline": "ingress",
             "priority": 90,
@@ -5648,9 +4999,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_out_port_sec_ip"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "outport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.dst == fa:16:3e:a9:2d:c1 \u0026\u0026 ip4.dst == {255.255.255.255, 224.0.0.0/4, 192.0.10.141}",
             "pipeline": "egress",
             "priority": 90,
@@ -5665,12 +5014,10 @@
                 "source": "northd.c:5557",
                 "stage-name": "ls_in_put_fdb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "1",
             "pipeline": "ingress",
-            "priority": null,
+            "priority": 0,
             "table_id": 4,
             "tags": null
         },
@@ -5681,9 +5028,7 @@
                 "stage-hint": "413a21eb",
                 "stage-name": "ls_in_pre_acl"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "ip \u0026\u0026 inport == \"provnet-27023655-efe2-4757-859b-2e0121b685a3\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -5699,9 +5044,7 @@
                 "stage-hint": "ede7e2c9",
                 "stage-name": "ls_in_pre_lb"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "ip \u0026\u0026 inport == \"2442a8af-8399-4cfb-86fc-5b379b8cf6b9\"",
             "pipeline": "ingress",
             "priority": 110,
@@ -5717,9 +5060,7 @@
                 "stage-hint": "04d93328",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip4.dst == {192.168.122.141}",
             "pipeline": "ingress",
             "priority": 1,
@@ -5733,9 +5074,7 @@
                 "stage-hint": "7cd16af0",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "logical_datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "match": "inport == \"9fbc5b58-cf4c-4e83-8801-a73b41bdf27b\" \u0026\u0026 eth.src == fa:16:3e:94:cf:4a \u0026\u0026 ip",
             "pipeline": "ingress",
             "priority": 80,
@@ -5750,9 +5089,7 @@
                 "source": "northd.c:5977",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "1",
             "pipeline": "ingress",
             "priority": 65535,
@@ -5765,9 +5102,7 @@
                 "source": "northd.c:6513",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "nd || nd_ra || nd_rs || mldv1 || mldv2",
             "pipeline": "ingress",
             "priority": 65532,
@@ -5781,9 +5116,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_ip"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:d7:da:20 \u0026\u0026 ip",
             "pipeline": "ingress",
             "priority": 80,
@@ -5798,9 +5131,7 @@
                 "source": "northd.c:6485",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 !ct.rel \u0026\u0026 !ct.new \u0026\u0026 !ct.inv \u0026\u0026 ct.rpl \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "ingress",
             "priority": 65532,
@@ -5814,9 +5145,7 @@
                 "stage-hint": "8cea7d7c",
                 "stage-name": "lr_in_lookup_neighbor"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "inport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 arp.spa == 192.168.10.0/24 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 100,
@@ -5830,9 +5159,7 @@
                 "stage-hint": "c9aba488",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"6cbd2589-3c49-4f6a-a139-8cd6fa93522e\" \u0026\u0026 eth.src == fa:16:3e:a9:84:91 \u0026\u0026 arp.sha == fa:16:3e:a9:84:91 \u0026\u0026 arp.spa == {192.0.11.219}",
             "pipeline": "ingress",
             "priority": 90,
@@ -5848,9 +5175,7 @@
                 "stage-hint": "7bcb2def",
                 "stage-name": "ls_in_acl"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "reg0[7] == 1 \u0026\u0026 (inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4)",
             "pipeline": "ingress",
             "priority": 2002,
@@ -5864,9 +5189,7 @@
                 "stage-hint": "472843af",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "logical_datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "match": "inport == \"provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0\"",
             "pipeline": "ingress",
             "priority": 100,
@@ -5881,9 +5204,7 @@
                 "source": "northd.c:6037",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 ct_label.blocked == 1",
             "pipeline": "ingress",
             "priority": 2,
@@ -5897,13 +5218,11 @@
                 "stage-hint": "dba9f60e",
                 "stage-name": "ls_in_port_sec_l2"
             },
-            "logical_datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "logical_datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "match": "inport == \"bd253cba-647a-4264-97c2-b16c6196e414\"",
             "pipeline": "ingress",
             "priority": 50,
-            "table_id": null,
+            "table_id": 0,
             "tags": {
                 "in_out_port": "bd253cba-647a-4264-97c2-b16c6196e414"
             }
@@ -5915,9 +5234,7 @@
                 "stage-hint": "42aa595b",
                 "stage-name": "ls_in_arp_rsp"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "arp.tpa == 192.168.10.1 \u0026\u0026 arp.op == 1",
             "pipeline": "ingress",
             "priority": 50,
@@ -5931,9 +5248,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_l2_lkup"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "eth.dst == fa:16:3e:d7:da:20",
             "pipeline": "ingress",
             "priority": 50,
@@ -5946,9 +5261,7 @@
                 "source": "northd.c:6045",
                 "stage-name": "ls_in_acl_hint"
             },
-            "logical_dp_group": [
-                "6bab8a0d-4319-4bd4-945f-a3afe1422024"
-            ],
+            "logical_dp_group": "6bab8a0d-4319-4bd4-945f-a3afe1422024",
             "match": "ct.est \u0026\u0026 ct_label.blocked == 0",
             "pipeline": "ingress",
             "priority": 1,
@@ -5962,9 +5275,7 @@
                 "stage-hint": "a4d32c00",
                 "stage-name": "lr_out_snat"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "ip \u0026\u0026 ip4.src == 192.168.10.0/24 \u0026\u0026 outport == \"lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\" \u0026\u0026 is_chassis_resident(\"cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9\") \u0026\u0026 reg9[4] == 1",
             "pipeline": "egress",
             "priority": 154,
@@ -5978,9 +5289,7 @@
                 "stage-hint": "8a377a02",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "inport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 (arp || nd)",
             "pipeline": "ingress",
             "priority": 80,
@@ -5995,13 +5304,11 @@
                 "source": "northd.c:5838",
                 "stage-name": "ls_out_pre_lb"
             },
-            "logical_dp_group": [
-                "e875ddd3-0779-4378-81dc-e41312a84fe2"
-            ],
+            "logical_dp_group": "e875ddd3-0779-4378-81dc-e41312a84fe2",
             "match": "nd || nd_rs || nd_ra || mldv1 || mldv2",
             "pipeline": "egress",
             "priority": 110,
-            "table_id": null,
+            "table_id": 0,
             "tags": null
         },
         "fa05d891-cebc-440e-aa83-0f4f48c0f341": {
@@ -6011,9 +5318,7 @@
                 "stage-hint": "fa4afd37",
                 "stage-name": "ls_in_port_sec_nd"
             },
-            "logical_datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "logical_datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "match": "inport == \"8b332d14-b00a-4e75-af70-eac6e56afec4\" \u0026\u0026 eth.src == fa:16:3e:a9:2d:c1 \u0026\u0026 arp.sha == fa:16:3e:a9:2d:c1 \u0026\u0026 arp.spa == {192.0.10.141}",
             "pipeline": "ingress",
             "priority": 90,
@@ -6029,9 +5334,7 @@
                 "stage-hint": "1d646b6e",
                 "stage-name": "ls_out_acl"
             },
-            "logical_datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "logical_datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "match": "outport == \"71d95a8d-9844-409b-b113-d40250684a69\" \u0026\u0026 eth.src == fa:16:3e:53:b0:2f \u0026\u0026 ip4.src == 192.168.10.1 \u0026\u0026 udp \u0026\u0026 udp.src == 67 \u0026\u0026 udp.dst == 68",
             "pipeline": "egress",
             "priority": 34000,
@@ -6047,9 +5350,7 @@
                 "stage-hint": "cf3bfbb8",
                 "stage-name": "lr_in_arp_resolve"
             },
-            "logical_datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "logical_datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "match": "outport == \"lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4\" \u0026\u0026 reg0 == 192.168.10.2",
             "pipeline": "ingress",
             "priority": 100,
@@ -6059,9 +5360,7 @@
     },
     "MAC_Binding": {
         "3d697d5b-acd4-43d6-8cb8-c99dfb93ea21": {
-            "datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "ip": "192.168.122.1",
             "logical_port": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
             "mac": "52:54:00:e0:bd:ab"
@@ -6071,9 +5370,7 @@
     "Meter_Band": null,
     "Multicast_Group": {
         "0299840c-abb3-4739-b366-d7b73d573cb7": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "name": "_MC_flood",
             "ports": [
                 "7d27c8f6-145d-4750-89c3-26b2511e7363",
@@ -6083,9 +5380,7 @@
             "tunnel_key": 32768
         },
         "3b4683fb-ab20-4939-a9fa-55b52875f040": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "name": "_MC_flood_l2",
             "ports": [
                 "0302d14d-b426-4dc7-9158-143e6fed36e0",
@@ -6094,9 +5389,7 @@
             "tunnel_key": 32773
         },
         "55653773-e7a4-4640-adca-ab3570cc9d16": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "name": "_MC_unknown",
             "ports": [
                 "9965892a-c4c3-4a7e-9476-7268fba55316"
@@ -6104,9 +5397,7 @@
             "tunnel_key": 32769
         },
         "5f4da4a5-4e48-4de0-a6e8-ce755955032a": {
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "name": "_MC_mrouter_static",
             "ports": [
                 "4d55e7f9-0c15-4c7a-8481-c81377755fbb"
@@ -6114,9 +5405,7 @@
             "tunnel_key": 32771
         },
         "741954c9-b532-4a5a-8b3a-3502b66f0c5c": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "name": "_MC_flood_l2",
             "ports": [
                 "7d27c8f6-145d-4750-89c3-26b2511e7363",
@@ -6126,9 +5415,7 @@
             "tunnel_key": 32773
         },
         "7d3603b1-8a25-48d4-8b8b-fd45569f6753": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "name": "_MC_mrouter_static",
             "ports": [
                 "0302d14d-b426-4dc7-9158-143e6fed36e0"
@@ -6136,9 +5423,7 @@
             "tunnel_key": 32771
         },
         "7e8cd5f2-beb0-4297-98a2-2b4c85aa0ecc": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "name": "_MC_mrouter_static",
             "ports": [
                 "7d27c8f6-145d-4750-89c3-26b2511e7363",
@@ -6147,9 +5432,7 @@
             "tunnel_key": 32771
         },
         "8dac6554-94d7-4d05-a9fb-fb8755306c46": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "name": "_MC_mrouter_static",
             "ports": [
                 "014e42b7-00a4-4db0-bee7-412cc3a56755",
@@ -6158,9 +5441,7 @@
             "tunnel_key": 32771
         },
         "92568f5d-8c61-4a92-95c1-9b8bdb33bd24": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "name": "_MC_unknown",
             "ports": [
                 "0302d14d-b426-4dc7-9158-143e6fed36e0"
@@ -6168,9 +5449,7 @@
             "tunnel_key": 32769
         },
         "9bf7db30-1c6a-427b-8df8-06d9a82a42be": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "name": "_MC_unknown",
             "ports": [
                 "014e42b7-00a4-4db0-bee7-412cc3a56755"
@@ -6178,9 +5457,7 @@
             "tunnel_key": 32769
         },
         "a4e38830-c480-471e-a0a5-d27a4668fdd3": {
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "name": "_MC_flood_l2",
             "ports": [
                 "4d55e7f9-0c15-4c7a-8481-c81377755fbb",
@@ -6189,9 +5466,7 @@
             "tunnel_key": 32773
         },
         "b74c3cc6-52ce-4c7d-99f1-afcf6b796685": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "name": "_MC_flood",
             "ports": [
                 "042954bc-d573-441b-8860-7e47808ea69b",
@@ -6201,9 +5476,7 @@
             "tunnel_key": 32768
         },
         "bcbe8103-4233-446a-9f89-af8d1752a85f": {
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "name": "_MC_flood",
             "ports": [
                 "4d55e7f9-0c15-4c7a-8481-c81377755fbb",
@@ -6212,9 +5485,7 @@
             "tunnel_key": 32768
         },
         "c030b3f8-212e-4b9c-8719-09f2160b0907": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "name": "_MC_flood_l2",
             "ports": [
                 "014e42b7-00a4-4db0-bee7-412cc3a56755",
@@ -6224,9 +5495,7 @@
             "tunnel_key": 32773
         },
         "c334d1eb-747f-4286-9772-8501148a8ead": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "name": "_MC_flood_l2",
             "ports": [
                 "042954bc-d573-441b-8860-7e47808ea69b",
@@ -6235,9 +5504,7 @@
             "tunnel_key": 32773
         },
         "d39c80b9-231d-448c-939a-08ab89cdd7d6": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "name": "_MC_flood",
             "ports": [
                 "0302d14d-b426-4dc7-9158-143e6fed36e0",
@@ -6247,9 +5514,7 @@
             "tunnel_key": 32768
         },
         "f705b161-e777-477c-8b87-889b59379c3c": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "name": "_MC_flood",
             "ports": [
                 "014e42b7-00a4-4db0-bee7-412cc3a56755",
@@ -6259,9 +5524,7 @@
             "tunnel_key": 32768
         },
         "f74b3f82-d09b-4790-8f1c-0d6e701b2eda": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "name": "_MC_mrouter_static",
             "ports": [
                 "042954bc-d573-441b-8860-7e47808ea69b"
@@ -6271,9 +5534,7 @@
     },
     "Port_Binding": {
         "014e42b7-00a4-4db0-bee7-412cc3a56755": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "external_ids": null,
             "gateway_chassis": null,
             "logical_port": "provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252",
@@ -6288,13 +5549,10 @@
             },
             "tag": 119,
             "tunnel_key": 1,
-            "type": "localnet",
-            "up": false
+            "type": "localnet"
         },
         "0302d14d-b426-4dc7-9158-143e6fed36e0": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "external_ids": null,
             "gateway_chassis": null,
             "logical_port": "provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0",
@@ -6308,16 +5566,11 @@
                 "network_name": "external"
             },
             "tunnel_key": 1,
-            "type": "localnet",
-            "up": false
+            "type": "localnet"
         },
         "042954bc-d573-441b-8860-7e47808ea69b": {
-            "chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "external_ids": {
                 "neutron:cidrs": "192.168.10.68/24",
                 "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
@@ -6339,17 +5592,13 @@
                 "mcast_flood_reports": "true",
                 "requested-chassis": "sos-novacompute-0.localdomain"
             },
-            "requested_chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
+            "requested_chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
             "tunnel_key": 3,
-            "type": null,
+            "type": "",
             "up": true
         },
         "04b8cc03-e15e-43e3-a215-afba6b03b5b4": {
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "external_ids": {
                 "neutron:cidrs": "",
                 "neutron:device_id": "ovnmeta-a6e858b0-c295-41d4-8ff4-858c18695d0c",
@@ -6370,21 +5619,14 @@
                 "requested-chassis": ""
             },
             "tunnel_key": 2,
-            "type": "localport",
-            "up": false
+            "type": "localport"
         },
         "1fdfb90c-f36e-47de-83aa-bcb5fc97e272": {
-            "chassis": [
-                "d41d5758-7d65-4566-ac8f-2d2d23123a66"
-            ],
-            "datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "chassis": "d41d5758-7d65-4566-ac8f-2d2d23123a66",
+            "datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "external_ids": null,
             "gateway_chassis": null,
-            "ha_chassis_group": [
-                "c0cfe9d1-3370-4a90-8c94-39620071249d"
-            ],
+            "ha_chassis_group": "c0cfe9d1-3370-4a90-8c94-39620071249d",
             "logical_port": "cr-lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
             "mac": [
                 "fa:16:3e:de:b5:e3 192.168.122.141/24"
@@ -6399,9 +5641,7 @@
             "up": true
         },
         "2bdb1122-0016-427c-a747-24e1a1b7b005": {
-            "datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "external_ids": null,
             "gateway_chassis": null,
             "logical_port": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
@@ -6414,16 +5654,11 @@
                 "peer": "2442a8af-8399-4cfb-86fc-5b379b8cf6b9"
             },
             "tunnel_key": 1,
-            "type": "patch",
-            "up": false
+            "type": "patch"
         },
         "4d55e7f9-0c15-4c7a-8481-c81377755fbb": {
-            "chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "external_ids": {
                 "neutron:cidrs": "192.168.33.102/24",
                 "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
@@ -6444,20 +5679,14 @@
                 "mcast_flood_reports": "true",
                 "requested-chassis": "sos-novacompute-0.localdomain"
             },
-            "requested_chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
+            "requested_chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
             "tunnel_key": 2,
-            "type": null,
+            "type": "",
             "up": true
         },
         "7d27c8f6-145d-4750-89c3-26b2511e7363": {
-            "chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "external_ids": {
                 "neutron:cidrs": "192.0.10.141/24",
                 "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
@@ -6478,17 +5707,13 @@
                 "mcast_flood_reports": "true",
                 "requested-chassis": "sos-novacompute-0.localdomain"
             },
-            "requested_chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
+            "requested_chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
             "tunnel_key": 3,
-            "type": null,
+            "type": "",
             "up": true
         },
         "8597f026-6f20-4b36-8931-34f5e1b66cc7": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "external_ids": {
                 "neutron:cidrs": "192.168.10.1/24",
                 "neutron:device_id": "72adf022-c39d-4c21-8120-5135f066aa01",
@@ -6509,13 +5734,10 @@
                 "peer": "lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4"
             },
             "tunnel_key": 2,
-            "type": "patch",
-            "up": false
+            "type": "patch"
         },
         "88598f58-44a1-4cb4-b088-1ecb8bcb4afa": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "external_ids": {
                 "neutron:cidrs": "",
                 "neutron:device_id": "ovnmeta-561990d3-f4d5-431d-ae92-a85b83f4f570",
@@ -6536,13 +5758,10 @@
                 "requested-chassis": ""
             },
             "tunnel_key": 2,
-            "type": "localport",
-            "up": false
+            "type": "localport"
         },
         "9965892a-c4c3-4a7e-9476-7268fba55316": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "external_ids": null,
             "gateway_chassis": null,
             "logical_port": "provnet-27023655-efe2-4757-859b-2e0121b685a3",
@@ -6557,13 +5776,10 @@
             },
             "tag": 117,
             "tunnel_key": 1,
-            "type": "localnet",
-            "up": false
+            "type": "localnet"
         },
         "d97ac1f9-7cb4-47d2-93c3-f82f75a7f164": {
-            "datapath": [
-                "a981e23b-08a4-4d7c-96fc-5ab1d626e149"
-            ],
+            "datapath": "a981e23b-08a4-4d7c-96fc-5ab1d626e149",
             "external_ids": {
                 "neutron:cidrs": "192.168.122.141/24",
                 "neutron:device_id": "72adf022-c39d-4c21-8120-5135f066aa01",
@@ -6587,16 +5803,11 @@
                 "peer": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9"
             },
             "tunnel_key": 3,
-            "type": "patch",
-            "up": false
+            "type": "patch"
         },
         "dfc33b12-1d54-4d9e-96f9-7e210447c770": {
-            "chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
-            "datapath": [
-                "9be87db7-ee05-4faa-987e-dc6a3c20ac53"
-            ],
+            "chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
+            "datapath": "9be87db7-ee05-4faa-987e-dc6a3c20ac53",
             "external_ids": {
                 "neutron:cidrs": "192.0.11.219/24",
                 "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
@@ -6617,17 +5828,13 @@
                 "mcast_flood_reports": "true",
                 "requested-chassis": "sos-novacompute-0.localdomain"
             },
-            "requested_chassis": [
-                "ba0b7ddc-8f2a-4879-88c2-5d769039be1a"
-            ],
+            "requested_chassis": "ba0b7ddc-8f2a-4879-88c2-5d769039be1a",
             "tunnel_key": 3,
-            "type": null,
+            "type": "",
             "up": true
         },
         "e3146124-3748-436e-af86-5510f9a6fd35": {
-            "datapath": [
-                "1c5dfd24-b987-441f-82f4-6144a66edb8d"
-            ],
+            "datapath": "1c5dfd24-b987-441f-82f4-6144a66edb8d",
             "external_ids": {
                 "neutron:cidrs": "192.168.10.2/24",
                 "neutron:device_id": "ovnmeta-82e03259-6310-4b9d-9575-7f07d613ce09",
@@ -6648,13 +5855,10 @@
                 "requested-chassis": ""
             },
             "tunnel_key": 1,
-            "type": "localport",
-            "up": false
+            "type": "localport"
         },
         "eb5fb08a-0b47-4ac3-bd80-6dc46268e18d": {
-            "datapath": [
-                "5e718308-25e0-4885-8020-04988b2247a6"
-            ],
+            "datapath": "5e718308-25e0-4885-8020-04988b2247a6",
             "external_ids": {
                 "neutron:cidrs": "192.168.33.100/24",
                 "neutron:device_id": "ovnmeta-496db99d-97cc-4d52-ab60-2d1386d3626c",
@@ -6675,13 +5879,10 @@
                 "requested-chassis": ""
             },
             "tunnel_key": 1,
-            "type": "localport",
-            "up": false
+            "type": "localport"
         },
         "f339d431-9e37-4e19-8775-7bd873f36ebc": {
-            "datapath": [
-                "b8ecc227-1292-4def-85af-741e450384f9"
-            ],
+            "datapath": "b8ecc227-1292-4def-85af-741e450384f9",
             "external_ids": {
                 "neutron:cidrs": "",
                 "neutron:device_id": "ovnmeta-d8953248-ba41-4ef4-b7a3-471afed8fd8f",
@@ -6702,13 +5903,10 @@
                 "requested-chassis": ""
             },
             "tunnel_key": 2,
-            "type": "localport",
-            "up": false
+            "type": "localport"
         },
         "f818ab3f-95bf-4339-8586-3b7842144b5e": {
-            "datapath": [
-                "01f80782-d514-4308-873e-ba337ac1b0ea"
-            ],
+            "datapath": "01f80782-d514-4308-873e-ba337ac1b0ea",
             "external_ids": null,
             "gateway_chassis": null,
             "logical_port": "lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4",
@@ -6720,8 +5918,7 @@
                 "peer": "a5525be6-6773-4438-8e2a-cd7b41223ff4"
             },
             "tunnel_key": 3,
-            "type": "patch",
-            "up": false
+            "type": "patch"
         }
     },
     "Port_Group": {
@@ -6870,7 +6067,7 @@
             "authorization": [
                 ""
             ],
-            "insert_delete": null,
+            "insert_delete": false,
             "table": "Port_Binding",
             "update": [
                 "chassis",
@@ -6883,7 +6080,7 @@
             "authorization": [
                 ""
             ],
-            "insert_delete": null,
+            "insert_delete": false,
             "table": "Service_Monitor",
             "update": [
                 "status"
@@ -6912,7 +6109,7 @@
                 "6a205f43-fd08-4b43-b824-04e32635aa64"
             ],
             "external_ids": null,
-            "ipsec": null,
+            "ipsec": false,
             "nb_cfg": 17,
             "options": {
                 "mac_prefix": "0e:9e:16",

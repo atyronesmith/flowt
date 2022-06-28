@@ -12,6 +12,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6",
+            "options": null,
             "priority": 1002
         },
         "0fa539e7-38ba-410e-9a63-ce2ea555a3f4": {
@@ -23,6 +24,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 tcp \u0026\u0026 tcp.dst == 3306",
+            "options": null,
             "priority": 1002
         },
         "11a5f3a5-2c99-48af-a6d6-7c8694d46910": {
@@ -32,6 +34,7 @@
             "label": null,
             "log": null,
             "match": "inport == @neutron_pg_drop \u0026\u0026 ip",
+            "options": null,
             "priority": 1001
         },
         "50fd9110-bb46-47f7-a6dc-cb1c3efa30d8": {
@@ -43,6 +46,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 icmp4",
+            "options": null,
             "priority": 1002
         },
         "6140a2bb-5ab4-4170-9823-12b70c15c4c8": {
@@ -54,6 +58,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip4 \u0026\u0026 ip4.src == 192.168.3.5/32 \u0026\u0026 icmp4",
+            "options": null,
             "priority": 1002
         },
         "7bcb2def-d2b2-4b27-95ed-c9fc2bc87d32": {
@@ -65,6 +70,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4",
+            "options": null,
             "priority": 1002
         },
         "80e4884c-01f5-4c6f-be6c-a9ad9941ebd1": {
@@ -76,6 +82,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip6",
+            "options": null,
             "priority": 1002
         },
         "84bce1be-8a86-4757-821c-0fd54b2f5480": {
@@ -87,6 +94,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip6",
+            "options": null,
             "priority": 1002
         },
         "89c3c5f1-ab34-4e9f-9bd6-ea52b1d73b99": {
@@ -98,6 +106,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip4",
+            "options": null,
             "priority": 1002
         },
         "91ed1a4f-efbd-454d-bdbd-3669da861e6e": {
@@ -109,6 +118,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip4",
+            "options": null,
             "priority": 1002
         },
         "9a72df06-bc55-4ea1-ad9e-8de5fd3291ee": {
@@ -120,6 +130,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4_ip6",
+            "options": null,
             "priority": 1002
         },
         "be60c6a4-c178-47ba-ac65-f2d9c65cc896": {
@@ -129,6 +140,7 @@
             "label": null,
             "log": null,
             "match": "outport == @neutron_pg_drop \u0026\u0026 ip",
+            "options": null,
             "priority": 1001
         },
         "d70a4f78-fbe5-42eb-bbc0-7dfc989ad177": {
@@ -140,6 +152,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip4",
+            "options": null,
             "priority": 1002
         },
         "e5549772-4a59-451d-9aae-1044cc0fd79c": {
@@ -151,6 +164,7 @@
             "label": null,
             "log": null,
             "match": "inport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip6",
+            "options": null,
             "priority": 1002
         },
         "f3fe1066-1216-4358-ba91-99dc776a4eed": {
@@ -162,6 +176,7 @@
             "label": null,
             "log": null,
             "match": "outport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4_ip4",
+            "options": null,
             "priority": 1002
         }
     },
@@ -550,9 +565,7 @@
             "addresses": [
                 "fa:16:3e:94:cf:4a 192.168.33.102"
             ],
-            "dhcpv4_options": [
-                "3aacef64-db3c-4f79-930d-6282a3e6b95a"
-            ],
+            "dhcpv4_options": "3aacef64-db3c-4f79-930d-6282a3e6b95a",
             "enabled": true,
             "external_ids": {
                 "neutron:cidrs": "192.168.33.102/24",
@@ -579,9 +592,7 @@
             "addresses": [
                 "fa:16:3e:d7:da:20 192.168.10.68"
             ],
-            "dhcpv4_options": [
-                "1d646b6e-fcce-4b0a-8895-5e173e6648f9"
-            ],
+            "dhcpv4_options": "1d646b6e-fcce-4b0a-8895-5e173e6648f9",
             "enabled": true,
             "external_ids": {
                 "neutron:cidrs": "192.168.10.68/24",
