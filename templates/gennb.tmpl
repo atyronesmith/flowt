@@ -1,5 +1,13 @@
 #!/bin/bash
 
+set_external_ip() {
+  name="$1"
+  keyValue="$2"
+
+  uuid=$(podman exec northd ovn-nbctl --columns=_uuid find Logical_Switch_Port name="$name" | awk '{ print $3 }')
+  podman exec northd ovn-nbctl set logical_switch_port "$uuid" external_ids:"$keyValue"
+}
+
 set -e
 
 {{range $dhcpKey, $dhcp := .NBDb.DHCPOptions -}}
@@ -22,6 +30,9 @@ ovn-nbctl lsp-set-enabled {{$port.Name}} {{if $port.Enabled}}enabled{{else}}disa
 {{- end}}
 {{- if $port.Type}}
 ovn-nbctl lsp-set-type {{$port.Name}} {{$port.Type}}
+{{- end}}
+{{- range $externalKey, $externalValue := $port.ExternalIds }}
+set_external_ip {{ $port.Name }} \"{{ $externalKey }}\"=\"{{ $externalValue }}\"
 {{- end}}
 {{- range $optionKey, $optionValue := $port.Options}}
 ovn-nbctl lsp-set-options {{$port.Name}} {{$optionKey}}={{$optionValue}}
