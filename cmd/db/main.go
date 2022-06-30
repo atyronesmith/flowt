@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"reflect"
+	"regexp"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -17,57 +18,31 @@ import (
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
-func mapMerge(data interface{}, delta interface{}) (bool, error) {
-
-	deltaType := reflect.ValueOf(delta)
-	dataType := reflect.ValueOf(data)
-
-	assign := false
-
-	if deltaType.Kind() != dataType.Kind() {
-		return assign, fmt.Errorf("objects not the same")
-	}
-
-	switch deltaType.Kind() {
-	case reflect.Map:
-		for k, v := range delta.(map[string]interface{}) {
-			d := data.(map[string]interface{})
-			// Check to see if data already has an entry
-			// If it does, continue down the layers
-			// If it does not, add the new delta data to data
-			if dk, ok := d[k]; ok {
-				a, err := mapMerge(dk, v)
-				if err != nil {
-					return false, err
-				}
-				if a {
-					d[k] = v
-				}
-			} else {
-				d[k] = v
-			}
-		}
-	case reflect.Slice:
-		for _, v := range data.([]interface{}) {
-			mapMerge(data, v)
-		}
-	default:
-		// Only atomic values at this point
-		assign = true
-	}
-
-	return assign, nil
+type tStruct struct {
+	Schema dbparse.OVSdbSchema
+	Db     *dbparse.OVNDbType
+	DbDef  *dbparse.DbDef
 }
 
 func main() {
 	var chartFile string
 	var outDir string
+	var jsonData bool
+	var dotSchema bool
+	var dataPath string
 
 	isVerbose := flag.Bool("v", false, "Print extra runtime information.")
 	isHelp := flag.Bool("help", false, "Print usage information.")
 	flag.StringVar(&chartFile, "chart", "", "Name of chart to generate.")
 	flag.StringVar(&chartFile, "c", "", "Name of chart to generate.")
+	flag.StringVar(&outDir, "outDir", ".", "Directory to place the results (Defaults to local directory)")
 	flag.StringVar(&outDir, "o", ".", "Directory to place the results (Defaults to local directory)")
+	flag.BoolVar(&jsonData, "jsonData", false, "Generage json file with DB data.")
+	flag.BoolVar(&jsonData, "jd", false, "Generage json file with DB data.")
+	flag.BoolVar(&dotSchema, "dotSchema", false, "Generage dot (GraphViz) file with DB schema.")
+	flag.BoolVar(&dotSchema, "ds", false, "Generage dot (GraphViz) file with DB schema.")
+	flag.StringVar(&dataPath, "datapath", "", "Generate datapath info for --datapath <neutron_name>|*")
+	flag.StringVar(&dataPath, "dp", "", "Generate datapath info for --dp <neutron_name>|*")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
@@ -108,8 +83,9 @@ func main() {
 			analysis.GenSBStats(db.(*dbtypes.OVNSouthbound))
 		}
 	}
-	
+
 	if len(chartFile) > 0 && dbSchema.Type == dbparse.NB {
+		fmt.Printf("chart = <%s>\n", chartFile)
 		if err = genChart(db, chartFile); err != nil {
 			fmt.Printf("%v\n", err)
 			os.Exit(1)
@@ -128,37 +104,85 @@ func main() {
 		os.Exit(1)
 	}
 
-	type tStruct struct {
-		Schema dbparse.OVSdbSchema
-		Db     *dbparse.OVNDbType
-		DbDef  *dbparse.DbDef
-	}
-
 	tPlate := tStruct{
 		Schema: *dbSchema,
 		Db:     &db,
 		DbDef:  &dbDef,
 	}
 
+	outBaseName := strings.ToLower(dbSchema.Type.String())
+
+	if dotSchema {
+		genDotSchema(tPlate, dbSchema, outDir, outBaseName)
+	}
+
+	if jsonData {
+		genJsonData(db, outDir, outBaseName)
+	}
+
+	if len(dataPath) > 0 {
+		genDatapath(dbSchema, db, dataPath)
+	}
+}
+
+type ByTableId []dbtypes.LogicalFlowSB
+
+func (a ByTableId) Len() int { return len(a) }
+func (a ByTableId) Less(i, j int) bool {
+	if a[i].TableId == a[j].TableId {
+		return a[i].Priority > a[j].Priority
+	}
+	return a[i].TableId < a[j].TableId
+}
+func (a ByTableId) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+
+func genDatapath(dbSchema *dbparse.OVSdbSchema, db dbparse.OVNDbType, datapath string) error {
+
+	if dbSchema.Type != dbparse.SB {
+		return fmt.Errorf("input database must be of type SouthBound to generate datapath information")
+	}
+
+	sb := db.(*dbtypes.OVNSouthbound)
+
+	dpRE := regexp.MustCompile(datapath)
+
+	for dataPathKey, dataPathValue := range sb.DatapathBinding {
+		if dpRE.MatchString(dataPathValue.ExternalIds["name2"]) {
+			var lf []dbtypes.LogicalFlowSB
+
+			for _, flowValue := range sb.LogicalFlow {
+				if flowValue.LogicalDatapath.String() == dataPathKey {
+					lf = append(lf, flowValue)
+				}
+			}
+			sort.Sort(ByTableId(lf))
+			for _, a := range lf {
+				if a.Pipeline == "ingress" {
+					buf, _ := json.MarshalIndent(a, "", "    ")
+					fmt.Printf("%s\n", buf)
+				}
+			}
+
+		}
+	}
+
+	return nil
+}
+
+func genJsonData(db dbparse.OVNDbType, outDir string, outBaseName string) {
+	pretty, _ := json.MarshalIndent(db, "", "    ")
+
+	utils.WriteByteData(bytes.NewBuffer(pretty), outDir, outBaseName+".json")
+}
+
+func genDotSchema(tPlate tStruct, dbSchema *dbparse.OVSdbSchema, outDir string, outBaseName string) {
 	buf, err := utils.ProcessTemplate("templates/schema_dot.tmpl", "dotschema", utils.GetFuncMap(), &tPlate)
 	if err != nil {
 		fmt.Printf("unable to process template file: %s, %v", "templates/schema_dot.tmpl", err)
 		os.Exit(1)
 	}
 
-	outBaseName := "/" + strings.ToLower(dbSchema.Type.String())
-
-	dotFile := outDir + outBaseName + ".dot"
-	dFile, err := os.Create(dotFile)
-	if err != nil {
-		fmt.Printf("unable to create/open file: %s", dotFile)
-	}
-	defer dFile.Close()
-
-	dFile.Write(buf.Bytes())
-
-	pretty, _ := json.MarshalIndent(db, "", "    ")
-	os.WriteFile(outDir+outBaseName+".json", pretty, 0644)
+	utils.WriteByteData(buf, outDir, outBaseName+".dot")
 }
 
 func genChart(db dbparse.OVNDbType, chartFile string) error {

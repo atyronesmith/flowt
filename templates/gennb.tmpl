@@ -1,29 +1,25 @@
 #!/bin/bash
 
-set_external_ip() {
-  name="$1"
-  keyValue="$2"
-
-  uuid=$(podman exec northd ovn-nbctl --columns=_uuid find Logical_Switch_Port name="$name" | awk '{ print $3 }')
-  podman exec northd ovn-nbctl set logical_switch_port "$uuid" external_ids:"$keyValue"
-}
-
 set -e
 
 {{range $dhcpKey, $dhcp := .NBDb.DHCPOptions -}}
-CIDR_{{ DashToUnder $dhcpKey}}=$(ovn-nbctl create dhcp_options "cidr"="{{$dhcp.Cidr}}" \
+CIDR_{{DashToUnder $dhcpKey}}=$(ovn-nbctl create dhcp_options "cidr"="{{$dhcp.Cidr}}" \
   options='{{BuildMap $dhcp.Options}}')
 {{end -}}
 
 {{- range $switchKey, $switch := .NBDb.LogicalSwitch}}
 {{- $switchName := MapSetString $switch.Name $switchKey}}
-ovn-nbctl ls-add {{ $switchName }}
+ovn-nbctl ls-add {{$switchName}}
+LS_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch name={{$switchName}} | awk '{ print $3 }')
+{{- range $externalKey, $externalValue := $switch.ExternalIds }}
+ovn-nbctl set logical_switch "$LS_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+{{- end}}
 {{- range $portRef := .Ports}}{{$port := LookupLogicalSwitchPort $.NBDb.LogicalSwitchPort $portRef}}
 {{- if $port}}
 ovn-nbctl lsp-add {{ $switchName }} {{ $port.Name}} 
-ovn-nbctl lsp-set-addresses {{$port.Name}} {{ BuildAddresses $port.Addresses }}
+ovn-nbctl lsp-set-addresses {{$port.Name}} {{BuildAddresses $port.Addresses}}
 {{- if $port.PortSecurity}}
-ovn-nbctl lsp-set-port-security {{$port.Name}} {{ BuildAddresses $port.Addresses }}
+ovn-nbctl lsp-set-port-security {{$port.Name}} {{BuildAddresses $port.Addresses}}
 {{- end}}
 {{- if $port.Enabled}}
 ovn-nbctl lsp-set-enabled {{$port.Name}} {{if $port.Enabled}}enabled{{else}}disabled{{end}}
@@ -31,8 +27,9 @@ ovn-nbctl lsp-set-enabled {{$port.Name}} {{if $port.Enabled}}enabled{{else}}disa
 {{- if $port.Type}}
 ovn-nbctl lsp-set-type {{$port.Name}} {{$port.Type}}
 {{- end}}
+LSP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch_Port name={{$port.Name}} | awk '{ print $3 }')
 {{- range $externalKey, $externalValue := $port.ExternalIds }}
-set_external_ip {{ $port.Name }} \"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
 {{- end}}
 {{- range $optionKey, $optionValue := $port.Options}}
 ovn-nbctl lsp-set-options {{$port.Name}} {{$optionKey}}={{$optionValue}}
@@ -53,13 +50,21 @@ ovn-nbctl --type=switch acl-add {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}
 {{- range $routerKey, $router := .NBDb.LogicalRouter}}
 {{- $routerName := MapSetString $router.Name $routerKey}}
 ovn-nbctl lr-add {{ $routerName }}
+LR_UUID=$(ovn-nbctl --columns=_uuid find Logical_Router name={{$routerName}} | awk '{ print $3 }')
+{{- range $externalKey, $externalValue := $router.ExternalIds }}
+ovn-nbctl set Logical_Router "$LR_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+{{- end}}
 {{- range $optionKey, $optionValue := $router.Options}}
-ovn-nbctl set logical_router {{ $routerName }} options:{{$optionKey}}={{$optionValue}}
+ovn-nbctl set Logical_Router {{ $routerName }} options:{{$optionKey}}={{$optionValue}}
 {{- end}}
 {{- range $portRef := .Ports -}}
 {{- $port := LookupLogicalRouterPort $.NBDb.LogicalRouterPort $portRef }}
 {{- if $port }}
 ovn-nbctl lrp-add {{$routerName}} {{$port.Name}} {{$port.Mac}} {{range $port.Networks}}{{.}}{{end}} {{if $port.Peer }}peer={{$port.Peer}}{{end}}
+LRP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Router_Port name={{$port.Name}} | awk '{ print $3 }')
+{{- range $externalKey, $externalValue := $port.ExternalIds }}
+ovn-nbctl set Logical_Router_Port "$LRP_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+{{- end}}
 {{- if $port.Enabled -}}
 ovn-nbctl lrp-set-enabled {{$port.Name}} {{$port.Enabled}}
 {{- end -}}
@@ -90,11 +95,7 @@ ovn-nbctl lr-nat-add{{if $isStateless}} --stateless{{end}} {{$routerName}} {{$na
 {{- range $pgKey, $pg := .NBDb.PortGroup}}
 {{- $pgName := MapSetString $pg.Name $pgKey}}
 ovn-nbctl pg-add {{$pgName}} 
-{{- range $pg.Ports}} 
-{{- $uuid := UUIDToString .}}
-{{- $p := index $.NBDb.LogicalSwitchPort $uuid}}
-ovn-nbctl pg-set-ports {{$pgName}} {{ $p.Name }}
-{{- end }}
+ovn-nbctl pg-set-ports {{$pgName}} {{range $pg.Ports}}{{- $uuid := UUIDToString .}}{{- $p := index $.NBDb.LogicalSwitchPort $uuid}}{{ $p.Name }} {{end}}
 {{- range $pg.Acls}} 
 {{- $uuid := UUIDToString .}}
 {{- $acl := index $.NBDb.ACL $uuid}}
