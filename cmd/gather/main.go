@@ -7,20 +7,26 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/atyronesmith/flowt/pkg/dbparse"
 	"github.com/atyronesmith/flowt/pkg/remote"
+	"github.com/atyronesmith/flowt/pkg/utils"
 	"golang.org/x/exp/slices"
 )
 
 var commands = []string{"osp", "scale"}
 
 func main() {
-	var optDbase string
+	var getNB, getSB bool
 	var optVerbose, optHelp bool
 	var host string
+	var outDir string
 
 	flag.CommandLine.BoolVar(&optVerbose, "verbose", false, "Print extra runtime information.")
 	flag.BoolVar(&optHelp, "help", false, "Print usage information.")
-	flag.StringVar(&optDbase, "db", "NB", "Use NB (northbound) | SB (southbound)")
+	flag.BoolVar(&getNB, "nb", true, "Gather the NB (northbound) database")
+	flag.BoolVar(&getSB, "sb", true, "Gather the sB (southbound) database")
+	flag.StringVar(&outDir, "outDir", ".", "Directory to place the results (Defaults to local directory)")
+	flag.StringVar(&outDir, "o", ".", "Directory to place the results (Defaults to local directory)")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
@@ -43,12 +49,6 @@ func main() {
 		os.Exit(0)
 	}
 
-	db, ok := remote.DBTypeMap[optDbase]
-	if !ok {
-		flag.Usage()
-		os.Exit(1)
-	}
-
 	command := flag.Arg(0)
 	if !slices.Contains(commands, command) {
 		fmt.Printf("Unknown command: %s\n", command)
@@ -57,7 +57,7 @@ func main() {
 
 	host = flag.Arg(1)
 
-	var buf *bytes.Buffer
+	var nbBuf, sbBuf *bytes.Buffer
 
 	var ssh *remote.Ssh
 	var err error
@@ -84,21 +84,41 @@ func main() {
 	defer client.Close()
 
 	if command == "osp" {
-		buf, err = remote.GetDBOSP(client, db)
-		if err != nil {
-			fmt.Printf("%v", err)
-			os.Exit(1)
+		if getNB {
+			nbBuf, err = remote.GetDBOSP(client, dbparse.NB)
+			if err != nil {
+				fmt.Printf("%v", err)
+				os.Exit(1)
+			}
+		}
+		if getSB {
+			sbBuf, err = remote.GetDBOSP(client, dbparse.SB)
+			if err != nil {
+				fmt.Printf("%v", err)
+				os.Exit(1)
+			}
 		}
 	} else if command == "scale" {
-		buf, err = remote.GetDBPod(client, db)
-		if err != nil {
-			fmt.Printf("%v", err)
-			os.Exit(1)
+		if getNB {
+			nbBuf, err = remote.GetDBPod(client, dbparse.NB)
+			if err != nil {
+				fmt.Printf("%v", err)
+				os.Exit(1)
+			}
 		}
-
+		if getNB {
+			sbBuf, err = remote.GetDBPod(client, dbparse.SB)
+			if err != nil {
+				fmt.Printf("%v", err)
+				os.Exit(1)
+			}
+		}
 	}
 
-	if buf != nil {
-		fmt.Printf("%s\n", buf.String())
+	if nbBuf != nil {
+		utils.WriteByteData(nbBuf, outDir, "ovnnb_db.db")
+	}
+	if sbBuf != nil {
+		utils.WriteByteData(sbBuf, outDir, "ovnsb_db.db")
 	}
 }
