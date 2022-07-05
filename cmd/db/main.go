@@ -47,8 +47,9 @@ func main() {
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	flag.Usage = func() {
-		fmt.Fprintf(CommandLine.Output(), "Read an OVN NB or SB database, generate a json file of just the data,\n")
-		fmt.Fprintf(CommandLine.Output(), "and generate a .dot file that represents the schema of the database.\n\n")
+		fmt.Fprintf(CommandLine.Output(), "Read an OVN NB or SB database, conditionally generate a json file of just the data,\n")
+		fmt.Fprintf(CommandLine.Output(), "or conditionally generate a .dot file that represents the schema of the database.\n")
+		fmt.Fprintf(CommandLine.Output(), "Conditionally generate statistics about the database.\n\n")
 
 		fmt.Fprintf(CommandLine.Output(), "Usage: %s [options] db_to_parse\n", filepath.Base(os.Args[0]))
 		fmt.Fprintf(CommandLine.Output(), "       db_to_parse  -- Path to NB or SB database.\n")
@@ -78,14 +79,13 @@ func main() {
 	if *isVerbose {
 		switch dbSchema.Type {
 		case dbparse.NB:
-			analysis.GenNBStats(db.(*dbtypes.OVNNorthbound))
+			analysis.GenNBStats(db.(*dbtypes.OVNNorthbound), outDir, "ovn_northbound_stats.txt")
 		case dbparse.SB:
-			analysis.GenSBStats(db.(*dbtypes.OVNSouthbound))
+			analysis.GenSBStats(db.(*dbtypes.OVNSouthbound), outDir, "ovn_southbound_stats.txt")
 		}
 	}
 
 	if len(chartFile) > 0 && dbSchema.Type == dbparse.NB {
-		fmt.Printf("chart = <%s>\n", chartFile)
 		if err = genChart(db, chartFile); err != nil {
 			fmt.Printf("%v\n", err)
 			os.Exit(1)
@@ -130,9 +130,9 @@ type ByTableId []dbtypes.LogicalFlowSB
 func (a ByTableId) Len() int { return len(a) }
 func (a ByTableId) Less(i, j int) bool {
 	if a[i].TableId == a[j].TableId {
-		return a[i].Priority > a[j].Priority
+		return *a[i].Priority > *a[j].Priority
 	}
-	return a[i].TableId < a[j].TableId
+	return *a[i].TableId < *a[j].TableId
 }
 func (a ByTableId) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
 
@@ -157,7 +157,7 @@ func genDatapath(dbSchema *dbparse.OVSdbSchema, db dbparse.OVNDbType, datapath s
 			}
 			sort.Sort(ByTableId(lf))
 			for _, a := range lf {
-				if a.Pipeline == "ingress" {
+				if *a.Pipeline == "ingress" {
 					buf, _ := json.MarshalIndent(a, "", "    ")
 					fmt.Printf("%s\n", buf)
 				}

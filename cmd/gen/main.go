@@ -143,20 +143,20 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 	sb := sbDB.(*dbtypes.OVNSouthbound)
 
 	for _, lsp := range nb.LogicalSwitchPort {
-		if len(lsp.Type) == 0 {
+		if lsp.Type == nil {
 			// This is a VM port
 
 			// Lookup a binding for this port in the SB db
 			var portBinding *dbtypes.PortBindingSB
 			for _, pb := range sb.PortBinding {
-				if pb.LogicalPort == lsp.Name {
+				if *pb.LogicalPort == *lsp.Name {
 					pbCopy := pb
 					portBinding = &pbCopy
 					break
 				}
 			}
 			if portBinding == nil {
-				return fmt.Errorf("no port binding for LSP: %s", lsp.Name)
+				return fmt.Errorf("no port binding for LSP: %s", *lsp.Name)
 			}
 			chassis, ok := sb.Chassis[portBinding.Chassis.String()]
 			if !ok {
@@ -169,7 +169,7 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 				return fmt.Errorf("missing device_id?")
 			}
 			// Use the full device id for the namespace
-			namespaces[deviceId] = lsp.Name
+			namespaces[deviceId] = *lsp.Name
 
 			if len(lsp.Addresses) != 1 {
 				return fmt.Errorf("multiple or missing port address definitions not supported yet")
@@ -180,11 +180,11 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 			}
 			vmp := vmPort{}
 
-			vmp.Hostname = chassis.Hostname + "-ovs"
+			vmp.Hostname = *chassis.Hostname + "-ovs"
 			vmp.Namespace = deviceId
-			vmp.Port = lsp.Name
+			vmp.Port = *lsp.Name
 			// ovs ports can only be 15 characters
-			vmp.PortName = (lsp.Name)[:15]
+			vmp.PortName = (*lsp.Name)[:15]
 			vmp.Mac = addresses[0]
 			cidrs, ok := lsp.ExternalIds["neutron:cidrs"]
 			if !ok {
@@ -192,24 +192,26 @@ func genVMs(nbDB, sbDB dbparse.OVNDbType, outDir string) error {
 			}
 			vmp.IP4 = cidrs
 
-			if dhcpOptions, ok := nb.DHCPOptions[lsp.Dhcpv4Options.String()]; ok {
-				routeString, ok := dhcpOptions.Options["classless_static_route"]
-				if !ok {
-					return fmt.Errorf("missing dhcp4 option, classless_static_route: %s", lsp.Dhcpv4Options.String())
-				}
-				routeString = strings.Trim(routeString, "{}")
-				// "{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}"
-				routes := strings.Split(routeString, ", ")
-				for _, r := range routes {
-					srcDst := strings.Split(r, ",")
-					if len(srcDst) != 2 {
-						return fmt.Errorf("invalid route: %s", r)
+			if lsp.Dhcpv4Options != nil {
+				if dhcpOptions, ok := nb.DHCPOptions[lsp.Dhcpv4Options.String()]; ok {
+					routeString, ok := dhcpOptions.Options["classless_static_route"]
+					if !ok {
+						return fmt.Errorf("missing dhcp4 option, classless_static_route: %s", lsp.Dhcpv4Options.String())
 					}
-					routeDef := routeDef{
-						Src: srcDst[0],
-						Dst: srcDst[1],
+					routeString = strings.Trim(routeString, "{}")
+					// "{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}"
+					routes := strings.Split(routeString, ", ")
+					for _, r := range routes {
+						srcDst := strings.Split(r, ",")
+						if len(srcDst) != 2 {
+							return fmt.Errorf("invalid route: %s", r)
+						}
+						routeDef := routeDef{
+							Src: srcDst[0],
+							Dst: srcDst[1],
+						}
+						vmp.Routes = append(vmp.Routes, routeDef)
 					}
-					vmp.Routes = append(vmp.Routes, routeDef)
 				}
 			}
 			// if _, ok := vmPorts[vmp.Hostname]; !ok {

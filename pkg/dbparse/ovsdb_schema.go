@@ -168,7 +168,7 @@ func mapKey(maxEntries int, key interface{}, t reflect.Kind, cType CType, column
 
 	switch cType {
 	case Atomic:
-		column.Type = rType
+		column.Type = "* " + rType
 		return nil
 	case Map:
 		column.Type = fmt.Sprintf("OVSMap[%s]", rType)
