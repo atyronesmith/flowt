@@ -1,0 +1,12 @@
+---
+controller_chassis:
+  - hostname: "controller-0.localdomain"
+    ovn_bridge_mappings: "external:br-ex,tenant:br-link0"
+compute_chassis:
+  - hostname: "sos-novacompute-0.localdomain"
+    ovn_bridge_mappings: "external:br-ex,tenant:br-link0"
+    datapath_type: "system"
+    ovn_monitor_all: "false"
+
+sb_inactivity_probe: 60000
+nb_inactivity_probe: 60000

@@ -1,0 +1,994 @@
+{
+    "_date": 1657029790830,
+    "_comment": "",
+    "_is_diff": true,
+    "ACL": {
+        "0906cc16-ffe4-4c41-a980-c6166a2da1c2": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "ee6fd259-6168-48ae-81c0-9ab1bd1a1193"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6",
+            "options": null,
+            "priority": 1002
+        },
+        "11a5f3a5-2c99-48af-a6d6-7c8694d46910": {
+            "action": "drop",
+            "direction": "from-lport",
+            "external_ids": null,
+            "label": null,
+            "log": null,
+            "match": "inport == @neutron_pg_drop \u0026\u0026 ip",
+            "options": null,
+            "priority": 1001
+        },
+        "1eb182bd-7055-4f22-88ee-310f3255f0c1": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "afc219f4-d891-4682-9e68-a8ce192e1368"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 tcp \u0026\u0026 tcp.dst == 22",
+            "options": null,
+            "priority": 1002
+        },
+        "50fd9110-bb46-47f7-a6dc-cb1c3efa30d8": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "d2501199-cd68-4ab6-9a17-fd94d8302071"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 icmp4",
+            "options": null,
+            "priority": 1002
+        },
+        "7bcb2def-d2b2-4b27-95ed-c9fc2bc87d32": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "709fb845-3d5c-4b9e-86c7-08ac67218e01"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4",
+            "options": null,
+            "priority": 1002
+        },
+        "80e4884c-01f5-4c6f-be6c-a9ad9941ebd1": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "13283732-ffc6-4da1-9ae2-600ddaa845e6"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip6",
+            "options": null,
+            "priority": 1002
+        },
+        "84bce1be-8a86-4757-821c-0fd54b2f5480": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "a938302a-5553-43bb-a194-b77e205de445"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip6",
+            "options": null,
+            "priority": 1002
+        },
+        "89c3c5f1-ab34-4e9f-9bd6-ea52b1d73b99": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "5d5a332a-7465-4e0c-90ab-6f1bc192dc81"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip4",
+            "options": null,
+            "priority": 1002
+        },
+        "91ed1a4f-efbd-454d-bdbd-3669da861e6e": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "01a201a8-7ff2-422b-a070-fcc8be3b1095"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip4",
+            "options": null,
+            "priority": 1002
+        },
+        "9a72df06-bc55-4ea1-ad9e-8de5fd3291ee": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "4551881f-595f-4d1c-9be2-ad659dca682e"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip6 \u0026\u0026 ip6.src == $pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4_ip6",
+            "options": null,
+            "priority": 1002
+        },
+        "be60c6a4-c178-47ba-ac65-f2d9c65cc896": {
+            "action": "drop",
+            "direction": "to-lport",
+            "external_ids": null,
+            "label": null,
+            "log": null,
+            "match": "outport == @neutron_pg_drop \u0026\u0026 ip",
+            "options": null,
+            "priority": 1001
+        },
+        "d70a4f78-fbe5-42eb-bbc0-7dfc989ad177": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "a2e51bff-cef4-41c1-9464-0c6b56b2ff23"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_6558094b_5c0d_4258_93ab_6efc734c80bc_ip4",
+            "options": null,
+            "priority": 1002
+        },
+        "e5549772-4a59-451d-9aae-1044cc0fd79c": {
+            "action": "allow-related",
+            "direction": "from-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "de55c5f1-f1d4-4c61-a51e-96b46e20a7ed"
+            },
+            "label": null,
+            "log": null,
+            "match": "inport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip6",
+            "options": null,
+            "priority": 1002
+        },
+        "ed08f158-de32-49d7-853e-541546aa1792": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "ce0e3db0-8f7f-4c49-bcb9-3b22ff83a115"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_f7baaa68_b46e_4977_a361_66b2e21bf35b \u0026\u0026 ip4 \u0026\u0026 ip4.src == 0.0.0.0/0 \u0026\u0026 tcp \u0026\u0026 tcp.dst \u003e= 1 \u0026\u0026 tcp.dst \u003c= 65535",
+            "options": null,
+            "priority": 1002
+        },
+        "f3fe1066-1216-4358-ba91-99dc776a4eed": {
+            "action": "allow-related",
+            "direction": "to-lport",
+            "external_ids": {
+                "neutron:security_group_rule_id": "dea8dc3f-aef2-49e3-95b0-a077f843d0dd"
+            },
+            "label": null,
+            "log": null,
+            "match": "outport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 \u0026\u0026 ip4 \u0026\u0026 ip4.src == $pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4_ip4",
+            "options": null,
+            "priority": 1002
+        }
+    },
+    "Address_Set": null,
+    "BFD": null,
+    "Connection": {
+        "30bfbfe8-d84f-4524-b311-12190f7028a7": {
+            "external_ids": null,
+            "inactivity_probe": 60000,
+            "is_connected": null,
+            "other_config": null,
+            "status": null,
+            "target": "ptcp:6641:172.17.0.181"
+        }
+    },
+    "Copp": null,
+    "DHCP_Options": {
+        "1d646b6e-fcce-4b0a-8895-5e173e6648f9": {
+            "cidr": "192.168.10.0/24",
+            "external_ids": {
+                "neutron:revision_number": "0",
+                "subnet_id": "046cf02c-1271-4a2b-9b44-8e60028b4c37"
+            },
+            "options": {
+                "classless_static_route": "{169.254.169.254/32,192.168.10.2, 0.0.0.0/0,192.168.10.1}",
+                "dns_server": "{10.11.5.19, 10.10.160.2, 10.5.30.160}",
+                "lease_time": "43200",
+                "mtu": "8942",
+                "router": "192.168.10.1",
+                "server_id": "192.168.10.1",
+                "server_mac": "fa:16:3e:53:b0:2f"
+            }
+        },
+        "3aacef64-db3c-4f79-930d-6282a3e6b95a": {
+            "cidr": "192.168.33.0/24",
+            "external_ids": {
+                "neutron:revision_number": "1",
+                "subnet_id": "8f90d480-2241-4ab4-a042-3186ec65ecb7"
+            },
+            "options": {
+                "classless_static_route": "{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}",
+                "dns_server": "{8.8.8.8}",
+                "lease_time": "43200",
+                "mtu": "8942",
+                "router": "192.168.33.1",
+                "server_id": "192.168.33.1",
+                "server_mac": "fa:16:3e:1f:5d:84"
+            }
+        }
+    },
+    "DNS": null,
+    "Forwarding_Group": null,
+    "Gateway_Chassis": {
+        "7417d7c9-d686-49fe-8557-ab4afc38ae40": {
+            "chassis_name": "103ca35b-b7ab-4349-a57d-cf9da2ec0e79",
+            "external_ids": null,
+            "name": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9_103ca35b-b7ab-4349-a57d-cf9da2ec0e79",
+            "options": null,
+            "priority": 1
+        }
+    },
+    "HA_Chassis": {
+        "69792b1e-1e5f-4a59-b320-e5095dd5ab8f": {
+            "chassis_name": "103ca35b-b7ab-4349-a57d-cf9da2ec0e79",
+            "external_ids": null,
+            "priority": 32766
+        }
+    },
+    "HA_Chassis_Group": {
+        "cd0b0be7-1005-428b-8725-f8b57686d66c": {
+            "external_ids": null,
+            "ha_chassis": [
+                "69792b1e-1e5f-4a59-b320-e5095dd5ab8f"
+            ],
+            "name": "default_ha_chassis_group"
+        }
+    },
+    "Load_Balancer": null,
+    "Load_Balancer_Group": null,
+    "Load_Balancer_Health_Check": null,
+    "Logical_Router": {
+        "2179ef76-04d7-4a58-a289-f3082a9ec462": {
+            "enabled": true,
+            "external_ids": {
+                "neutron:availability_zone_hints": "",
+                "neutron:gw_port_id": "2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
+                "neutron:revision_number": "5",
+                "neutron:router_name": "public"
+            },
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-72adf022-c39d-4c21-8120-5135f066aa01",
+            "nat": [
+                "a4d32c00-7c08-40eb-9e5d-1fc9c1a831a0",
+                "cd72166f-f94d-4765-94e2-46d09934ad3e"
+            ],
+            "options": {
+                "always_learn_from_arp_request": "false",
+                "dynamic_neigh_routers": "true"
+            },
+            "policies": null,
+            "ports": [
+                "04d93328-ffb1-43f6-adfb-71ecbef7ba6c",
+                "8cea7d7c-b684-459e-a357-21f78ce43b59"
+            ],
+            "static_routes": [
+                "114d0d10-322d-43b4-9cb4-c698ab169deb",
+                "c3a526ca-bd21-4bd6-ba11-bab5d5e72429"
+            ]
+        }
+    },
+    "Logical_Router_Policy": null,
+    "Logical_Router_Port": {
+        "04d93328-ffb1-43f6-adfb-71ecbef7ba6c": {
+            "external_ids": {
+                "neutron:network_name": "neutron-561990d3-f4d5-431d-ae92-a85b83f4f570",
+                "neutron:revision_number": "4",
+                "neutron:router_name": "72adf022-c39d-4c21-8120-5135f066aa01",
+                "neutron:subnet_ids": "22bcd50a-d60c-43c3-bc19-1733f52b6a63"
+            },
+            "gateway_chassis": [
+                "7417d7c9-d686-49fe-8557-ab4afc38ae40"
+            ],
+            "ipv6_prefix": null,
+            "ipv6_ra_configs": null,
+            "mac": "fa:16:3e:de:b5:e3",
+            "name": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
+            "networks": [
+                "192.168.122.141/24"
+            ],
+            "options": null
+        },
+        "8cea7d7c-b684-459e-a357-21f78ce43b59": {
+            "external_ids": {
+                "neutron:network_name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:revision_number": "3",
+                "neutron:router_name": "72adf022-c39d-4c21-8120-5135f066aa01",
+                "neutron:subnet_ids": "046cf02c-1271-4a2b-9b44-8e60028b4c37"
+            },
+            "gateway_chassis": null,
+            "ipv6_prefix": null,
+            "ipv6_ra_configs": null,
+            "mac": "fa:16:3e:ff:cd:02",
+            "name": "lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4",
+            "networks": [
+                "192.168.10.1/24"
+            ],
+            "options": null
+        }
+    },
+    "Logical_Router_Static_Route": {
+        "114d0d10-322d-43b4-9cb4-c698ab169deb": {
+            "external_ids": null,
+            "ip_prefix": "10.20.30.0/24",
+            "nexthop": "192.168.122.40",
+            "options": null,
+            "route_table": null
+        },
+        "c3a526ca-bd21-4bd6-ba11-bab5d5e72429": {
+            "external_ids": {
+                "neutron:is_ext_gw": "true",
+                "neutron:subnet_id": "22bcd50a-d60c-43c3-bc19-1733f52b6a63"
+            },
+            "ip_prefix": "0.0.0.0/0",
+            "nexthop": "192.168.122.1",
+            "options": null,
+            "route_table": null
+        }
+    },
+    "Logical_Switch": {
+        "053f75dc-7f9a-44e7-aeb9-c9c5bb830eab": {
+            "acls": null,
+            "dns_records": null,
+            "external_ids": {
+                "neutron:mtu": "9000",
+                "neutron:network_name": "uplink1",
+                "neutron:revision_number": "1"
+            },
+            "forwarding_groups": null,
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f",
+            "other_config": {
+                "mcast_flood_unregistered": "false",
+                "mcast_snoop": "false",
+                "vlan-passthru": "false"
+            },
+            "ports": [
+                "10e7da59-f6c4-4c62-8c58-0a003f785825",
+                "413a21eb-ca96-47ef-b02c-951eb8c0924b",
+                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab"
+            ],
+            "qos_rules": null
+        },
+        "a8183d1d-b9d1-4fec-a1b2-1952840e958b": {
+            "acls": null,
+            "dns_records": null,
+            "external_ids": {
+                "neutron:mtu": "9000",
+                "neutron:network_name": "uplink2",
+                "neutron:revision_number": "1"
+            },
+            "forwarding_groups": null,
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-a6e858b0-c295-41d4-8ff4-858c18695d0c",
+            "other_config": {
+                "mcast_flood_unregistered": "false",
+                "mcast_snoop": "false",
+                "vlan-passthru": "false"
+            },
+            "ports": [
+                "1c8bf388-d779-48d7-88b6-bd8b7c670922",
+                "1fa48926-88a2-4941-8dc4-5210cea82e5f",
+                "c9aba488-d398-484c-80ef-fa1a58dea206",
+                "dba9f60e-af73-4dbf-a92c-dfdaedceb3d3"
+            ],
+            "qos_rules": null
+        },
+        "e68518ee-4b79-4955-b625-48cb9a2caf83": {
+            "acls": null,
+            "dns_records": null,
+            "external_ids": {
+                "neutron:mtu": "8942",
+                "neutron:network_name": "test-net",
+                "neutron:revision_number": "1"
+            },
+            "forwarding_groups": null,
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+            "other_config": {
+                "mcast_flood_unregistered": "false",
+                "mcast_snoop": "false",
+                "vlan-passthru": "false"
+            },
+            "ports": [
+                "42aa595b-353a-4842-be18-62a9072d3cf6",
+                "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8",
+                "8a377a02-67e5-440f-96b0-dfa2a9060f9e",
+                "cf3bfbb8-5a36-4f17-9475-fba73370a041"
+            ],
+            "qos_rules": null
+        },
+        "e7bf58e0-0c86-4aeb-bd8a-0a3cf3379929": {
+            "acls": null,
+            "dns_records": null,
+            "external_ids": {
+                "neutron:mtu": "8942",
+                "neutron:network_name": "test-net2",
+                "neutron:revision_number": "1"
+            },
+            "forwarding_groups": null,
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-496db99d-97cc-4d52-ab60-2d1386d3626c",
+            "other_config": {
+                "mcast_flood_unregistered": "false",
+                "mcast_snoop": "false",
+                "vlan-passthru": "false"
+            },
+            "ports": [
+                "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
+                "b7039c88-2df0-4420-a5eb-169fbb23e430",
+                "20df300c-28b8-4b4f-8598-ade4d092756b"
+            ],
+            "qos_rules": null
+        },
+        "f1d64dca-c0ce-48b3-87b2-f478ad2ab97e": {
+            "acls": null,
+            "dns_records": null,
+            "external_ids": {
+                "neutron:mtu": "9000",
+                "neutron:network_name": "public",
+                "neutron:revision_number": "1"
+            },
+            "forwarding_groups": null,
+            "load_balancer": null,
+            "load_balancer_group": null,
+            "name": "neutron-561990d3-f4d5-431d-ae92-a85b83f4f570",
+            "other_config": {
+                "mcast_flood_unregistered": "false",
+                "mcast_snoop": "false",
+                "vlan-passthru": "false"
+            },
+            "ports": [
+                "472843af-3f25-4f10-8faf-4ba0ede37d9a",
+                "d3d87479-9f2d-4345-97a2-0795a1f563fe",
+                "ede7e2c9-707a-4a0f-8dfe-2b29db4ce0da"
+            ],
+            "qos_rules": null
+        }
+    },
+    "Logical_Switch_Port": {
+        "10e7da59-f6c4-4c62-8c58-0a003f785825": {
+            "addresses": [
+                "fa:16:3e:27:83:73"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "",
+                "neutron:device_id": "ovnmeta-d8953248-ba41-4ef4-b7a3-471afed8fd8f",
+                "neutron:device_owner": "network:dhcp",
+                "neutron:network_name": "neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "1",
+                "neutron:security_group_ids": ""
+            },
+            "name": "008572d0-b96b-40ef-a3b0-6b20f3650390",
+            "options": {
+                "requested-chassis": ""
+            },
+            "port_security": null,
+            "type": "localport",
+            "up": false
+        },
+        "1c8bf388-d779-48d7-88b6-bd8b7c670922": {
+            "addresses": [
+                "fa:16:3e:d7:13:a4 192.0.11.116"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.0.11.116/24",
+                "neutron:device_id": "4082929f-7ab4-4b76-b06f-fd5dea91c609",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-a6e858b0-c295-41d4-8ff4-858c18695d0c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "6189098b-df23-4ca1-9062-2b756cad6acc",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:d7:13:a4 192.0.11.116"
+            ],
+            "type": null,
+            "up": true
+        },
+        "1fa48926-88a2-4941-8dc4-5210cea82e5f": {
+            "addresses": [
+                "unknown"
+            ],
+            "external_ids": null,
+            "name": "provnet-4dfd6d92-5415-4c83-890a-5aa4f28be252",
+            "options": {
+                "mcast_flood": "false",
+                "mcast_flood_reports": "true",
+                "network_name": "tenant"
+            },
+            "port_security": null,
+            "tag": 119,
+            "type": "localnet",
+            "up": false
+        },
+        "20df300c-28b8-4b4f-8598-ade4d092756b": {
+            "addresses": [
+                "fa:16:3e:9f:a8:7e 192.168.33.40"
+            ],
+            "dhcpv4_options": "3aacef64-db3c-4f79-930d-6282a3e6b95a",
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.33.40/24",
+                "neutron:device_id": "1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-496db99d-97cc-4d52-ab60-2d1386d3626c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "23d0ed6c-a799-451c-9c69-536ae9079081",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:9f:a8:7e 192.168.33.40"
+            ],
+            "type": null,
+            "up": true
+        },
+        "413a21eb-ca96-47ef-b02c-951eb8c0924b": {
+            "addresses": [
+                "unknown"
+            ],
+            "external_ids": null,
+            "name": "provnet-27023655-efe2-4757-859b-2e0121b685a3",
+            "options": {
+                "mcast_flood": "false",
+                "mcast_flood_reports": "true",
+                "network_name": "tenant"
+            },
+            "port_security": null,
+            "tag": 117,
+            "type": "localnet",
+            "up": false
+        },
+        "42aa595b-353a-4842-be18-62a9072d3cf6": {
+            "addresses": [
+                "router"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.10.1/24",
+                "neutron:device_id": "72adf022-c39d-4c21-8120-5135f066aa01",
+                "neutron:device_owner": "network:router_interface",
+                "neutron:network_name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "3",
+                "neutron:security_group_ids": ""
+            },
+            "name": "a5525be6-6773-4438-8e2a-cd7b41223ff4",
+            "options": {
+                "router-port": "lrp-a5525be6-6773-4438-8e2a-cd7b41223ff4"
+            },
+            "port_security": null,
+            "type": "router",
+            "up": true
+        },
+        "472843af-3f25-4f10-8faf-4ba0ede37d9a": {
+            "addresses": [
+                "unknown"
+            ],
+            "external_ids": null,
+            "name": "provnet-58b5c9c3-7645-4eb9-9c2f-ae5e21cf66f0",
+            "options": {
+                "mcast_flood": "false",
+                "mcast_flood_reports": "true",
+                "network_name": "external"
+            },
+            "port_security": null,
+            "type": "localnet",
+            "up": false
+        },
+        "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8": {
+            "addresses": [
+                "fa:16:3e:88:a9:43 192.168.10.203"
+            ],
+            "dhcpv4_options": "1d646b6e-fcce-4b0a-8895-5e173e6648f9",
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.10.203/24",
+                "neutron:device_id": "4082929f-7ab4-4b76-b06f-fd5dea91c609",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "1d7ec5b6-6c82-49cc-b940-e46c63c59148",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:88:a9:43 192.168.10.203"
+            ],
+            "type": null,
+            "up": true
+        },
+        "7cd16af0-80de-45e8-a1f6-f46ebf0a7507": {
+            "addresses": [
+                "fa:16:3e:94:cf:4a 192.168.33.102"
+            ],
+            "dhcpv4_options": "3aacef64-db3c-4f79-930d-6282a3e6b95a",
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.33.102/24",
+                "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-496db99d-97cc-4d52-ab60-2d1386d3626c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "9fbc5b58-cf4c-4e83-8801-a73b41bdf27b",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:94:cf:4a 192.168.33.102"
+            ],
+            "type": null,
+            "up": true
+        },
+        "8a377a02-67e5-440f-96b0-dfa2a9060f9e": {
+            "addresses": [
+                "fa:16:3e:d7:da:20 192.168.10.68"
+            ],
+            "dhcpv4_options": "1d646b6e-fcce-4b0a-8895-5e173e6648f9",
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.10.68/24",
+                "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:port_fip": "192.168.122.127",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "5",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc f7baaa68-b46e-4977-a361-66b2e21bf35b"
+            },
+            "name": "71d95a8d-9844-409b-b113-d40250684a69",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:d7:da:20 192.168.10.68"
+            ],
+            "type": null,
+            "up": true
+        },
+        "b7039c88-2df0-4420-a5eb-169fbb23e430": {
+            "addresses": [
+                "fa:16:3e:14:05:e3 192.168.33.100"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.33.100/24",
+                "neutron:device_id": "ovnmeta-496db99d-97cc-4d52-ab60-2d1386d3626c",
+                "neutron:device_owner": "network:dhcp",
+                "neutron:network_name": "neutron-496db99d-97cc-4d52-ab60-2d1386d3626c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "2",
+                "neutron:security_group_ids": ""
+            },
+            "name": "d54273a6-ecbd-4ab0-ba13-adbd2a2ae204",
+            "options": {
+                "requested-chassis": ""
+            },
+            "port_security": null,
+            "type": "localport",
+            "up": false
+        },
+        "c9aba488-d398-484c-80ef-fa1a58dea206": {
+            "addresses": [
+                "fa:16:3e:a9:84:91 192.0.11.219"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.0.11.219/24",
+                "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-a6e858b0-c295-41d4-8ff4-858c18695d0c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "6cbd2589-3c49-4f6a-a139-8cd6fa93522e",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:a9:84:91 192.0.11.219"
+            ],
+            "type": null,
+            "up": true
+        },
+        "cf3bfbb8-5a36-4f17-9475-fba73370a041": {
+            "addresses": [
+                "fa:16:3e:1c:fa:a5 192.168.10.2"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.10.2/24",
+                "neutron:device_id": "ovnmeta-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:device_owner": "network:dhcp",
+                "neutron:network_name": "neutron-82e03259-6310-4b9d-9575-7f07d613ce09",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "2",
+                "neutron:security_group_ids": ""
+            },
+            "name": "d0327ab0-796b-4e17-9f4d-9aaa6b42107d",
+            "options": {
+                "requested-chassis": ""
+            },
+            "port_security": null,
+            "type": "localport",
+            "up": false
+        },
+        "d3d87479-9f2d-4345-97a2-0795a1f563fe": {
+            "addresses": [
+                "fa:16:3e:e6:32:42"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "",
+                "neutron:device_id": "ovnmeta-561990d3-f4d5-431d-ae92-a85b83f4f570",
+                "neutron:device_owner": "network:dhcp",
+                "neutron:network_name": "neutron-561990d3-f4d5-431d-ae92-a85b83f4f570",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "1",
+                "neutron:security_group_ids": ""
+            },
+            "name": "f6e94716-7c85-403e-98ad-f42c19e7f6e5",
+            "options": {
+                "requested-chassis": ""
+            },
+            "port_security": null,
+            "type": "localport",
+            "up": false
+        },
+        "dba9f60e-af73-4dbf-a92c-dfdaedceb3d3": {
+            "addresses": [
+                "fa:16:3e:57:37:78"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "",
+                "neutron:device_id": "ovnmeta-a6e858b0-c295-41d4-8ff4-858c18695d0c",
+                "neutron:device_owner": "network:dhcp",
+                "neutron:network_name": "neutron-a6e858b0-c295-41d4-8ff4-858c18695d0c",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "1",
+                "neutron:security_group_ids": ""
+            },
+            "name": "bd253cba-647a-4264-97c2-b16c6196e414",
+            "options": {
+                "requested-chassis": ""
+            },
+            "port_security": null,
+            "type": "localport",
+            "up": false
+        },
+        "ede7e2c9-707a-4a0f-8dfe-2b29db4ce0da": {
+            "addresses": [
+                "router"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.168.122.141/24",
+                "neutron:device_id": "72adf022-c39d-4c21-8120-5135f066aa01",
+                "neutron:device_owner": "network:router_gateway",
+                "neutron:network_name": "neutron-561990d3-f4d5-431d-ae92-a85b83f4f570",
+                "neutron:port_name": "",
+                "neutron:project_id": "",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": ""
+            },
+            "name": "2442a8af-8399-4cfb-86fc-5b379b8cf6b9",
+            "options": {
+                "nat-addresses": "router",
+                "router-port": "lrp-2442a8af-8399-4cfb-86fc-5b379b8cf6b9"
+            },
+            "port_security": null,
+            "type": "router",
+            "up": true
+        },
+        "fa4afd37-9353-4dc1-9b91-8a7caeba17ab": {
+            "addresses": [
+                "fa:16:3e:a9:2d:c1 192.0.10.141"
+            ],
+            "enabled": true,
+            "external_ids": {
+                "neutron:cidrs": "192.0.10.141/24",
+                "neutron:device_id": "17df02cc-5577-4f07-a150-49e6499381c8",
+                "neutron:device_owner": "compute:nova",
+                "neutron:network_name": "neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f",
+                "neutron:port_name": "",
+                "neutron:project_id": "ff0b6fda266d4d12a0df787aa41f1bb2",
+                "neutron:revision_number": "4",
+                "neutron:security_group_ids": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "8b332d14-b00a-4e75-af70-eac6e56afec4",
+            "options": {
+                "mcast_flood_reports": "true",
+                "requested-chassis": "sos-novacompute-0.localdomain"
+            },
+            "port_security": [
+                "fa:16:3e:a9:2d:c1 192.0.10.141"
+            ],
+            "type": null,
+            "up": true
+        }
+    },
+    "Meter": null,
+    "Meter_Band": null,
+    "NAT": {
+        "a4d32c00-7c08-40eb-9e5d-1fc9c1a831a0": {
+            "external_ids": null,
+            "external_ip": "192.168.122.141",
+            "external_port_range": null,
+            "logical_ip": "192.168.10.0/24",
+            "options": null,
+            "type": "snat"
+        },
+        "cd72166f-f94d-4765-94e2-46d09934ad3e": {
+            "external_ids": {
+                "neutron:fip_external_mac": "fa:16:3e:3a:fb:9a",
+                "neutron:fip_id": "28899252-4124-41a2-889e-ae02b7227a2a",
+                "neutron:fip_network_id": "561990d3-f4d5-431d-ae92-a85b83f4f570",
+                "neutron:fip_port_id": "71d95a8d-9844-409b-b113-d40250684a69",
+                "neutron:revision_number": "2",
+                "neutron:router_name": "neutron-72adf022-c39d-4c21-8120-5135f066aa01"
+            },
+            "external_ip": "192.168.122.127",
+            "external_port_range": null,
+            "logical_ip": "192.168.10.68",
+            "logical_port": "71d95a8d-9844-409b-b113-d40250684a69",
+            "options": null,
+            "type": "dnat_and_snat"
+        }
+    },
+    "NB_Global": {
+        "6c212db4-1f32-4e39-afe2-aeb49d9568e2": {
+            "connections": [
+                "30bfbfe8-d84f-4524-b311-12190f7028a7"
+            ],
+            "external_ids": {
+                "neutron:liveness_check_at": "2022-07-05 14:03:08.573195+00:00"
+            },
+            "hv_cfg": 26,
+            "hv_cfg_timestamp": 1657029788586,
+            "ipsec": null,
+            "name": null,
+            "nb_cfg": 26,
+            "nb_cfg_timestamp": 1657029788579,
+            "options": {
+                "mac_prefix": "0e:9e:16",
+                "max_tunid": "16711680",
+                "northd_internal_version": "21.12.2-20.21.0-58.3",
+                "svc_monitor_mac": "4a:c2:7d:93:f1:4d"
+            },
+            "sb_cfg": 26,
+            "sb_cfg_timestamp": 1657029788585
+        }
+    },
+    "Port_Group": {
+        "45b32f62-5c9e-4e93-b9d4-605e62398ab5": {
+            "acls": [
+                "91ed1a4f-efbd-454d-bdbd-3669da861e6e",
+                "e5549772-4a59-451d-9aae-1044cc0fd79c",
+                "ed08f158-de32-49d7-853e-541546aa1792"
+            ],
+            "external_ids": {
+                "neutron:security_group_id": "f7baaa68-b46e-4977-a361-66b2e21bf35b"
+            },
+            "name": "pg_f7baaa68_b46e_4977_a361_66b2e21bf35b",
+            "ports": [
+                "8a377a02-67e5-440f-96b0-dfa2a9060f9e"
+            ]
+        },
+        "8b2d9596-9c03-4db7-8481-895287f08dd8": {
+            "acls": [
+                "80e4884c-01f5-4c6f-be6c-a9ad9941ebd1",
+                "89c3c5f1-ab34-4e9f-9bd6-ea52b1d73b99",
+                "9a72df06-bc55-4ea1-ad9e-8de5fd3291ee",
+                "f3fe1066-1216-4358-ba91-99dc776a4eed"
+            ],
+            "external_ids": {
+                "neutron:security_group_id": "706cec15-e52f-4a0a-8139-2ff14b5fd1a4"
+            },
+            "name": "pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4",
+            "ports": null
+        },
+        "c8861f28-83a5-4fbc-a641-8100b14d052f": {
+            "acls": [
+                "11a5f3a5-2c99-48af-a6d6-7c8694d46910",
+                "be60c6a4-c178-47ba-ac65-f2d9c65cc896"
+            ],
+            "external_ids": null,
+            "name": "neutron_pg_drop",
+            "ports": [
+                "1c8bf388-d779-48d7-88b6-bd8b7c670922",
+                "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8",
+                "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
+                "8a377a02-67e5-440f-96b0-dfa2a9060f9e",
+                "c9aba488-d398-484c-80ef-fa1a58dea206",
+                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab",
+                "20df300c-28b8-4b4f-8598-ade4d092756b"
+            ]
+        },
+        "dc798be6-74d2-4eed-9a90-d623781824a9": {
+            "acls": [
+                "0906cc16-ffe4-4c41-a980-c6166a2da1c2",
+                "1eb182bd-7055-4f22-88ee-310f3255f0c1",
+                "50fd9110-bb46-47f7-a6dc-cb1c3efa30d8",
+                "7bcb2def-d2b2-4b27-95ed-c9fc2bc87d32",
+                "84bce1be-8a86-4757-821c-0fd54b2f5480",
+                "d70a4f78-fbe5-42eb-bbc0-7dfc989ad177"
+            ],
+            "external_ids": {
+                "neutron:security_group_id": "6558094b-5c0d-4258-93ab-6efc734c80bc"
+            },
+            "name": "pg_6558094b_5c0d_4258_93ab_6efc734c80bc",
+            "ports": [
+                "1c8bf388-d779-48d7-88b6-bd8b7c670922",
+                "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8",
+                "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
+                "8a377a02-67e5-440f-96b0-dfa2a9060f9e",
+                "c9aba488-d398-484c-80ef-fa1a58dea206",
+                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab",
+                "20df300c-28b8-4b4f-8598-ade4d092756b"
+            ]
+        }
+    },
+    "QoS": null,
+    "SSL": null
+}

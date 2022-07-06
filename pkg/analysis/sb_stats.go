@@ -2,14 +2,13 @@ package analysis
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
 )
 
 
-func GenSBStats(db *dbtypes.OVNSouthbound) error {
+func GenSBStats(db *dbtypes.OVNSouthbound, outDir string, filename string) error {
 	fName := "templates/ovnsbstats.tmpl"
 
 	buf, err := utils.ProcessTemplate(fName,"chart",utils.GetFuncMap(),db)
@@ -17,7 +16,7 @@ func GenSBStats(db *dbtypes.OVNSouthbound) error {
 		return fmt.Errorf("error processing template: %s, %v",fName,err)
 	}
 
-	os.Stdout.Write(buf.Bytes())
+	utils.WriteByteData(buf, outDir, filename)
 
 	return nil
 }

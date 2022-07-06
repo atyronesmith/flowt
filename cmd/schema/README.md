@@ -2,6 +2,15 @@
 
 Generate go source files that map OVN Northbound or Southbound objects into go structs.  The data structures are used in conjungtion with json unmarshalling tools to load the contents of either a southbound or nortbound OVN database.  The generated files can be placed in the pkg/dbtypes directory of this project.  
 
+The **schema** program only generates the source files related to the schema.  The following files need to be included in the same package.
+
+- ovs_map.go
+- ovs_set.go
+- unix_time.go
+- uuid.go
+
+These files are located in this project *at pkg/dbtypes/*.
+
 ## Example
 
 `go run cmd/schema/main.go -o example/ovn_southbound.go example/ovnsb_db.db`

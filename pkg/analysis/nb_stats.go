@@ -2,7 +2,6 @@ package analysis
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
@@ -26,36 +25,38 @@ func nbStats(nb *dbtypes.OVNNorthbound) NBStats {
 	stats.NAT = make(map[string]int)
 
 	for _, v := range nb.LogicalSwitchPort {
-		switch v.Type {
-		case "":
+		if v.Type == nil {
 			stats.NumVMPorts++
-		case "router":
-			stats.NumRouterPorts++
-		case "localport":
-			stats.NumLocalPorts++
-		case "localnet":
-			stats.NumLocalNetPorts++
-		case "l2gateway":
-			stats.NumL2GatewayPorts++
-		case "vtep":
-			stats.NumVTEPPorts++
-		case "external":
-			stats.NumExternalPorts++
-		case "virtual":
-			stats.NumVirtualPorts++
-		case "remote":
-			stats.NumRemotePorts++
+		} else {
+			switch *v.Type {
+			case "router":
+				stats.NumRouterPorts++
+			case "localport":
+				stats.NumLocalPorts++
+			case "localnet":
+				stats.NumLocalNetPorts++
+			case "l2gateway":
+				stats.NumL2GatewayPorts++
+			case "vtep":
+				stats.NumVTEPPorts++
+			case "external":
+				stats.NumExternalPorts++
+			case "virtual":
+				stats.NumVirtualPorts++
+			case "remote":
+				stats.NumRemotePorts++
+			}
 		}
 	}
 
 	for _, v := range nb.NAT {
-		stats.NAT[v.Type]++
+		stats.NAT[*v.Type]++
 	}
 
 	return stats
 }
 
-func GenNBStats(db *dbtypes.OVNNorthbound) error {
+func GenNBStats(db *dbtypes.OVNNorthbound, outDir string, filename string) error {
 	fName := "templates/ovnnbstats.tmpl"
 
 	type tStruct struct {
@@ -74,7 +75,7 @@ func GenNBStats(db *dbtypes.OVNNorthbound) error {
 		return fmt.Errorf("error processing template: %s, %v", fName, err)
 	}
 
-	os.Stdout.Write(buf.Bytes())
+	utils.WriteByteData(buf, outDir, filename)
 
 	return nil
 }

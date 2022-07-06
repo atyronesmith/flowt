@@ -59,6 +59,12 @@ func GetFuncMap() template.FuncMap {
 			}
 			return str2
 		},
+		"GenExternalIds": func(key string, value string) string {
+			if len(value) == 0 {
+				return fmt.Sprintf("external_ids:\\\"%s\\\"=\\\"\\\"",key)				
+			}
+			return fmt.Sprintf("external_ids:\\\"%s\\\"=\"%s\"",key,value)
+		},
 		"BuildAddresses": func(addresses []string) string {
 			var addrs []string
 			for _, v := range addresses {

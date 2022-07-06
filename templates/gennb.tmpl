@@ -12,7 +12,10 @@ CIDR_{{DashToUnder $dhcpKey}}=$(ovn-nbctl create dhcp_options "cidr"="{{$dhcp.Ci
 ovn-nbctl ls-add {{$switchName}}
 LS_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch name={{$switchName}} | awk '{ print $3 }')
 {{- range $externalKey, $externalValue := $switch.ExternalIds }}
-ovn-nbctl set logical_switch "$LS_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+ovn-nbctl set logical_switch "$LS_UUID" {{ GenExternalIds $externalKey $externalValue }}
+{{- end}}
+{{- range $otherKey, $otherValue := $switch.OtherConfig }}
+ovn-nbctl set logical_switch "$LS_UUID" other_config:{{ $otherKey }}="{{ $otherValue }}"
 {{- end}}
 {{- range $portRef := .Ports}}{{$port := LookupLogicalSwitchPort $.NBDb.LogicalSwitchPort $portRef}}
 {{- if $port}}
@@ -29,7 +32,7 @@ ovn-nbctl lsp-set-type {{$port.Name}} {{$port.Type}}
 {{- end}}
 LSP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch_Port name={{$port.Name}} | awk '{ print $3 }')
 {{- range $externalKey, $externalValue := $port.ExternalIds }}
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+ovn-nbctl set logical_switch_port "$LSP_UUID" {{ GenExternalIds $externalKey $externalValue }}
 {{- end}}
 {{- range $optionKey, $optionValue := $port.Options}}
 ovn-nbctl lsp-set-options {{$port.Name}} {{$optionKey}}={{$optionValue}}
@@ -52,7 +55,7 @@ ovn-nbctl --type=switch acl-add {{if $acl.Log}}--log {{end}}{{if $acl.Severity}}
 ovn-nbctl lr-add {{ $routerName }}
 LR_UUID=$(ovn-nbctl --columns=_uuid find Logical_Router name={{$routerName}} | awk '{ print $3 }')
 {{- range $externalKey, $externalValue := $router.ExternalIds }}
-ovn-nbctl set Logical_Router "$LR_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+ovn-nbctl set Logical_Router "$LR_UUID" {{ GenExternalIds $externalKey $externalValue }}
 {{- end}}
 {{- range $optionKey, $optionValue := $router.Options}}
 ovn-nbctl set Logical_Router {{ $routerName }} options:{{$optionKey}}={{$optionValue}}
@@ -63,7 +66,7 @@ ovn-nbctl set Logical_Router {{ $routerName }} options:{{$optionKey}}={{$optionV
 ovn-nbctl lrp-add {{$routerName}} {{$port.Name}} {{$port.Mac}} {{range $port.Networks}}{{.}}{{end}} {{if $port.Peer }}peer={{$port.Peer}}{{end}}
 LRP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Router_Port name={{$port.Name}} | awk '{ print $3 }')
 {{- range $externalKey, $externalValue := $port.ExternalIds }}
-ovn-nbctl set Logical_Router_Port "$LRP_UUID" external_ids:\"{{ $externalKey }}\"=\"{{ $externalValue }}\"
+ovn-nbctl set Logical_Router_Port "$LRP_UUID" {{ GenExternalIds $externalKey $externalValue }}
 {{- end}}
 {{- if $port.Enabled -}}
 ovn-nbctl lrp-set-enabled {{$port.Name}} {{$port.Enabled}}
@@ -95,7 +98,11 @@ ovn-nbctl lr-nat-add{{if $isStateless}} --stateless{{end}} {{$routerName}} {{$na
 {{- range $pgKey, $pg := .NBDb.PortGroup}}
 {{- $pgName := MapSetString $pg.Name $pgKey}}
 ovn-nbctl pg-add {{$pgName}} 
+{{- if $pg.Ports }}
 ovn-nbctl pg-set-ports {{$pgName}} {{range $pg.Ports}}{{- $uuid := UUIDToString .}}{{- $p := index $.NBDb.LogicalSwitchPort $uuid}}{{ $p.Name }} {{end}}
+{{- else }}
+# No ports present
+{{- end }}
 {{- range $pg.Acls}} 
 {{- $uuid := UUIDToString .}}
 {{- $acl := index $.NBDb.ACL $uuid}}
