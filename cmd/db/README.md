@@ -4,10 +4,9 @@
 
 Generate information about an OVN database.
 
-- Database schema in visual format
+- Database schema in visual format (dot->svg)
 - Pretty JSON data file
 - Statistics about the database
-- Analyze OVN Datapaths
 
 ## Usage
 

@@ -3,10 +3,15 @@ package utils
 import (
 	"bytes"
 	"fmt"
+	"html"
+	"math"
 	"os"
 	"reflect"
+	"regexp"
 	"strings"
 	"text/template"
+	"unicode"
+	"unicode/utf8"
 
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 )
@@ -34,6 +39,9 @@ func GetFuncMap() template.FuncMap {
 	return template.FuncMap{
 		"postfix": func(name string, t string) string {
 			return fmt.Sprintf("%s%s", name, t)
+		},
+		"RefString": func(s *string) string {
+			return *s
 		},
 		"add": func(a int, b int) int {
 			return a + b
@@ -94,7 +102,72 @@ func GetFuncMap() template.FuncMap {
 		"AccessStringSlice": func(s dbtypes.OVSSet[dbtypes.UUID]) string {
 			return strings.ReplaceAll(string(s[0]), "-", "_")
 		},
+		"OVSSetToString": func(s dbtypes.OVSSet[string],sep string) string {
+			var sb strings.Builder
+			for i, v := range s {
+				if i > 0 {
+					sb.WriteString(sep)
+				}
+				sb.WriteString(v)
+			}
+			return sb.String()
+		},
+		"ShortenUUID": func(match string) string {
+			return abbreviateUUID(match,"")
+		},
+		"EncodeHTML": func(match string,width int) string {
+			return wordWrap(html.EscapeString(abbreviateUUID(match,"...")),width)
+
+			//return  strings.ReplaceAll(match,"&amp;&amp;","&amp;&amp;<BR/>")
+		},
+		"DerefIntPtr": func(intPtr *int) int {
+			if intPtr == nil {
+				return math.MaxInt
+			} else {
+				return *intPtr
+			}
+		},
 	}
+}
+
+func abbreviateUUID(uuid string,tail string) string {
+   var re = regexp.MustCompile(`(?m)(([a-z]+)*-*[0-9a-fA-F]{8})\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}`)	    
+    
+    return re.ReplaceAllString(uuid, "$1"+tail)
+}
+
+func wordWrap(text string, lineWidth int) string {
+	lineBreak := []byte("<br/>")
+
+	wrap := make([]byte, 0, len(text)+2*len(text)/lineWidth)
+	eoLine := lineWidth
+	inWord := false
+	for i, j := 0, 0; ; {
+		r, size := utf8.DecodeRuneInString(text[i:])
+		if size == 0 && r == utf8.RuneError {
+			r = ' '
+		}
+		if unicode.IsSpace(r) {
+			if inWord {
+				if i >= eoLine {
+				wrap = append(wrap,lineBreak...)
+					eoLine = len(wrap) + lineWidth
+				} else if len(wrap) > 0 {
+					wrap = append(wrap, ' ')
+				}
+				wrap = append(wrap, text[j:i]...)
+			}
+			inWord = false
+		} else if !inWord {
+			inWord = true
+			j = i
+		}
+		if size == 0 && r == ' ' {
+			break
+		}
+		i += size
+	}
+	return string(wrap)
 }
 
 func WriteByteData(buf *bytes.Buffer, dir string, fileName string) error {

@@ -1,14 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
-	"regexp"
-	"sort"
 	"strings"
 	"text/template"
 
@@ -29,7 +28,6 @@ func main() {
 	var outDir string
 	var jsonData bool
 	var dotSchema bool
-	var dataPath string
 
 	isVerbose := flag.Bool("v", false, "Print extra runtime information.")
 	isHelp := flag.Bool("help", false, "Print usage information.")
@@ -41,8 +39,6 @@ func main() {
 	flag.BoolVar(&jsonData, "jd", false, "Generage json file with DB data.")
 	flag.BoolVar(&dotSchema, "dotSchema", false, "Generage dot (GraphViz) file with DB schema.")
 	flag.BoolVar(&dotSchema, "ds", false, "Generage dot (GraphViz) file with DB schema.")
-	flag.StringVar(&dataPath, "datapath", "", "Generate datapath info for --datapath <neutron_name>|*")
-	flag.StringVar(&dataPath, "dp", "", "Generate datapath info for --dp <neutron_name>|*")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
@@ -118,61 +114,20 @@ func main() {
 
 	if jsonData {
 		genJsonData(db, outDir, outBaseName)
-	}
-
-	if len(dataPath) > 0 {
-		genDatapath(dbSchema, db, dataPath)
-	}
-}
-
-type ByTableId []dbtypes.LogicalFlowSB
-
-func (a ByTableId) Len() int { return len(a) }
-func (a ByTableId) Less(i, j int) bool {
-	if a[i].TableId == a[j].TableId {
-		return *a[i].Priority > *a[j].Priority
-	}
-	return *a[i].TableId < *a[j].TableId
-}
-func (a ByTableId) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
-
-func genDatapath(dbSchema *dbparse.OVSdbSchema, db dbparse.OVNDbType, datapath string) error {
-
-	if dbSchema.Type != dbparse.SB {
-		return fmt.Errorf("input database must be of type SouthBound to generate datapath information")
-	}
-
-	sb := db.(*dbtypes.OVNSouthbound)
-
-	dpRE := regexp.MustCompile(datapath)
-
-	for dataPathKey, dataPathValue := range sb.DatapathBinding {
-		if dpRE.MatchString(dataPathValue.ExternalIds["name2"]) {
-			var lf []dbtypes.LogicalFlowSB
-
-			for _, flowValue := range sb.LogicalFlow {
-				if flowValue.LogicalDatapath.String() == dataPathKey {
-					lf = append(lf, flowValue)
-				}
-			}
-			sort.Sort(ByTableId(lf))
-			for _, a := range lf {
-				if *a.Pipeline == "ingress" {
-					buf, _ := json.MarshalIndent(a, "", "    ")
-					fmt.Printf("%s\n", buf)
-				}
-			}
-
-		}
-	}
-
-	return nil
+	}	
 }
 
 func genJsonData(db dbparse.OVNDbType, outDir string, outBaseName string) {
-	pretty, _ := json.MarshalIndent(db, "", "    ")
 
-	utils.WriteByteData(bytes.NewBuffer(pretty), outDir, outBaseName+".json")
+	var b bytes.Buffer
+
+	dbBufWriter := bufio.NewWriter(&b)
+	encoder := json.NewEncoder(dbBufWriter)
+	encoder.SetEscapeHTML(false)
+	encoder.SetIndent("", "    ")
+	encoder.Encode(db)
+
+	utils.WriteByteData(&b, outDir, outBaseName+".json")
 }
 
 func genDotSchema(tPlate tStruct, dbSchema *dbparse.OVSdbSchema, outDir string, outBaseName string) {

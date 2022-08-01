@@ -20,13 +20,16 @@ func main() {
 	var optVerbose, optHelp bool
 	var host string
 	var outDir string
+	var sshKey string
 
 	flag.CommandLine.BoolVar(&optVerbose, "verbose", false, "Print extra runtime information.")
 	flag.BoolVar(&optHelp, "help", false, "Print usage information.")
 	flag.BoolVar(&getNB, "nb", true, "Gather the NB (northbound) database")
-	flag.BoolVar(&getSB, "sb", true, "Gather the sB (southbound) database")
+	flag.BoolVar(&getSB, "sb", true, "Gather the SB (southbound) database")
 	flag.StringVar(&outDir, "outDir", ".", "Directory to place the results (Defaults to local directory)")
 	flag.StringVar(&outDir, "o", ".", "Directory to place the results (Defaults to local directory)")
+	flag.StringVar(&sshKey, "sshKey", "", "Location of ssh private key to use (Defaults to ~/.ssh/id_rsa)")
+	flag.StringVar(&sshKey, "s", "", "Location of ssh private key to use (Defaults to ~/.ssh/id_rsa)")
 
 	var CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
@@ -63,13 +66,13 @@ func main() {
 	var err error
 
 	if command == "osp" {
-		ssh, err = remote.NewSsh("heat-admin")
+		ssh, err = remote.NewSsh("heat-admin",sshKey)
 		if err != nil {
 			fmt.Printf("Error creating ssh config, %v", err)
 			os.Exit(1)
 		}
 	} else if command == "scale" {
-		ssh, err = remote.NewSsh("root")
+		ssh, err = remote.NewSsh("root",sshKey)
 		if err != nil {
 			fmt.Printf("Error creating ssh config, %v", err)
 			os.Exit(1)

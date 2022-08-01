@@ -1,0 +1,67 @@
+digraph G {
+  fontname="Helvetica,Arial,sans-serif"
+  node [shape="none",fontname="Helvetica,Arial,sans-serif"]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+{{ range .Ports }}
+  "{{ .LogicalPort }}" [tooltip="{{ .LogicalPort }}",label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="20">
+    <TR><TD>{{ if (index .ExternalIds "neutron:device_owner") }} {{ index .ExternalIds "neutron:device_owner" }} {{ else }} Unknown {{ end }}</TD></TR>
+    <TR><TD>{{ OVSSetToString .Mac "</BR>" }}</TD></TR>
+    <TR><TD>{{ index .Options "requested-chassis" }} </TD></TR>
+    </TABLE>>]
+{{ end -}}
+
+{{- $clusterIndex := 0 }}
+{{ range $flows := .FlowTable -}}
+  {{- $firstFlow := index $flows 0 }}
+  {{- $tableId := $firstFlow.TableId }}
+  {{- $priority := $firstFlow.Priority }}
+  subgraph cluster_{{ $clusterIndex }} {
+  {{- $lastUUID := "" }}
+  {{- range $flow := $flows }}
+    "{{ index $flow.ExternalIds "_uuid" }}" [rank="min",tooltip="{{ index $flow.ExternalIds "_uuid" }}",label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="20">
+	  <TR><TD BALIGN="left" PORT="_{{ ShortenUUID (index $flow.ExternalIds "_uuid")}}">{{ EncodeHTML $flow.Match 40 }}</TD></TR>
+	  <TR><TD>{{ EncodeHTML $flow.Actions 40 }}</TD></TR>
+	  </TABLE>> ];
+      {{ if $lastUUID }} "{{ $lastUUID }}" -> "{{ index $flow.ExternalIds "_uuid" }}" {{ end }}
+	  {{ $lastUUID = index $flow.ExternalIds "_uuid" }}
+   {{- end }}
+{{/*
+    "table{{ $tableId }}_priority{{ $priority }}" [rank="LR",label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="20"><TR>
+  {{- range $flow := $flows }}
+      <TD TOOLTIP="Shit" {{ if eq ( RefString $flow.Pipeline ) "ingress" }}BGCOLOR="#0066CC1F"{{else}}BGCOLOR="#CC66004F"{{end}}>{{ EncodeHTML (index $flow.ExternalIds "_uuid") 40 }}</TD>
+  {{- end }}
+      </TR><TR>
+  {{- range $flow := $flows }}
+      <TD BALIGN="left" PORT="_{{ ShortenUUID (index $flow.ExternalIds "_uuid")}}">{{ EncodeHTML $flow.Match 40 }}</TD>
+  {{- end }}
+      </TR><TR>
+  {{- range $flow := $flows }}
+      <TD>{{ EncodeHTML $flow.Actions 40 }}</TD>
+  {{- end }}
+      </TR></TABLE>> ];
+*/}}
+    level{{ $clusterIndex }} [label="{{ $tableId }}/{{ $priority}}"]
+  }
+  {{- $clusterIndex = add $clusterIndex 1 }}
+{{- end }}	
+{{ range $index, $value := .FlowTable }}
+  level{{ $index}} -> level{{ add $index 1 }} [weight=100,style=invisible,arrowhead=none];
+{{- end }}
+{{ range $flows := .FlowTable -}}
+ {{- $firstFlow := index $flows 0 }}
+ {{- $tableId := $firstFlow.TableId }}
+ {{- $priority := $firstFlow.Priority }}
+ {{- range $flow := $flows }}
+    {{- $in_out_port := index $flow.Tags "in_out_port" }}
+	{{- $tid := DerefIntPtr $flow.TableId }}
+	{{- $dir := eq (RefString $flow.Pipeline ) "ingress" }}
+    {{- if $in_out_port }}
+  "{{ $in_out_port }}"{{ if eq $dir true }}:e{{else}}:w{{end}} -> "{{ index $flow.ExternalIds "_uuid" }}":"_{{ ShortenUUID (index $flow.ExternalIds "_uuid") }}" [dir={{ if eq $dir true }}forward{{else}}back{{end}} ]
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+}

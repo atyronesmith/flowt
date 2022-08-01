@@ -14,7 +14,7 @@ type Ssh struct {
 	config *ssh.ClientConfig
 }
 
-func NewSsh(user string) (*Ssh, error) {
+func NewSsh(user string,keyFile string) (*Ssh, error) {
 
 	dirname, err := os.UserHomeDir()
 	if err != nil {
@@ -25,7 +25,9 @@ func NewSsh(user string) (*Ssh, error) {
 	//
 	// If you have an encrypted private key, the crypto/x509 package
 	// can be used to decrypt it.
-	keyFile := dirname + "/.ssh/id_rsa"
+	if len(keyFile) == 0 {
+		keyFile = dirname + "/.ssh/id_rsa"
+	}
 	key, err := ioutil.ReadFile(keyFile)
 	if err != nil {
 		return nil, fmt.Errorf("readFileError: private key %v", err)
