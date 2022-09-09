@@ -2,7 +2,8 @@ package dbtypes
 
 import (
 	"bytes"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 type AclDirection int
@@ -37,7 +38,7 @@ func (s AclDirection) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmashals a quoted json string to the enum value
 func (s *AclDirection) UnmarshalJSON(b []byte) error {
 	var j string
-	err := json.Unmarshal(b, &j)
+	err := jsoniter.Unmarshal(b, &j)
 	if err != nil {
 		return err
 	}

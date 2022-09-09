@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"bytes"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -15,6 +14,7 @@ import (
 	"github.com/atyronesmith/flowt/pkg/dbparse"
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
+	jsoniter "github.com/json-iterator/go"
 )
 
 type tStruct struct {
@@ -122,7 +122,7 @@ func genJsonData(db dbparse.OVNDbType, outDir string, outBaseName string) {
 	var b bytes.Buffer
 
 	dbBufWriter := bufio.NewWriter(&b)
-	encoder := json.NewEncoder(dbBufWriter)
+	encoder := jsoniter.NewEncoder(dbBufWriter)
 	encoder.SetEscapeHTML(false)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(db)

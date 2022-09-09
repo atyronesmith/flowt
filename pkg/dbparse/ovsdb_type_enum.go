@@ -2,7 +2,8 @@ package dbparse
 
 import (
 	"bytes"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 // TaskState represents the state of task, moving through Created, Running then Finished or Errorred
@@ -65,7 +66,7 @@ func (s OVSDBType) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmashals a quoted json string to the enum value
 func (s *OVSDBType) UnmarshalJSON(b []byte) error {
 	var j string
-	err := json.Unmarshal(b, &j)
+	err := jsoniter.Unmarshal(b, &j)
 	if err != nil {
 		return err
 	}

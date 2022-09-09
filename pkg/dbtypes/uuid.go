@@ -1,8 +1,9 @@
 package dbtypes
 
 import (
-	"encoding/json"
 	"fmt"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 type UUID string
@@ -14,14 +15,14 @@ func (b UUID) String() string {
 func (b *UUID) UnmarshalJSON(data []byte) error {
 
 	var uuid []string
+	
+	jsoniter.Unmarshal(data,&uuid)
 
-	json.Unmarshal(data,&uuid)
-
-	if len(uuid) != 2 || uuid[0] != "uuid" {
-		return fmt.Errorf("wrong number of args to UUID marshal")
+	if len(uuid) != 2 {
+		return fmt.Errorf("invalid UUID JSON.  Unable to marshal: \"%s\"",string(data))
+	} else {
+		(*b) = UUID(uuid[1])
 	}
-
-	(*b) = UUID(uuid[1])
 
 	return nil
 }

@@ -1,7 +1,6 @@
 package graph
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -10,6 +9,7 @@ import (
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/components"
 	"github.com/go-echarts/go-echarts/v2/opts"
+	jsoniter "github.com/json-iterator/go"
 )
 
 var graphNodes = []opts.GraphNode{
@@ -87,7 +87,7 @@ func graphNpmDep(graphJson string) *charts.Graph {
 	}
 
 	var data Data
-	if err := json.Unmarshal(f, &data); err != nil {
+	if err := jsoniter.Unmarshal(f, &data); err != nil {
 		fmt.Println(err)
 	}
 

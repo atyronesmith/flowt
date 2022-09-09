@@ -1,11 +1,12 @@
 package dbtypes
 
 import (
-	"encoding/json"
 	"fmt"
 	"reflect"
 	"regexp"
 	"strings"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 var strRegex = regexp.MustCompile(`^\".*\"$`)
@@ -20,7 +21,7 @@ func (b *OVSSet[T]) UnmarshalJSON(data []byte) error {
 
 		(*b) = append((*b), o.(T))
 	} else {
-		if err := json.Unmarshal(data, &ovsMap); err != nil {
+		if err := jsoniter.Unmarshal(data, &ovsMap); err != nil {
 			return fmt.Errorf("error while marshaling for OVSSet: %v",err)
 		}
 		if reflect.ValueOf(ovsMap[1]).Kind() == reflect.String {

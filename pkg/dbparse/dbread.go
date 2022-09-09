@@ -3,13 +3,13 @@ package dbparse
 import (
 	"bufio"
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"os"
 	"regexp"
 
 	"github.com/InVisionApp/conjungo"
+	jsoniter "github.com/json-iterator/go"
 )
 
 var jsonObj = regexp.MustCompile(`^{(.*)}\s*$`)
@@ -50,7 +50,8 @@ func DBReadWithSchema(in io.Reader, maxTokenSize int, ovsSchema *OVSdbSchema) (O
 	scanner.Split(bufio.ScanLines)
 
 	// db file must be unformatted
-	jsonObj := regexp.MustCompile(`^{(.*)}\s*$`)
+	jsonObj := regexp.MustCompile(`^{`)
+    isSchema := regexp.MustCompile(`"cksum":`)
 
 	lineNo := 1
 
@@ -63,14 +64,16 @@ func DBReadWithSchema(in io.Reader, maxTokenSize int, ovsSchema *OVSdbSchema) (O
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if m := jsonObj.FindString(line); len(m) > 0 {
+		if jsonObj.MatchString(line) {
+			if isSchema.MatchString(line) {
+				continue
+			}
 			ddDelta, err := ovsSchema.NewDb()
 			if err != nil {
 				return nil, nil, err
 			}
-
-			if err := json.Unmarshal([]byte(m), &ddDelta); err != nil {
-				return nil, nil, fmt.Errorf("error while unmarshalling(%d): %v", lineNo, err)
+			if err := jsoniter.Unmarshal([]byte(line), &ddDelta); err != nil {
+				return nil, nil, fmt.Errorf("error while unmarshalling, lineno %d: %v\n\n%100s", lineNo, err,line)
 			}
 			if err := conjungo.Merge(dd, ddDelta, nil); err != nil {
 				fmt.Printf("Merge error: %v\n", err)

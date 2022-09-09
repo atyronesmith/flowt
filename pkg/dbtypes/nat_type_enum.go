@@ -2,7 +2,8 @@ package dbtypes
 
 import (
 	"bytes"
-	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 type NatType int
@@ -40,7 +41,7 @@ func (s NatType) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmashals a quoted json string to the enum value
 func (s *NatType) UnmarshalJSON(b []byte) error {
 	var j string
-	err := json.Unmarshal(b, &j)
+	err := jsoniter.Unmarshal(b, &j)
 	if err != nil {
 		return err
 	}

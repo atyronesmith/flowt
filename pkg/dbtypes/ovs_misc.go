@@ -1,7 +1,7 @@
 package dbtypes
 
 import (
-	"encoding/json"
+	jsoniter "github.com/json-iterator/go"
 )
 
 func (b *LogicalFlowSB) UnmarshalJSON(data []byte) error {
@@ -15,7 +15,7 @@ func (b *LogicalFlowSB) UnmarshalJSON(data []byte) error {
 		Priority: &priority,
 	}
 
-	json.Unmarshal(data,&tmp)
+	jsoniter.Unmarshal(data,&tmp)
 	
 	(*b) = LogicalFlowSB(tmp)
 	

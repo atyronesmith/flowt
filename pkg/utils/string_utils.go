@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"strings"
 	"unicode/utf8"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 func TruncateEnd(str string, length int, omission string) (string, int) {
@@ -37,7 +39,7 @@ func PrettyJSONString(str string) (string, error) {
 }
 
 func PrettyStruct(data interface{}) (string, error) {
-	val, err := json.MarshalIndent(data, "", "    ")
+	val, err := jsoniter.MarshalIndent(data, "", "    ")
 	if err != nil {
 		return "", err
 	}

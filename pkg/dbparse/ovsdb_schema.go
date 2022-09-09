@@ -3,7 +3,6 @@ package dbparse
 import (
 	"bufio"
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"math"
@@ -14,6 +13,7 @@ import (
 
 	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	"github.com/atyronesmith/flowt/pkg/utils"
+	jsoniter "github.com/json-iterator/go"
 )
 
 type TableCol struct {
@@ -90,7 +90,7 @@ func (schema *OVSdbSchema) ReadOvsDbSchema(in io.Reader, maxTokenSize int) error
 		line := scanner.Text()
 
 		if jsonObj.MatchString(line) {
-			if err := json.Unmarshal([]byte(line), schema); err != nil {
+			if err := jsoniter.Unmarshal([]byte(line), schema); err != nil {
 				return fmt.Errorf("unable to unmarshall json string: %s, %v", line, err)
 			}
 			if len(schema.Version) > 0 && len(schema.ChkSum) > 0 && len(schema.Type.String()) > 0 {
@@ -147,7 +147,11 @@ func mapKey(maxEntries int, key interface{}, t reflect.Kind, cType CType, column
 
 	switch aType {
 	case "string":
-		rType = "string"
+		if column.JsonName == "virtual_parent" {
+			rType = "StringSet"
+		} else {
+			rType = "string"
+		}
 	case "integer":
 		rType = "int"
 	case "real":
@@ -171,7 +175,16 @@ func mapKey(maxEntries int, key interface{}, t reflect.Kind, cType CType, column
 		column.Type = "* " + rType
 		return nil
 	case Map:
-		column.Type = fmt.Sprintf("OVSMap[%s]", rType)
+		switch rType {
+		case "uuid":
+			column.Type = "OVSMapUUID"
+		case "int":
+			column.Type = "OVSMapInt"
+		case "string":
+			column.Type = "OVSMapString"
+		default:
+			return fmt.Errorf("unknown type: %s/%s", aType, rType)
+		}
 		return nil
 	case Set:
 		column.Type = fmt.Sprintf("OVSSet[%s]", rType)
@@ -287,9 +300,9 @@ func (db *DbDef) ParseSchema(tbl *OVSdbSchema) error {
 				colDef := colDefIntrf.(map[string]interface{})
 				if typeIntrf, ok := colDef["type"]; ok {
 					newCol := TableCol{}
+					newCol.Name = utils.SnakeToCamel(colName)
+					newCol.JsonName = colName
 					if err := parseType(typeIntrf, &newCol); err == nil {
-						newCol.Name = utils.SnakeToCamel(colName)
-						newCol.JsonName = colName
 						ephemeral, hasEphemeral := colDef["ephemeral"]
 						if hasEphemeral {
 							newCol.Ephemeral = ephemeral.(bool)
@@ -324,7 +337,8 @@ func (tbl *DbDef) AugmentSchema() error {
 	}
 
 	toolTipObj := make(map[string]string)
-	if err := json.Unmarshal(dat, &toolTipObj); err != nil {
+
+	if err := jsoniter.Unmarshal(dat, &toolTipObj); err != nil {
 		return fmt.Errorf("unable to unmarshall json string: %v", err)
 	}
 
