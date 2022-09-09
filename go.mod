@@ -10,11 +10,12 @@ require (
 )
 
 require (
-	github.com/InVisionApp/conjungo v1.1.0 // indirect
-	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/stretchr/testify v1.7.0 // indirect
-	golang.org/x/exp v0.0.0-20220613132600-b0d781184e0d // indirect
-	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
+	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
+	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/onsi/ginkgo v1.16.5 // indirect
+	github.com/onsi/gomega v1.20.0 // indirect
+	github.com/sirupsen/logrus v1.9.0 // indirect
+	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
 )
 
 // dev mode
@@ -22,4 +23,9 @@ require (
 //	github.com/go-echarts/go-echarts/v2 => ../go-echarts
 //)
 
-require github.com/go-echarts/examples v0.0.0-20211021070855-c1dea2301ce9
+require (
+	github.com/InVisionApp/conjungo v1.1.0
+	github.com/go-echarts/examples v0.0.0-20211021070855-c1dea2301ce9
+	github.com/json-iterator/go v1.1.12
+	golang.org/x/exp v0.0.0-20220613132600-b0d781184e0d
+)
