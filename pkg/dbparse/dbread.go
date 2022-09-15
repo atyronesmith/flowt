@@ -9,6 +9,7 @@ import (
 	"regexp"
 
 	"github.com/InVisionApp/conjungo"
+	"github.com/atyronesmith/flowt/pkg/dbtypes"
 	jsoniter "github.com/json-iterator/go"
 )
 
@@ -60,6 +61,8 @@ func DBReadWithSchema(in io.Reader, maxTokenSize int, ovsSchema *OVSdbSchema) (O
 		return nil, nil, err
 	}
 
+	jsoniter.RegisterTypeDecoder("dbtypes.LogicalFlowSB", &dbtypes.LogFlow{})
+
 	found := false
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -73,7 +76,7 @@ func DBReadWithSchema(in io.Reader, maxTokenSize int, ovsSchema *OVSdbSchema) (O
 				return nil, nil, err
 			}
 			if err := jsoniter.Unmarshal([]byte(line), &ddDelta); err != nil {
-				return nil, nil, fmt.Errorf("error while unmarshalling, lineno %d: %v\n\n%100s", lineNo, err,line)
+				return nil, nil, fmt.Errorf("error while unmarshalling, lineno %d: %v\n\n%.80s", lineNo, err,line)
 			}
 			if err := conjungo.Merge(dd, ddDelta, nil); err != nil {
 				fmt.Printf("Merge error: %v\n", err)

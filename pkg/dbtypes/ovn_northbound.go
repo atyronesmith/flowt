@@ -1,18 +1,20 @@
 package dbtypes
 
 // Type: OVN_Northbound
-// Version: 5.31.0
-// Tables: 25
+// Version: 5.35.1
+// Tables: 27
 
 // ACL
 type ACLNB struct {
 	Action      *string      `json:"action"`
 	Direction   *string      `json:"direction"`
 	ExternalIds OVSMapString `json:"external_ids"`
+	Label       *int         `json:"label"`
 	Log         *bool        `json:"log"`
 	Match       *string      `json:"match"`
 	Meter       *string      `json:"meter,omitempty"`
 	Name        *string      `json:"name,omitempty"`
+	Options     OVSMapString `json:"options"`
 	Priority    *int         `json:"priority"`
 	Severity    *string      `json:"severity,omitempty"`
 }
@@ -45,6 +47,11 @@ type ConnectionNB struct {
 	OtherConfig     OVSMapString `json:"other_config"`
 	Status          OVSMapString `json:"status"`
 	Target          *string      `json:"target"`
+}
+
+// Copp
+type CoppNB struct {
+	Meters OVSMapString `json:"meters"`
 }
 
 // DHCP_Options
@@ -105,6 +112,12 @@ type LoadBalancerNB struct {
 	Vips            OVSMapString   `json:"vips"`
 }
 
+// Load_Balancer_Group
+type LoadBalancerGroupNB struct {
+	LoadBalancer OVSSet[UUID] `json:"load_balancer"` //  Load_Balancer
+	Name         *string      `json:"name"`
+}
+
 // Load_Balancer_Health_Check
 type LoadBalancerHealthCheckNB struct {
 	ExternalIds OVSMapString `json:"external_ids"`
@@ -114,15 +127,17 @@ type LoadBalancerHealthCheckNB struct {
 
 // Logical_Router
 type LogicalRouterNB struct {
-	Enabled      *bool        `json:"enabled,omitempty"`
-	ExternalIds  OVSMapString `json:"external_ids"`
-	LoadBalancer OVSSet[UUID] `json:"load_balancer"` //  Load_Balancer
-	Name         *string      `json:"name"`
-	Nat          OVSSet[UUID] `json:"nat"` //  NAT
-	Options      OVSMapString `json:"options"`
-	Policies     OVSSet[UUID] `json:"policies"`      //  Logical_Router_Policy
-	Ports        OVSSet[UUID] `json:"ports"`         //  Logical_Router_Port
-	StaticRoutes OVSSet[UUID] `json:"static_routes"` //  Logical_Router_Static_Route
+	Copp              *UUID        `json:"copp,omitempty"` //  Copp
+	Enabled           *bool        `json:"enabled,omitempty"`
+	ExternalIds       OVSMapString `json:"external_ids"`
+	LoadBalancer      OVSSet[UUID] `json:"load_balancer"`       //  Load_Balancer
+	LoadBalancerGroup OVSSet[UUID] `json:"load_balancer_group"` //  Load_Balancer_Group
+	Name              *string      `json:"name"`
+	Nat               OVSSet[UUID] `json:"nat"` //  NAT
+	Options           OVSMapString `json:"options"`
+	Policies          OVSSet[UUID] `json:"policies"`      //  Logical_Router_Policy
+	Ports             OVSSet[UUID] `json:"ports"`         //  Logical_Router_Port
+	StaticRoutes      OVSSet[UUID] `json:"static_routes"` //  Logical_Router_Static_Route
 }
 
 // Logical_Router_Policy
@@ -160,19 +175,22 @@ type LogicalRouterStaticRouteNB struct {
 	Options     OVSMapString `json:"options"`
 	OutputPort  *string      `json:"output_port,omitempty"`
 	Policy      *string      `json:"policy,omitempty"`
+	RouteTable  *string      `json:"route_table"`
 }
 
 // Logical_Switch
 type LogicalSwitchNB struct {
-	Acls             OVSSet[UUID] `json:"acls"`        //  ACL
-	DnsRecords       OVSSet[UUID] `json:"dns_records"` //  DNS
-	ExternalIds      OVSMapString `json:"external_ids"`
-	ForwardingGroups OVSSet[UUID] `json:"forwarding_groups"` //  Forwarding_Group
-	LoadBalancer     OVSSet[UUID] `json:"load_balancer"`     //  Load_Balancer
-	Name             *string      `json:"name"`
-	OtherConfig      OVSMapString `json:"other_config"`
-	Ports            OVSSet[UUID] `json:"ports"`     //  Logical_Switch_Port
-	QosRules         OVSSet[UUID] `json:"qos_rules"` //  QoS
+	Acls              OVSSet[UUID] `json:"acls"`           //  ACL
+	Copp              *UUID        `json:"copp,omitempty"` //  Copp
+	DnsRecords        OVSSet[UUID] `json:"dns_records"`    //  DNS
+	ExternalIds       OVSMapString `json:"external_ids"`
+	ForwardingGroups  OVSSet[UUID] `json:"forwarding_groups"`   //  Forwarding_Group
+	LoadBalancer      OVSSet[UUID] `json:"load_balancer"`       //  Load_Balancer
+	LoadBalancerGroup OVSSet[UUID] `json:"load_balancer_group"` //  Load_Balancer_Group
+	Name              *string      `json:"name"`
+	OtherConfig       OVSMapString `json:"other_config"`
+	Ports             OVSSet[UUID] `json:"ports"`     //  Logical_Switch_Port
+	QosRules          OVSSet[UUID] `json:"qos_rules"` //  QoS
 }
 
 // Logical_Switch_Port
@@ -278,6 +296,7 @@ type OVNNorthbound struct {
 	AddressSet               map[string]AddressSetNB               `json:"Address_Set"`
 	BFD                      map[string]BFDNB                      `json:"BFD"`
 	Connection               map[string]ConnectionNB               `json:"Connection"`
+	Copp                     map[string]CoppNB                     `json:"Copp"`
 	DHCPOptions              map[string]DHCPOptionsNB              `json:"DHCP_Options"`
 	DNS                      map[string]DNSNB                      `json:"DNS"`
 	ForwardingGroup          map[string]ForwardingGroupNB          `json:"Forwarding_Group"`
@@ -285,6 +304,7 @@ type OVNNorthbound struct {
 	HAChassis                map[string]HAChassisNB                `json:"HA_Chassis"`
 	HAChassisGroup           map[string]HAChassisGroupNB           `json:"HA_Chassis_Group"`
 	LoadBalancer             map[string]LoadBalancerNB             `json:"Load_Balancer"`
+	LoadBalancerGroup        map[string]LoadBalancerGroupNB        `json:"Load_Balancer_Group"`
 	LoadBalancerHealthCheck  map[string]LoadBalancerHealthCheckNB  `json:"Load_Balancer_Health_Check"`
 	LogicalRouter            map[string]LogicalRouterNB            `json:"Logical_Router"`
 	LogicalRouterPolicy      map[string]LogicalRouterPolicyNB      `json:"Logical_Router_Policy"`

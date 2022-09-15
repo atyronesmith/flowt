@@ -1,7 +1,7 @@
 package dbtypes
 
 // Type: OVN_Southbound
-// Version: 20.17.0
+// Version: 20.21.0
 // Tables: 31
 
 // Address_Set
@@ -174,6 +174,7 @@ type LogicalDPGroupSB struct {
 // Logical_Flow
 type LogicalFlowSB struct {
 	Actions         *string      `json:"actions"`
+	ControllerMeter *string      `json:"controller_meter,omitempty"`
 	ExternalIds     OVSMapString `json:"external_ids"`
 	LogicalDatapath *UUID        `json:"logical_datapath,omitempty"` //  Datapath_Binding
 	LogicalDpGroup  *UUID        `json:"logical_dp_group,omitempty"` //  Logical_DP_Group
@@ -181,6 +182,7 @@ type LogicalFlowSB struct {
 	Pipeline        *string      `json:"pipeline"`
 	Priority        *int         `json:"priority"`
 	TableId         *int         `json:"table_id"`
+	Tags            OVSMapString `json:"tags"`
 }
 
 // MAC_Binding
@@ -215,22 +217,23 @@ type MulticastGroupSB struct {
 
 // Port_Binding
 type PortBindingSB struct {
-	Chassis        *UUID          `json:"chassis,omitempty"` //  Chassis
-	Datapath       *UUID          `json:"datapath"`          //  Datapath_Binding
-	Encap          *UUID          `json:"encap,omitempty"`   //  Encap
-	ExternalIds    OVSMapString   `json:"external_ids"`
-	GatewayChassis OVSSet[UUID]   `json:"gateway_chassis"`            //  Gateway_Chassis
-	HaChassisGroup *UUID          `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
-	LogicalPort    *string        `json:"logical_port"`
-	Mac            OVSSet[string] `json:"mac"`
-	NatAddresses   OVSSet[string] `json:"nat_addresses"`
-	Options        OVSMapString   `json:"options"`
-	ParentPort     *string        `json:"parent_port,omitempty"`
-	Tag            *int           `json:"tag,omitempty"`
-	TunnelKey      *int           `json:"tunnel_key"`
-	Type           *string        `json:"type"`
-	Up             *bool          `json:"up,omitempty"`
-	VirtualParent  *StringSet     `json:"virtual_parent,omitempty"`
+	Chassis          *UUID          `json:"chassis,omitempty"` //  Chassis
+	Datapath         *UUID          `json:"datapath"`          //  Datapath_Binding
+	Encap            *UUID          `json:"encap,omitempty"`   //  Encap
+	ExternalIds      OVSMapString   `json:"external_ids"`
+	GatewayChassis   OVSSet[UUID]   `json:"gateway_chassis"`            //  Gateway_Chassis
+	HaChassisGroup   *UUID          `json:"ha_chassis_group,omitempty"` //  HA_Chassis_Group
+	LogicalPort      *string        `json:"logical_port"`
+	Mac              OVSSet[string] `json:"mac"`
+	NatAddresses     OVSSet[string] `json:"nat_addresses"`
+	Options          OVSMapString   `json:"options"`
+	ParentPort       *string        `json:"parent_port,omitempty"`
+	RequestedChassis *UUID          `json:"requested_chassis,omitempty"` //  Chassis
+	Tag              *int           `json:"tag,omitempty"`
+	TunnelKey        *int           `json:"tunnel_key"`
+	Type             *string        `json:"type"`
+	Up               *bool          `json:"up,omitempty"`
+	VirtualParent    *StringSet     `json:"virtual_parent,omitempty"`
 }
 
 // Port_Group

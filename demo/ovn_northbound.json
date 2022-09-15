@@ -1,6 +1,6 @@
 {
-    "_date": 1657029790830,
-    "_comment": "",
+    "_date": 1657138231146,
+    "_comment": "compacting database online",
     "_is_diff": true,
     "ACL": {
         "0906cc16-ffe4-4c41-a980-c6166a2da1c2": {
@@ -439,9 +439,9 @@
                 "vlan-passthru": "false"
             },
             "ports": [
+                "20df300c-28b8-4b4f-8598-ade4d092756b",
                 "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
-                "b7039c88-2df0-4420-a5eb-169fbb23e430",
-                "20df300c-28b8-4b4f-8598-ade4d092756b"
+                "b7039c88-2df0-4420-a5eb-169fbb23e430"
             ],
             "qos_rules": null
         },
@@ -957,12 +957,12 @@
             "name": "neutron_pg_drop",
             "ports": [
                 "1c8bf388-d779-48d7-88b6-bd8b7c670922",
+                "20df300c-28b8-4b4f-8598-ade4d092756b",
                 "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8",
                 "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
                 "8a377a02-67e5-440f-96b0-dfa2a9060f9e",
                 "c9aba488-d398-484c-80ef-fa1a58dea206",
-                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab",
-                "20df300c-28b8-4b4f-8598-ade4d092756b"
+                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab"
             ]
         },
         "dc798be6-74d2-4eed-9a90-d623781824a9": {
@@ -980,12 +980,12 @@
             "name": "pg_6558094b_5c0d_4258_93ab_6efc734c80bc",
             "ports": [
                 "1c8bf388-d779-48d7-88b6-bd8b7c670922",
+                "20df300c-28b8-4b4f-8598-ade4d092756b",
                 "7b10a79b-d0fd-433d-ade6-d8a5365fdaf8",
                 "7cd16af0-80de-45e8-a1f6-f46ebf0a7507",
                 "8a377a02-67e5-440f-96b0-dfa2a9060f9e",
                 "c9aba488-d398-484c-80ef-fa1a58dea206",
-                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab",
-                "20df300c-28b8-4b4f-8598-ade4d092756b"
+                "fa4afd37-9353-4dc1-9b91-8a7caeba17ab"
             ]
         }
     },

@@ -7,36 +7,16 @@ ip netns add 1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc
 ip netns add 4082929f-7ab4-4b76-b06f-fd5dea91c609
 
 ovs-vsctl \
-      -- add-port br-int 8b332d14-b00a-4 \
-      -- set interface 8b332d14-b00a-4 type=internal \
-      -- set Interface 8b332d14-b00a-4 external_ids:iface-id=8b332d14-b00a-4e75-af70-eac6e56afec4
-ip link set 8b332d14-b00a-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
+      -- add-port br-int 71d95a8d-9844-4 \
+      -- set interface 71d95a8d-9844-4 type=internal \
+      -- set Interface 71d95a8d-9844-4 external_ids:iface-id=71d95a8d-9844-409b-b113-d40250684a69
+ip link set 71d95a8d-9844-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
 ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set lo up
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 8b332d14-b00a-4 address fa:16:3e:a9:2d:c1
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.0.10.141/24 dev 8b332d14-b00a-4
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 8b332d14-b00a-4 up
-
-ovs-vsctl \
-      -- add-port br-int 6189098b-df23-4 \
-      -- set interface 6189098b-df23-4 type=internal \
-      -- set Interface 6189098b-df23-4 external_ids:iface-id=6189098b-df23-4ca1-9062-2b756cad6acc
-ip link set 6189098b-df23-4 netns 4082929f-7ab4-4b76-b06f-fd5dea91c609
-ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set lo up
-ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set 6189098b-df23-4 address fa:16:3e:d7:13:a4
-ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip addr add 192.0.11.116/24 dev 6189098b-df23-4
-ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set 6189098b-df23-4 up
-
-ovs-vsctl \
-      -- add-port br-int 9fbc5b58-cf4c-4 \
-      -- set interface 9fbc5b58-cf4c-4 type=internal \
-      -- set Interface 9fbc5b58-cf4c-4 external_ids:iface-id=9fbc5b58-cf4c-4e83-8801-a73b41bdf27b
-ip link set 9fbc5b58-cf4c-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set lo up
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 9fbc5b58-cf4c-4 address fa:16:3e:94:cf:4a
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.168.33.102/24 dev 9fbc5b58-cf4c-4
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 9fbc5b58-cf4c-4 up
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 169.254.169.254/32 via 192.168.33.100 dev 9fbc5b58-cf4c-4
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 0.0.0.0/0 via 192.168.33.1 dev 9fbc5b58-cf4c-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 71d95a8d-9844-4 address fa:16:3e:d7:da:20
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.168.10.68/24 dev 71d95a8d-9844-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 71d95a8d-9844-4 up
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 169.254.169.254/32 via 192.168.10.2 dev 71d95a8d-9844-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 0.0.0.0/0 via 192.168.10.1 dev 71d95a8d-9844-4
 
 ovs-vsctl \
       -- add-port br-int 6cbd2589-3c49-4 \
@@ -47,6 +27,16 @@ ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set lo up
 ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 6cbd2589-3c49-4 address fa:16:3e:a9:84:91
 ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.0.11.219/24 dev 6cbd2589-3c49-4
 ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 6cbd2589-3c49-4 up
+
+ovs-vsctl \
+      -- add-port br-int 8b332d14-b00a-4 \
+      -- set interface 8b332d14-b00a-4 type=internal \
+      -- set Interface 8b332d14-b00a-4 external_ids:iface-id=8b332d14-b00a-4e75-af70-eac6e56afec4
+ip link set 8b332d14-b00a-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set lo up
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 8b332d14-b00a-4 address fa:16:3e:a9:2d:c1
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.0.10.141/24 dev 8b332d14-b00a-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 8b332d14-b00a-4 up
 
 ovs-vsctl \
       -- add-port br-int 1d7ec5b6-6c82-4 \
@@ -73,13 +63,23 @@ ip netns exec 1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc ip route add 169.254.169.254/
 ip netns exec 1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc ip route add 0.0.0.0/0 via 192.168.33.1 dev 23d0ed6c-a799-4
 
 ovs-vsctl \
-      -- add-port br-int 71d95a8d-9844-4 \
-      -- set interface 71d95a8d-9844-4 type=internal \
-      -- set Interface 71d95a8d-9844-4 external_ids:iface-id=71d95a8d-9844-409b-b113-d40250684a69
-ip link set 71d95a8d-9844-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
+      -- add-port br-int 6189098b-df23-4 \
+      -- set interface 6189098b-df23-4 type=internal \
+      -- set Interface 6189098b-df23-4 external_ids:iface-id=6189098b-df23-4ca1-9062-2b756cad6acc
+ip link set 6189098b-df23-4 netns 4082929f-7ab4-4b76-b06f-fd5dea91c609
+ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set lo up
+ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set 6189098b-df23-4 address fa:16:3e:d7:13:a4
+ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip addr add 192.0.11.116/24 dev 6189098b-df23-4
+ip netns exec 4082929f-7ab4-4b76-b06f-fd5dea91c609 ip link set 6189098b-df23-4 up
+
+ovs-vsctl \
+      -- add-port br-int 9fbc5b58-cf4c-4 \
+      -- set interface 9fbc5b58-cf4c-4 type=internal \
+      -- set Interface 9fbc5b58-cf4c-4 external_ids:iface-id=9fbc5b58-cf4c-4e83-8801-a73b41bdf27b
+ip link set 9fbc5b58-cf4c-4 netns 17df02cc-5577-4f07-a150-49e6499381c8
 ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set lo up
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 71d95a8d-9844-4 address fa:16:3e:d7:da:20
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.168.10.68/24 dev 71d95a8d-9844-4
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 71d95a8d-9844-4 up
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 169.254.169.254/32 via 192.168.10.2 dev 71d95a8d-9844-4
-ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 0.0.0.0/0 via 192.168.10.1 dev 71d95a8d-9844-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 9fbc5b58-cf4c-4 address fa:16:3e:94:cf:4a
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip addr add 192.168.33.102/24 dev 9fbc5b58-cf4c-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip link set 9fbc5b58-cf4c-4 up
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 169.254.169.254/32 via 192.168.33.100 dev 9fbc5b58-cf4c-4
+ip netns exec 17df02cc-5577-4f07-a150-49e6499381c8 ip route add 0.0.0.0/0 via 192.168.33.1 dev 9fbc5b58-cf4c-4

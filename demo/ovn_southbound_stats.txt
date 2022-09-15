@@ -1,5 +1,5 @@
-Date            54479-03-08 13:00:36 +0000 UTC                         
-Comment         ovn-northd                       
+Date            54482-08-14 15:36:43 +0000 UTC                         
+Comment         compacting database online                       
 IsDiff          true                         
 AddressSet      9
 BFD             0
@@ -22,7 +22,7 @@ IGMPGroup       0
 IPMulticast     5
 LoadBalancer    0
 LogicalDPGroup  4
-LogicalFlow     394
+LogicalFlow     392
 MACBinding      1
 Meter           0
 MeterBand       0

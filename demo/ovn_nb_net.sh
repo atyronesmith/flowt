@@ -3,9 +3,9 @@
 set -e
 
 CIDR_1d646b6e_fcce_4b0a_8895_5e173e6648f9=$(ovn-nbctl create dhcp_options "cidr"="192.168.10.0/24" \
-  options='"lease_time"="43200" "mtu"="8942" "router"="192.168.10.1" "server_id"="192.168.10.1" "server_mac"="fa:16:3e:53:b0:2f" "classless_static_route"="{169.254.169.254/32,192.168.10.2, 0.0.0.0/0,192.168.10.1}" "dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}"')
+  options='"classless_static_route"="{169.254.169.254/32,192.168.10.2, 0.0.0.0/0,192.168.10.1}" "dns_server"="{10.11.5.19, 10.10.160.2, 10.5.30.160}" "lease_time"="43200" "mtu"="8942" "router"="192.168.10.1" "server_id"="192.168.10.1" "server_mac"="fa:16:3e:53:b0:2f"')
 CIDR_3aacef64_db3c_4f79_930d_6282a3e6b95a=$(ovn-nbctl create dhcp_options "cidr"="192.168.33.0/24" \
-  options='"mtu"="8942" "router"="192.168.33.1" "server_id"="192.168.33.1" "server_mac"="fa:16:3e:1f:5d:84" "classless_static_route"="{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}" "dns_server"="{8.8.8.8}" "lease_time"="43200"')
+  options='"router"="192.168.33.1" "server_id"="192.168.33.1" "server_mac"="fa:16:3e:1f:5d:84" "classless_static_route"="{169.254.169.254/32,192.168.33.100, 0.0.0.0/0,192.168.33.1}" "dns_server"="{8.8.8.8}" "lease_time"="43200" "mtu"="8942"')
 
 ovn-nbctl ls-add neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f
 LS_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch name=neutron-d8953248-ba41-4ef4-b7a3-471afed8fd8f | awk '{ print $3 }')
@@ -190,6 +190,22 @@ ovn-nbctl set logical_switch "$LS_UUID" external_ids:\"neutron:revision_number\"
 ovn-nbctl set logical_switch "$LS_UUID" other_config:mcast_flood_unregistered="false"
 ovn-nbctl set logical_switch "$LS_UUID" other_config:mcast_snoop="false"
 ovn-nbctl set logical_switch "$LS_UUID" other_config:vlan-passthru="false"
+ovn-nbctl lsp-add neutron-496db99d-97cc-4d52-ab60-2d1386d3626c 23d0ed6c-a799-451c-9c69-536ae9079081 
+ovn-nbctl lsp-set-addresses 23d0ed6c-a799-451c-9c69-536ae9079081 "fa:16:3e:9f:a8:7e 192.168.33.40"
+ovn-nbctl lsp-set-port-security 23d0ed6c-a799-451c-9c69-536ae9079081 "fa:16:3e:9f:a8:7e 192.168.33.40"
+ovn-nbctl lsp-set-enabled 23d0ed6c-a799-451c-9c69-536ae9079081 enabled
+LSP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch_Port name=23d0ed6c-a799-451c-9c69-536ae9079081 | awk '{ print $3 }')
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:cidrs\"="192.168.33.40/24"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:device_id\"="1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:device_owner\"="compute:nova"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:network_name\"="neutron-496db99d-97cc-4d52-ab60-2d1386d3626c"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:port_name\"=\"\"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:project_id\"="ff0b6fda266d4d12a0df787aa41f1bb2"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:revision_number\"="4"
+ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:security_group_ids\"="6558094b-5c0d-4258-93ab-6efc734c80bc"
+ovn-nbctl lsp-set-options 23d0ed6c-a799-451c-9c69-536ae9079081 mcast_flood_reports=true
+ovn-nbctl lsp-set-options 23d0ed6c-a799-451c-9c69-536ae9079081 requested-chassis=sos-novacompute-0.localdomain
+ovn-nbctl lsp-set-dhcpv4-options 23d0ed6c-a799-451c-9c69-536ae9079081 "$CIDR_3aacef64_db3c_4f79_930d_6282a3e6b95a"
 ovn-nbctl lsp-add neutron-496db99d-97cc-4d52-ab60-2d1386d3626c 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b 
 ovn-nbctl lsp-set-addresses 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b "fa:16:3e:94:cf:4a 192.168.33.102"
 ovn-nbctl lsp-set-port-security 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b "fa:16:3e:94:cf:4a 192.168.33.102"
@@ -220,22 +236,6 @@ ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:project_id\
 ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:revision_number\"="2"
 ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:security_group_ids\"=\"\"
 ovn-nbctl lsp-set-options d54273a6-ecbd-4ab0-ba13-adbd2a2ae204 requested-chassis=
-ovn-nbctl lsp-add neutron-496db99d-97cc-4d52-ab60-2d1386d3626c 23d0ed6c-a799-451c-9c69-536ae9079081 
-ovn-nbctl lsp-set-addresses 23d0ed6c-a799-451c-9c69-536ae9079081 "fa:16:3e:9f:a8:7e 192.168.33.40"
-ovn-nbctl lsp-set-port-security 23d0ed6c-a799-451c-9c69-536ae9079081 "fa:16:3e:9f:a8:7e 192.168.33.40"
-ovn-nbctl lsp-set-enabled 23d0ed6c-a799-451c-9c69-536ae9079081 enabled
-LSP_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch_Port name=23d0ed6c-a799-451c-9c69-536ae9079081 | awk '{ print $3 }')
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:cidrs\"="192.168.33.40/24"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:device_id\"="1e8f9d6d-eb56-485e-8f84-6bd622a6c5dc"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:device_owner\"="compute:nova"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:network_name\"="neutron-496db99d-97cc-4d52-ab60-2d1386d3626c"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:port_name\"=\"\"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:project_id\"="ff0b6fda266d4d12a0df787aa41f1bb2"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:revision_number\"="4"
-ovn-nbctl set logical_switch_port "$LSP_UUID" external_ids:\"neutron:security_group_ids\"="6558094b-5c0d-4258-93ab-6efc734c80bc"
-ovn-nbctl lsp-set-options 23d0ed6c-a799-451c-9c69-536ae9079081 mcast_flood_reports=true
-ovn-nbctl lsp-set-options 23d0ed6c-a799-451c-9c69-536ae9079081 requested-chassis=sos-novacompute-0.localdomain
-ovn-nbctl lsp-set-dhcpv4-options 23d0ed6c-a799-451c-9c69-536ae9079081 "$CIDR_3aacef64_db3c_4f79_930d_6282a3e6b95a"
 
 ovn-nbctl ls-add neutron-561990d3-f4d5-431d-ae92-a85b83f4f570
 LS_UUID=$(ovn-nbctl --columns=_uuid find Logical_Switch name=neutron-561990d3-f4d5-431d-ae92-a85b83f4f570 | awk '{ print $3 }')
@@ -322,12 +322,12 @@ ovn-nbctl --type=port-group acl-add pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 to-l
 ovn-nbctl --type=port-group acl-add pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 to-lport 1002 'outport == @pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4 && ip4 && ip4.src == $pg_706cec15_e52f_4a0a_8139_2ff14b5fd1a4_ip4' allow-related
 
 ovn-nbctl pg-add neutron_pg_drop
-ovn-nbctl pg-set-ports neutron_pg_drop 6189098b-df23-4ca1-9062-2b756cad6acc 1d7ec5b6-6c82-49cc-b940-e46c63c59148 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b 71d95a8d-9844-409b-b113-d40250684a69 6cbd2589-3c49-4f6a-a139-8cd6fa93522e 8b332d14-b00a-4e75-af70-eac6e56afec4 23d0ed6c-a799-451c-9c69-536ae9079081 
+ovn-nbctl pg-set-ports neutron_pg_drop 6189098b-df23-4ca1-9062-2b756cad6acc 23d0ed6c-a799-451c-9c69-536ae9079081 1d7ec5b6-6c82-49cc-b940-e46c63c59148 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b 71d95a8d-9844-409b-b113-d40250684a69 6cbd2589-3c49-4f6a-a139-8cd6fa93522e 8b332d14-b00a-4e75-af70-eac6e56afec4 
 ovn-nbctl --type=port-group acl-add neutron_pg_drop from-lport 1001 'inport == @neutron_pg_drop && ip' drop
 ovn-nbctl --type=port-group acl-add neutron_pg_drop to-lport 1001 'outport == @neutron_pg_drop && ip' drop
 
 ovn-nbctl pg-add pg_6558094b_5c0d_4258_93ab_6efc734c80bc
-ovn-nbctl pg-set-ports pg_6558094b_5c0d_4258_93ab_6efc734c80bc 6189098b-df23-4ca1-9062-2b756cad6acc 1d7ec5b6-6c82-49cc-b940-e46c63c59148 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b 71d95a8d-9844-409b-b113-d40250684a69 6cbd2589-3c49-4f6a-a139-8cd6fa93522e 8b332d14-b00a-4e75-af70-eac6e56afec4 23d0ed6c-a799-451c-9c69-536ae9079081 
+ovn-nbctl pg-set-ports pg_6558094b_5c0d_4258_93ab_6efc734c80bc 6189098b-df23-4ca1-9062-2b756cad6acc 23d0ed6c-a799-451c-9c69-536ae9079081 1d7ec5b6-6c82-49cc-b940-e46c63c59148 9fbc5b58-cf4c-4e83-8801-a73b41bdf27b 71d95a8d-9844-409b-b113-d40250684a69 6cbd2589-3c49-4f6a-a139-8cd6fa93522e 8b332d14-b00a-4e75-af70-eac6e56afec4 
 ovn-nbctl --type=port-group acl-add pg_6558094b_5c0d_4258_93ab_6efc734c80bc from-lport 1002 'inport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc && ip6' allow-related
 ovn-nbctl --type=port-group acl-add pg_6558094b_5c0d_4258_93ab_6efc734c80bc to-lport 1002 'outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc && ip4 && ip4.src == 0.0.0.0/0 && tcp && tcp.dst == 22' allow-related
 ovn-nbctl --type=port-group acl-add pg_6558094b_5c0d_4258_93ab_6efc734c80bc to-lport 1002 'outport == @pg_6558094b_5c0d_4258_93ab_6efc734c80bc && ip4 && ip4.src == 0.0.0.0/0 && icmp4' allow-related

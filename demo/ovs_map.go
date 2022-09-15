@@ -19,7 +19,7 @@ func (b *OVSMap[T]) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("invalid map array for OVSMap: %s", data)
 	}
 
-	*b = make(map[string]T)
+	*b = make(map[string]T,4)
 
 	for _, v := range ovsMap[1].([]interface{}) {
 		b.append(v.([]interface{}))
