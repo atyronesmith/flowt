@@ -94,10 +94,13 @@ func main() {
 		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
-	err = dbDef.AugmentSchema()
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		os.Exit(1)
+
+	if dotSchema {
+		err = dbDef.AugmentSchema()
+		if err != nil {
+			fmt.Printf("Error: %v\n", err)
+			os.Exit(1)
+		}
 	}
 
 	tPlate := tStruct{
@@ -114,7 +117,7 @@ func main() {
 
 	if jsonData {
 		genJsonData(db, outDir, outBaseName)
-	}	
+	}
 }
 
 func genJsonData(db dbparse.OVNDbType, outDir string, outBaseName string) {
