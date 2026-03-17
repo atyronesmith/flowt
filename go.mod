@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e
 	github.com/go-echarts/go-echarts/v2 v2.2.5-0.20211021024243-33ae1aa415d6
-	github.com/golang/glog v1.0.0
+	github.com/golang/glog v1.2.4
 	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29
 )
 
