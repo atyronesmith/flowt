@@ -1,12 +1,12 @@
 module github.com/atyronesmith/flowt
 
-go 1.18
+go 1.24.0
 
 require (
 	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e
 	github.com/go-echarts/go-echarts/v2 v2.2.5-0.20211021024243-33ae1aa415d6
 	github.com/golang/glog v1.2.4
-	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29
+	golang.org/x/crypto v0.45.0
 )
 
 require (
@@ -15,7 +15,7 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.20.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
-	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 )
 
 // dev mode
